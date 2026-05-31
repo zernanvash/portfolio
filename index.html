@@ -943,6 +943,51 @@
       letter-spacing: -0.04em;
     }
 
+    .credentials-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 32px;
+      border-top: 5px double var(--ink);
+      padding-top: 48px;
+    }
+
+    .credentials-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .credentials-list li {
+      border-bottom: 1.5px dashed var(--rule-soft);
+      padding-bottom: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .credentials-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .credentials-list li strong {
+      display: block;
+      font-family: var(--font-main);
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .credentials-list li span {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
     .contact-panel {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 390px;
@@ -1063,7 +1108,8 @@
 
       .hero,
       .intro-grid,
-      .contact-panel {
+      .contact-panel,
+      .credentials-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1215,11 +1261,8 @@
               de Dagupan · CS Student · DOST Scholar</span>
           </div>
           <h1 id="hero-title">I build useful software, then <span class="mark">show the work</span>.</h1>
-          <p class="hero-copy">I am a BS Computer Science student at Universidad de Dagupan looking for software
-            engineering internships and cybersecurity roles.
-            <!-- This page is built like a short newsletter: quick context,
-            project clippings, and the proof a busy reviewer needs. -->
-          </p>
+          <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for software
+            engineering internships and cybersecurity roles. I focus on building secure, innovative software and strengthening network resilience through hands-on, impactful projects.</p>
           <div class="identity-line" aria-label="Portfolio focus areas">
             <span class="chip">Java & Systems</span>
             <span class="chip">Python, C, C++</span>
@@ -1276,30 +1319,27 @@
             <div class="fact-list">
               <div class="fact"><span>Studying</span><strong>BS Computer Science</strong></div>
               <div class="fact"><span>Scholarship</span><strong>DOST-SEI Merit Scholar</strong></div>
-              <div class="fact"><span>Role</span><strong>CSIT Society Developer</strong></div>
-              <div class="fact"><span>Activities</span><strong>Cybersecurity CTF & Robotics</strong></div>
+              <div class="fact"><span>Co-Curricular</span><strong>UD Cybersecurity Varsity</strong></div>
+              <div class="fact"><span>Past Role</span><strong>CSIT Sub-Org Developer</strong></div>
             </div>
           </aside>
 
           <div class="learning-board" aria-label="Current learning board">
             <div class="learning-row">
-              <b>System Development</b>
-              <span>I worked as a System Developer for the Programming Sub-Organization of Universidad de Dagupan's CSIT
-                Society.</span>
+              <b>Co-Curriculars</b>
+              <span>Member of Universidad de Dagupan's Cybersecurity Varsity (AY 2024-Present) and former System Developer for the CSIT Society's Programming Sub-Org (AY 2023-2024).</span>
             </div>
             <div class="learning-row">
-              <b>Cybersecurity</b>
-              <span>Motivated by cybersecurity concepts, I participate in workshops and DCODE CTF challenges to test my
-                analytical skills.</span>
+              <b>Education</b>
+              <span>Pursuing BS Computer Science at Universidad de Dagupan (DOST scholar & Dean's Lister). San Fabian NHS (2023, with honors) & Cabanatuan City SHS (2022, with honors) graduate.</span>
             </div>
             <div class="learning-row">
-              <b>Specialized Skills</b>
-              <span>I develop system scripting in Batch and VBScript, and build IoT integrations for mobile robotics
-                competitions.</span>
+              <b>Cybersecurity CTFs</b>
+              <span>Active in cybersecurity challenges like Trend Micro CTF, FIRST ASEAN CTF, Cyber Range Exercises (HackForGov 3), and DCODE challenge workshops.</span>
             </div>
             <div class="learning-row">
-              <b>College Honors</b>
-              <span>DOST-SEI scholar and Dean's Lister, aiming to drive innovative secure software development.</span>
+              <b>Core Capabilities</b>
+              <span>Problem-solving, leadership & team management, effective communication, highly adaptable/rapid learner, and collaborative team player.</span>
             </div>
           </div>
         </div>
@@ -1447,6 +1487,113 @@ cscript /nologo check_ports.vbs
             <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
               math, and document my work systematically.</p>
           </article>
+        </div>
+
+        <div class="credentials-grid">
+          <!-- Column 1: Awards & Honors -->
+          <div class="panel" style="box-shadow: 4px 4px 0 var(--ink);">
+            <span class="issue-label" style="background: var(--accent-red); color: var(--paper);">Awards & Honors</span>
+            <ul class="credentials-list">
+              <li>
+                <span style="font-size: 16px; line-height: 1;">🏆</span>
+                <div>
+                  <strong>Champion, Hack the Chain 25.2</strong>
+                  <span>July 2025 · Viction Blockchain Hackathon (Mapandan)</span>
+                </div>
+              </li>
+              <li>
+                <span style="font-size: 16px; line-height: 1;">⭐️</span>
+                <div>
+                  <strong>Outstanding Student & Academic Excellence</strong>
+                  <span>1st Sem AY 2024-2025 · Universidad de Dagupan</span>
+                </div>
+              </li>
+              <li>
+                <span style="font-size: 16px; line-height: 1;">⭐️</span>
+                <div>
+                  <strong>Academic Excellence Awardee</strong>
+                  <span>1st Sem AY 2023-2024 · Universidad de Dagupan</span>
+                </div>
+              </li>
+              <li>
+                <span style="font-size: 16px; line-height: 1;">🎓</span>
+                <div>
+                  <strong>DOST-SEI S&T Merit Scholar</strong>
+                  <span>Awarded in 2023 · DOST Scholarship Program</span>
+                </div>
+              </li>
+              <li>
+                <span style="font-size: 16px; line-height: 1;">🎖</span>
+                <div>
+                  <strong>High School Graduation with Honors</strong>
+                  <span>AY 2022-2023 · San Fabian National High School</span>
+                </div>
+              </li>
+              <li>
+                <span style="font-size: 16px; line-height: 1;">🎖</span>
+                <div>
+                  <strong>Senior High Academic Honors</strong>
+                  <span>AY 2021-2022 · Cabanatuan City Senior High School</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Selected Trainings & Seminars -->
+          <div class="learning-board" style="padding: 24px; box-shadow: 4px 4px 0 var(--ink);">
+            <span class="issue-label" style="background: var(--ink); color: var(--paper);">Trainings, Seminars & CTFs</span>
+            <div style="margin-top: 20px; display: grid; gap: 12px;">
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Jul 2025</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">Hack the Chain 25.2</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Viction blockchain workshop and 24h hackathon. Mapandan, Pangasinan.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Feb 2025</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">UD Knowledge Festival 2025</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Emerging Technologies: Shaping the Future of Digital Innovation.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Aug 2024</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">Trend Micro University CTF</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Global Capture The Flag virtual competition testing security practices.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Jul 2024</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">FIRST CTF for ASEAN</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">ASEAN regional virtual CTF cybersecurity exercises.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Jun 2024</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">HackForGov 3 Day 1 Seminar</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Cyber Range Exercises and incident response workshops.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">May 2024</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">DCODE: UD Cyber Challenge</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">4-day CTF workshop, hands-on training, and challenge events.</span>
+                </div>
+              </div>
+              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+                <b style="font-size: 10px;">Nov 2023</b>
+                <div>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">Synergising IoT & Robotics</strong>
+                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Workshop on unleashing the power of intelligent systems & automation.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
