@@ -36,6 +36,7 @@
       /* muted cardboard beige */
       --paper-texture-1: url('assets/paper_input_1.jpg');
       --paper-texture-2: url('assets/paper_input_2.jpg');
+      --panel-overlay: url('assets/optimized/el_912_5.webp');
       --ink: #0a0a0a;
       /* deep midnight charcoal */
       --ink-2: #262626;
@@ -100,6 +101,13 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       position: relative;
+    }
+
+    body,
+    button,
+    input,
+    textarea {
+      overflow-wrap: anywhere;
     }
 
     /* Paper Noise Overlay */
@@ -184,6 +192,12 @@
       font-weight: 900;
       font-size: 22px;
       letter-spacing: -0.02em;
+      min-width: 0;
+    }
+
+    .brand span:last-child {
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .brand-mark {
@@ -637,6 +651,78 @@
       text-wrap: balance;
     }
 
+    .editorial-title {
+      display: flex;
+      align-items: start;
+      gap: clamp(14px, 2vw, 22px);
+    }
+
+    .editorial-initial {
+      width: clamp(62px, 7vw, 92px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      margin-top: 0.05em;
+      border: 3px solid var(--ink);
+      background: var(--paper-texture-2) center/cover, var(--accent);
+      color: var(--ink);
+      font: 900 clamp(42px, 5vw, 72px)/0.82 var(--font-display);
+      box-shadow: 4px 4px 0 var(--ink);
+      transform: rotate(-2deg);
+    }
+
+    .editorial-title.projects .editorial-initial {
+      background: var(--paper-texture-1) center/cover, var(--accent-soft);
+      transform: rotate(2deg);
+    }
+
+    .editorial-title.proof .editorial-initial {
+      background: var(--paper-texture-2) center/cover, var(--paper);
+      transform: rotate(-1deg);
+    }
+
+    .editorial-title.contact .editorial-initial {
+      background: var(--ink);
+      color: var(--paper);
+      transform: rotate(1.5deg);
+    }
+
+    .contact-panel .editorial-title.contact {
+      position: relative;
+      isolation: isolate;
+      margin-top: 16px;
+      padding: clamp(18px, 2.8vw, 28px);
+      border: 3px solid var(--ink);
+      background: var(--paper-texture-1) center/cover, var(--paper);
+      box-shadow: 5px 5px 0 var(--ink);
+      overflow: hidden;
+    }
+
+    .contact-panel .editorial-title.contact::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      z-index: -2;
+      background: url('assets/optimized/el_912_5.webp') center/cover no-repeat;
+      opacity: 0.78;
+      mix-blend-mode: multiply;
+      transform: rotate(-1deg) scale(1.04);
+    }
+
+    .contact-panel .editorial-title.contact::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(255, 255, 255, 0.58);
+      pointer-events: none;
+    }
+
+    .editorial-title span:last-child {
+      min-width: 0;
+    }
+
     .section-head p {
       color: var(--ink-2);
       line-height: 1.58;
@@ -659,6 +745,60 @@
       border: 3px solid var(--ink);
       border-radius: var(--radius);
       background: var(--paper-texture-1) center/cover, var(--paper);
+    }
+
+    .panel,
+    .note,
+    .proof-card,
+    .contact-card,
+    .contact-panel,
+    .learning-board,
+    .project-body,
+    .profile-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .panel::after,
+    .note::after,
+    .proof-card::after,
+    .contact-card::after,
+    .contact-panel::after,
+    .learning-board::after,
+    .project-body::after,
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      z-index: 0;
+      pointer-events: none;
+      background: var(--panel-overlay) center/cover no-repeat;
+      opacity: 0.24;
+      mix-blend-mode: multiply;
+      transform: rotate(-1deg) scale(1.04);
+    }
+
+    .panel>*,
+    .note>*,
+    .proof-card>*,
+    .contact-card>*,
+    .contact-panel>*,
+    .learning-board>*,
+    .project-body>*,
+    .profile-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .note::after,
+    .proof-card::after {
+      opacity: 0.3;
+    }
+
+    .learning-board::after,
+    .project-body::after {
+      opacity: 0.2;
     }
 
     .panel {
@@ -854,6 +994,7 @@
       text-transform: uppercase;
       transform: rotate(2deg);
       box-shadow: 2px 2px 0 var(--ink);
+      max-width: calc(100% - 36px);
     }
 
     .demo-window {
@@ -1281,6 +1422,14 @@
       resize: vertical;
     }
 
+    .contact-card,
+    .demo-window,
+    .contact-panel .editorial-title.contact,
+    input,
+    textarea {
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
     .form-row {
       display: flex;
       align-items: center;
@@ -1341,11 +1490,16 @@
 
       .profile-card {
         max-width: 640px;
+        margin-inline: auto;
       }
 
       .section-head {
         grid-template-columns: 1fr;
         align-items: start;
+      }
+
+      .editorial-title {
+        align-items: center;
       }
 
       .note-strip,
@@ -1362,6 +1516,10 @@
       .project-card.compact {
         grid-column: span 12;
       }
+
+      .contact-panel {
+        gap: 24px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -1371,10 +1529,26 @@
 
       body {
         font-size: 17px;
+        line-height: 1.55;
       }
 
       .nav-links {
         display: none;
+      }
+
+      .nav {
+        min-height: 62px;
+      }
+
+      .brand {
+        gap: 10px;
+        font-size: 18px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
       }
 
       .mobile-menu {
@@ -1386,12 +1560,65 @@
         padding: 54px 0;
       }
 
+      .hero {
+        gap: 30px;
+        padding: 38px 0 54px;
+      }
+
       h1 {
-        font-size: clamp(44px, 14vw, 66px);
+        font-size: clamp(42px, 13vw, 60px);
+        line-height: 1.05;
+      }
+
+      .hero-copy {
+        font-size: 18px;
+      }
+
+      .hero-copy::first-letter {
+        font-size: 3em;
+        margin-right: 9px;
+        padding: 3px 8px;
+      }
+
+      .editorial-title {
+        gap: 12px;
+      }
+
+      .editorial-initial {
+        width: 54px;
+        font-size: 40px;
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+
+      .section-head h2,
+      .contact-panel h2 {
+        font-size: clamp(34px, 10vw, 46px);
+        line-height: 1;
+        letter-spacing: -0.025em;
+      }
+
+      .section-head {
+        gap: 16px;
+        margin-bottom: 26px;
+      }
+
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .filter {
+        width: 100%;
+        padding: 0 10px;
+        font-size: 11px;
       }
 
       .hero-actions .btn {
         flex: 1 1 100%;
+        white-space: normal;
+        text-align: center;
+        min-height: 48px;
+        line-height: 1.25;
       }
 
       .profile-header {
@@ -1403,11 +1630,34 @@
         min-height: 0;
       }
 
+      .project-demo {
+        min-height: 0;
+        padding: 16px;
+        padding-top: 52px;
+      }
+
+      .project-demo::after {
+        left: 16px;
+        right: auto;
+        top: 14px;
+      }
+
+      .demo-title,
+      .project-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .project-body,
       .panel,
       .proof-card,
-      .contact-card {
+      .contact-card,
+      .contact-panel {
         padding: 18px;
+      }
+
+      .contact-panel .editorial-title.contact {
+        padding: 16px;
       }
 
       .status-row {
@@ -1437,6 +1687,84 @@
 
       .demo-row {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 460px) {
+      :root {
+        --gutter: 12px;
+      }
+
+      .brand span:last-child {
+        max-width: 210px;
+      }
+
+      .hero-kicker-row {
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .issue-label,
+      .hero-subtitle,
+      .chip,
+      .pill,
+      .proof-row span {
+        font-size: 10px;
+        line-height: 1.25;
+      }
+
+      h1 {
+        font-size: clamp(38px, 14vw, 52px);
+      }
+
+      .editorial-title {
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .editorial-initial {
+        width: 46px;
+        font-size: 34px;
+        border-width: 2px;
+      }
+
+      .section-head h2,
+      .contact-panel h2 {
+        font-size: clamp(30px, 10.5vw, 40px);
+      }
+
+      .note,
+      .learning-row,
+      .project-body,
+      .panel,
+      .proof-card,
+      .contact-card,
+      .contact-panel {
+        padding: 16px;
+      }
+
+      .contact-panel .editorial-title.contact {
+        padding: 14px;
+      }
+
+      .profile-header {
+        padding: 16px;
+      }
+
+      .profile-header h2,
+      .panel h3,
+      .proof-card h3 {
+        font-size: 26px;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .toast {
+        right: 12px;
+        bottom: 12px;
+        max-width: calc(100vw - 24px);
       }
     }
   </style>
@@ -1480,7 +1808,7 @@
             <span class="hero-subtitle">Universidad de Dagupan - BS Computer Science - DOST Scholar</span>
           </div>
           <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the
-              work</span>.</h1>
+              work</span></h1>
           <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for
             software
             engineering internships and cybersecurity roles. I focus on building secure, innovative software and
@@ -1497,12 +1825,15 @@
             <a class="btn btn-secondary" href="#contact">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
-            <div class="note scrap-paper-note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
+            <div class="note scrap-paper-note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases,
+                and explain
                 tradeoffs.</span></div>
-            <div class="note scrap-paper-note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear
+            <div class="note scrap-paper-note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow
+                into a clear
                 tool.</span>
             </div>
-            <div class="note scrap-paper-note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help
+            <div class="note scrap-paper-note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback
+                would help
                 next.</span>
             </div>
           </div>
@@ -1530,7 +1861,8 @@
 
       <section id="intro" aria-labelledby="intro-title">
         <div class="section-head">
-          <h2 id="intro-title">Before the links, here is how I work.</h2>
+          <h2 id="intro-title" class="editorial-title"><span class="editorial-initial"
+              aria-hidden="true">B</span><span>efore the links, here is how I work.</span></h2>
           <p>Most portfolio pages jump straight to cards. I want the first minute to explain my habits: how I break down
             a problem, what I check, and what kind of work I am ready to take on.</p>
         </div>
@@ -1579,7 +1911,8 @@
 
       <section id="work" aria-labelledby="work-title">
         <div class="section-head">
-          <h2 id="work-title">Project clippings with context.</h2>
+          <h2 id="work-title" class="editorial-title projects"><span class="editorial-initial"
+              aria-hidden="true">P</span><span>roject clippings with context.</span></h2>
           <p>Each clipping gives the same useful facts: what the project does, what technical part matters, and what I
             would show in a walkthrough.</p>
         </div>
@@ -1701,7 +2034,8 @@ cscript /nologo check_ports.vbs
 
       <section id="proof" aria-labelledby="proof-title">
         <div class="section-head">
-          <h2 id="proof-title">What a reviewer can learn in one pass.</h2>
+          <h2 id="proof-title" class="editorial-title proof"><span class="editorial-initial"
+              aria-hidden="true">W</span><span>hat a reviewer can learn in one pass.</span></h2>
           <p>This section keeps the signals practical. It tells an employer or client what kind of conversation my work
             can support.</p>
         </div>
@@ -1854,7 +2188,8 @@ cscript /nologo check_ports.vbs
         <div class="contact-panel">
           <div>
             <span class="issue-label kicker">Contact note</span>
-            <h2 id="contact-title" class="print-rough">Reach out for the resume, code links, or a walkthrough.</h2>
+            <h2 id="contact-title" class="editorial-title contact print-rough"><span class="editorial-initial"
+                aria-hidden="true">R</span><span>each out for the resume, code links, or a walkthrough.</span></h2>
             <p>I can send a resume, share repo links, walk through a project, or talk about a system tool or game build.
               A short message is enough.</p>
             <div class="hero-actions">
