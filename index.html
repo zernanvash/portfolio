@@ -1,69 +1,75 @@
 <!doctype html>
-<html lang="en"><head><script data-od-sandbox-shim="">(function(){
-  function makeStore(){
-    var data = {};
-    var api = {
-      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
-      setItem: function(k, v){ data[k] = String(v); },
-      removeItem: function(k){ delete data[k]; },
-      clear: function(){ data = {}; },
-      key: function(i){ return Object.keys(data)[i] || null; }
-    };
-    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
-    return api;
-  }
-  function tryShim(name){
-    var works = false;
-    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
-    catch (_) { works = false; }
-    if (works) return;
-    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
-    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
-  }
-  tryShim('localStorage');
-  tryShim('sessionStorage');
-  document.addEventListener('click', (e) => {
-    if (!e.target || !(e.target instanceof Element)) return;
-    var link = e.target.closest('a[href]');
-    if (!link) return;
-    var href = link.getAttribute('href');
-    if (href === null) return;
-    var isAnchor = href.startsWith('#') || href === '';
-    if (isAnchor) {
-      e.preventDefault();
-      if (href === '' || href === '#') {
-        window.scrollTo({ top: 0 });
-        history.replaceState(null, '', ' ');
-      } else {
-        var targetId = href.slice(1);
-        var target = targetId ? document.getElementById(targetId) : null;
-        if (target) {
-          target.scrollIntoView();
-          location.hash === href && history.replaceState(null, '', ' ');
-          location.hash = href;
-        }
+<html lang="en">
+
+<head>
+  <script data-od-sandbox-shim="">(function () {
+      function makeStore() {
+        var data = {};
+        var api = {
+          getItem: function (k) { return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+          setItem: function (k, v) { data[k] = String(v); },
+          removeItem: function (k) { delete data[k]; },
+          clear: function () { data = {}; },
+          key: function (i) { return Object.keys(data)[i] || null; }
+        };
+        Object.defineProperty(api, 'length', { get: function () { return Object.keys(data).length; } });
+        return api;
       }
-    } else if (link.getAttribute('target') === '_blank') {
-      e.preventDefault();
-      let safe = false;
-      try {
-        var url = new URL(href, location.href);
-        safe =
-          url.protocol === 'http:' ||
-          url.protocol === 'https:' ||
-          url.protocol === 'mailto:';
-      } catch (_) {}
-      safe && window.open(href, '_blank', 'noopener,noreferrer');
-    }
-  });
-})();</script>
+      function tryShim(name) {
+        var works = false;
+        try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+        catch (_) { works = false; }
+        if (works) return;
+        try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+        catch (_) { try { window[name] = makeStore(); } catch (__) { } }
+      }
+      tryShim('localStorage');
+      tryShim('sessionStorage');
+      document.addEventListener('click', (e) => {
+        if (!e.target || !(e.target instanceof Element)) return;
+        var link = e.target.closest('a[href]');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (href === null) return;
+        var isAnchor = href.startsWith('#') || href === '';
+        if (isAnchor) {
+          e.preventDefault();
+          if (href === '' || href === '#') {
+            window.scrollTo({ top: 0 });
+            history.replaceState(null, '', ' ');
+          } else {
+            var targetId = href.slice(1);
+            var target = targetId ? document.getElementById(targetId) : null;
+            if (target) {
+              target.scrollIntoView();
+              location.hash === href && history.replaceState(null, '', ' ');
+              location.hash = href;
+            }
+          }
+        } else if (link.getAttribute('target') === '_blank') {
+          e.preventDefault();
+          let safe = false;
+          try {
+            var url = new URL(href, location.href);
+            safe =
+              url.protocol === 'http:' ||
+              url.protocol === 'https:' ||
+              url.protocol === 'mailto:';
+          } catch (_) { }
+          safe && window.open(href, '_blank', 'noopener,noreferrer');
+        }
+      });
+    })();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Computer Science Student Portfolio</title>
-  <meta name="description" content="A practical computer science student portfolio built in a VOX newspaper editorial style, showcasing full-stack development, data analysis, systems, and algorithms.">
+  <meta name="description"
+    content="A practical computer science student portfolio built in a VOX newspaper editorial style, showcasing full-stack development, data analysis, systems, and algorithms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #f5f2eb;
@@ -1273,104 +1279,113 @@
       .demo-row {
         grid-template-columns: 1fr;
       }
+
+      .hide-mobile {
+        display: none;
+      }
     }
   </style>
-<style data-od-tweaks-bridge-style="">
-[data-od-tweaks-hidden] .tw-panel {
-  transform: translateX(calc(100% + 32px)) !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-.tw-restore { display: none !important; }
-</style><script data-od-tweaks-bridge="">(function(){
-  // Synchronously hide BEFORE the artifact body parses so the panel never
-  // flashes on initial paint. The host removes the attribute via postMessage
-  // once it knows the desired state.
-  document.documentElement.setAttribute('data-od-tweaks-hidden', '');
+  <style data-od-tweaks-bridge-style="">
+    [data-od-tweaks-hidden] .tw-panel {
+      transform: translateX(calc(100% + 32px)) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
 
-  var suppressEcho = false;
-  var observer = null;
+    .tw-restore {
+      display: none !important;
+    }
+  </style>
+  <script data-od-tweaks-bridge="">(function () {
+      // Synchronously hide BEFORE the artifact body parses so the panel never
+      // flashes on initial paint. The host removes the attribute via postMessage
+      // once it knows the desired state.
+      document.documentElement.setAttribute('data-od-tweaks-hidden', '');
 
-  function panelEl(){ return document.querySelector('.tw-panel'); }
+      var suppressEcho = false;
+      var observer = null;
 
-  function applyClassesToPanel(visible){
-    var panel = panelEl();
-    if (panel) panel.classList.toggle('tw-hidden', !visible);
-  }
+      function panelEl() { return document.querySelector('.tw-panel'); }
 
-  function setPanelVisible(visible){
-    suppressEcho = true;
-    document.documentElement.toggleAttribute('data-od-tweaks-hidden', !visible);
-    applyClassesToPanel(visible);
-    // Clear flag after the MutationObserver has had a chance to fire for this
-    // change so we don't echo our own host-driven toggles back to the host.
-    Promise.resolve().then(function(){ suppressEcho = false; });
-  }
+      function applyClassesToPanel(visible) {
+        var panel = panelEl();
+        if (panel) panel.classList.toggle('tw-hidden', !visible);
+      }
 
-  function postState(){
-    var panel = panelEl();
-    if (!panel) return;
-    try {
-      parent.postMessage({
-        type: 'od:tweaks-panel-state',
-        visible: !panel.classList.contains('tw-hidden'),
-      }, '*');
-    } catch (e) {}
-  }
+      function setPanelVisible(visible) {
+        suppressEcho = true;
+        document.documentElement.toggleAttribute('data-od-tweaks-hidden', !visible);
+        applyClassesToPanel(visible);
+        // Clear flag after the MutationObserver has had a chance to fire for this
+        // change so we don't echo our own host-driven toggles back to the host.
+        Promise.resolve().then(function () { suppressEcho = false; });
+      }
 
-  function postAvailability(){
-    try {
-      parent.postMessage({
-        type: 'od:tweaks-available',
-        available: !!panelEl(),
-      }, '*');
-    } catch (e) {}
-  }
+      function postState() {
+        var panel = panelEl();
+        if (!panel) return;
+        try {
+          parent.postMessage({
+            type: 'od:tweaks-panel-state',
+            visible: !panel.classList.contains('tw-hidden'),
+          }, '*');
+        } catch (e) { }
+      }
 
-  function attachObserver(){
-    var panel = panelEl();
-    if (!panel || observer) return;
-    observer = new MutationObserver(function(){
-      if (suppressEcho) return;
-      postState();
-    });
-    observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
-  }
+      function postAvailability() {
+        try {
+          parent.postMessage({
+            type: 'od:tweaks-available',
+            available: !!panelEl(),
+          }, '*');
+        } catch (e) { }
+      }
 
-  function onReady(){
-    // Capture the panel authored visibility BEFORE we apply the host hidden
-    // attribute. The bridge sets data-od-tweaks-hidden synchronously in head
-    // (before the body parses), so on entry to onReady the attribute is
-    // always present even though the artifact may have authored the panel
-    // as default-visible. Reading the panel class first is the only place
-    // we can still observe the author intent. Then drive the attribute,
-    // classes, and posted state from that captured value so a default
-    // visible tw-panel reports visible:true and the toolbar toggle starts
-    // ON. Issue surfaced in PR #1643 review.
-    var panel = panelEl();
-    var initialVisible = !!panel && !panel.classList.contains('tw-hidden');
-    document.documentElement.toggleAttribute('data-od-tweaks-hidden', !initialVisible);
-    applyClassesToPanel(initialVisible);
-    attachObserver();
-    postAvailability();
-    // Post the captured initial visibility so the toolbar toggle reflects
-    // the default state on mount. Without this the toggle reads OFF while
-    // a default-visible tw-panel artifact clearly shows its panel and the
-    // user would have to click toggle-on then toggle-off to actually hide.
-    postState();
-  }
+      function attachObserver() {
+        var panel = panelEl();
+        if (!panel || observer) return;
+        observer = new MutationObserver(function () {
+          if (suppressEcho) return;
+          postState();
+        });
+        observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
+      }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', onReady);
-  } else {
-    onReady();
-  }
+      function onReady() {
+        // Capture the panel authored visibility BEFORE we apply the host hidden
+        // attribute. The bridge sets data-od-tweaks-hidden synchronously in head
+        // (before the body parses), so on entry to onReady the attribute is
+        // always present even though the artifact may have authored the panel
+        // as default-visible. Reading the panel class first is the only place
+        // we can still observe the author intent. Then drive the attribute,
+        // classes, and posted state from that captured value so a default
+        // visible tw-panel reports visible:true and the toolbar toggle starts
+        // ON. Issue surfaced in PR #1643 review.
+        var panel = panelEl();
+        var initialVisible = !!panel && !panel.classList.contains('tw-hidden');
+        document.documentElement.toggleAttribute('data-od-tweaks-hidden', !initialVisible);
+        applyClassesToPanel(initialVisible);
+        attachObserver();
+        postAvailability();
+        // Post the captured initial visibility so the toolbar toggle reflects
+        // the default state on mount. Without this the toggle reads OFF while
+        // a default-visible tw-panel artifact clearly shows its panel and the
+        // user would have to click toggle-on then toggle-off to actually hide.
+        postState();
+      }
 
-  window.addEventListener('message', function(ev){
-    if (!ev.data || ev.data.type !== 'od:tweaks-panel-visible') return;
-    setPanelVisible(!!ev.data.visible);
-  });
-})();</script></head>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onReady);
+      } else {
+        onReady();
+      }
+
+      window.addEventListener('message', function (ev) {
+        if (!ev.data || ev.data.type !== 'od:tweaks-panel-visible') return;
+        setPanelVisible(!!ev.data.visible);
+      });
+    })();</script>
+</head>
 
 <body>
   <header class="topbar" data-od-id="path-0">
@@ -1386,7 +1401,8 @@
           <a href="#proof" data-od-id="path-0-0-0-1-2">Proof</a>
           <a class="btn btn-primary" href="#contact" data-od-id="path-0-0-0-1-3">Contact</a>
         </div>
-        <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" data-od-id="path-0-0-0-2">
+        <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false"
+          data-od-id="path-0-0-0-2">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
           </svg>
@@ -1407,13 +1423,17 @@
         <div>
           <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
             <span class="issue-label" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
-            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
+            <span
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
               de Dagupan · CS Student · DOST Scholar</span>
           </div>
-          <h1 id="hero-title" data-od-id="path-1-0-0-0-1">I build useful software, then <span class="mark">show the work</span>.</h1>
+          <h1 id="hero-title" data-od-id="path-1-0-0-0-1">I build useful software, then <span class="mark">show<span
+                class="hide-mobile"> the work</span></span>.</h1>
           <p class="hero-copy">I am a BS Computer Science student at Universidad de Dagupan looking for software
-            engineering internships and cybersecurity roles. This page is built like a short newsletter: quick context,
-            project clippings, and the proof a busy reviewer needs.</p>
+            engineering internships and cybersecurity roles.
+            <!-- This page is built like a short newsletter: quick context,
+            project clippings, and the proof a busy reviewer needs. -->
+          </p>
           <div class="identity-line" aria-label="Portfolio focus areas">
             <span class="chip">Java &amp; Systems</span>
             <span class="chip">Python, C, C++</span>
@@ -1422,7 +1442,8 @@
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#work" data-od-id="path-1-0-0-0-4-0">Read the project notes</a>
-            <button class="btn" type="button" data-copy="zernanvasharive16@gmail.com" data-od-id="path-1-0-0-0-4-1">Copy email</button>
+            <button class="btn" type="button" data-copy="zernanvasharive16@gmail.com" data-od-id="path-1-0-0-0-4-1">Copy
+              email</button>
             <a class="btn btn-secondary" href="#contact" data-od-id="path-1-0-0-0-4-2">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
@@ -1455,7 +1476,8 @@
 
       <section id="intro" aria-labelledby="intro-title" data-od-id="path-1-0-1">
         <div class="section-head" data-od-id="path-1-0-1-0">
-          <h2 id="intro-title" data-od-id="path-1-0-1-0-0"><span class="section-initial b">B</span>efore the links, here is how I work.</h2>
+          <h2 id="intro-title" data-od-id="path-1-0-1-0-0"><span class="section-initial b">B</span>efore the links, here
+            is how I work.</h2>
           <p>Most portfolio pages jump straight to cards. I want the first minute to explain my habits: how I break down
             a problem, what I check, and what kind of work I am ready to take on.</p>
         </div>
@@ -1501,21 +1523,27 @@
 
       <section id="work" aria-labelledby="work-title" data-od-id="path-1-0-2">
         <div class="section-head" data-od-id="path-1-0-2-0">
-          <h2 id="work-title" data-od-id="path-1-0-2-0-0"><span class="section-initial p">P</span>roject clippings with context.</h2>
+          <h2 id="work-title" data-od-id="path-1-0-2-0-0"><span class="section-initial p">P</span>roject clippings with
+            context.</h2>
           <p>Each clipping gives the same useful facts: what the project does, what technical part matters, and what I
             would show in a walkthrough.</p>
         </div>
 
         <div class="filters" aria-label="Project filters" data-od-id="path-1-0-2-1">
-          <button class="filter" type="button" aria-pressed="true" data-filter="all" data-od-id="path-1-0-2-1-0">All</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack" data-od-id="path-1-0-2-1-1">System Dev</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="robotics" data-od-id="path-1-0-2-1-2">Robotics</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="gamedev" data-od-id="path-1-0-2-1-3">Game Dev</button>
+          <button class="filter" type="button" aria-pressed="true" data-filter="all"
+            data-od-id="path-1-0-2-1-0">All</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack"
+            data-od-id="path-1-0-2-1-1">System Dev</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="robotics"
+            data-od-id="path-1-0-2-1-2">Robotics</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="gamedev"
+            data-od-id="path-1-0-2-1-3">Game Dev</button>
         </div>
 
         <div class="project-grid" data-od-id="path-1-0-2-2">
           <article class="project-card featured" data-category="fullstack" data-od-id="path-1-0-2-2-0">
-            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary" data-od-id="path-1-0-2-2-0-0">
+            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary"
+              data-od-id="path-1-0-2-2-0-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Programming Sub-Org</span><strong>System Dev</strong></div>
                 <div class="demo-table">
@@ -1540,7 +1568,8 @@
           </article>
 
           <article class="project-card compact" data-category="robotics" data-od-id="path-1-0-2-2-1">
-            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary" data-od-id="path-1-0-2-2-1-0">
+            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary"
+              data-od-id="path-1-0-2-2-1-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Mobile Robotics</span><strong>C++</strong></div>
                 <div class="demo-table">
@@ -1565,7 +1594,8 @@
           </article>
 
           <article class="project-card compact" data-category="fullstack" data-od-id="path-1-0-2-2-2">
-            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary" data-od-id="path-1-0-2-2-2-0">
+            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary"
+              data-od-id="path-1-0-2-2-2-0">
               <div class="demo-window">
                 <div class="demo-title"><span>System Scripting</span><strong>Batch</strong></div>
                 <pre class="mini-code">@echo off
@@ -1589,7 +1619,8 @@ cscript /nologo check_ports.vbs
           </article>
 
           <article class="project-card compact" data-category="gamedev" data-od-id="path-1-0-2-2-3">
-            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary" data-od-id="path-1-0-2-2-3-0">
+            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary"
+              data-od-id="path-1-0-2-2-3-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Collision Engine</span><strong>Java</strong></div>
                 <div class="demo-table">
@@ -1617,7 +1648,8 @@ cscript /nologo check_ports.vbs
 
       <section id="proof" aria-labelledby="proof-title" data-od-id="path-1-0-3">
         <div class="section-head" data-od-id="path-1-0-3-0">
-          <h2 id="proof-title" data-od-id="path-1-0-3-0-0"><span class="section-initial w">W</span>hat a reviewer can learn in one pass.</h2>
+          <h2 id="proof-title" data-od-id="path-1-0-3-0-0"><span class="section-initial w">W</span>hat a reviewer can
+            learn in one pass.</h2>
           <p>This section keeps the signals practical. It tells an employer or client what kind of conversation my work
             can support.</p>
         </div>
@@ -1648,23 +1680,28 @@ cscript /nologo check_ports.vbs
         <div class="contact-panel" data-od-id="path-1-0-4-0">
           <div>
             <span class="issue-label">Contact note</span>
-            <h2 id="contact-title" data-od-id="path-1-0-4-0-0-1"><span class="section-initial r">R</span>each out for the resume, code links, or a walkthrough.</h2>
+            <h2 id="contact-title" data-od-id="path-1-0-4-0-0-1"><span class="section-initial r">R</span>each out for
+              the resume, code links, or a walkthrough.</h2>
             <p>I can send a resume, share repo links, walk through a project, or talk about a system tool or game build.
               A short message is enough.</p>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-copy="zernanvasharive16@gmail.com" data-od-id="path-1-0-4-0-0-3-0">Copy email</button>
-              <a class="btn" href="https://github.com/zernanvash" target="_blank" rel="noopener" data-od-id="path-1-0-4-0-0-3-1">GitHub Profile</a>
+              <button class="btn btn-primary" type="button" data-copy="zernanvasharive16@gmail.com"
+                data-od-id="path-1-0-4-0-0-3-0">Copy email</button>
+              <a class="btn" href="https://github.com/zernanvash" target="_blank" rel="noopener"
+                data-od-id="path-1-0-4-0-0-3-1">GitHub Profile</a>
               <a class="btn btn-secondary" href="#work" data-od-id="path-1-0-4-0-0-3-2">Review projects</a>
             </div>
           </div>
           <form class="contact-card" id="contact-form" data-od-id="path-1-0-4-0-1">
             <div class="field" data-od-id="path-1-0-4-0-1-0">
               <label for="name">Your name</label>
-              <input id="name" name="name" autocomplete="name" placeholder="Hiring manager, recruiter, or client" data-od-id="path-1-0-4-0-1-0-1">
+              <input id="name" name="name" autocomplete="name" placeholder="Hiring manager, recruiter, or client"
+                data-od-id="path-1-0-4-0-1-0-1">
             </div>
             <div class="field" data-od-id="path-1-0-4-0-1-1">
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="I would like to see your resume and project links." data-od-id="path-1-0-4-0-1-1-1"></textarea>
+              <textarea id="message" name="message" placeholder="I would like to see your resume and project links."
+                data-od-id="path-1-0-4-0-1-1-1"></textarea>
             </div>
             <div class="form-row" data-od-id="path-1-0-4-0-1-2">
               <span class="copy-status" id="form-status" aria-live="polite" data-od-id="path-1-0-4-0-1-2-0"></span>
@@ -1766,99 +1803,103 @@ cscript /nologo check_ports.vbs
 
 
 
-<script data-od-snapshot-bridge="">(function(){
-  function copyComputedStyle(source, target){
-    if (!source || !target || source.nodeType !== 1 || target.nodeType !== 1) return;
-    var computed = window.getComputedStyle(source);
-    var style = target.getAttribute('style') || '';
-    for (var i = 0; i < computed.length; i++){
-      var prop = computed[i];
-      style += prop + ':' + computed.getPropertyValue(prop) + ';';
-    }
-    target.setAttribute('style', style);
-  }
-  function syncElementState(source, target){
-    var tag = source.tagName ? source.tagName.toLowerCase() : '';
-    if (tag === 'img' && source.currentSrc) target.setAttribute('src', source.currentSrc);
-    if (tag === 'input' || tag === 'textarea') target.setAttribute('value', source.value || '');
-    if (tag === 'canvas') {
-      try {
-        var img = document.createElement('img');
-        img.setAttribute('src', source.toDataURL('image/png'));
-        img.setAttribute('style', target.getAttribute('style') || '');
-        target.parentNode && target.parentNode.replaceChild(img, target);
-      } catch (_) {}
-    }
-  }
-  function inlineSnapshotStyles(originalRoot, cloneRoot){
-    copyComputedStyle(originalRoot, cloneRoot);
-    syncElementState(originalRoot, cloneRoot);
-    var originals = originalRoot.querySelectorAll('*');
-    var clones = cloneRoot.querySelectorAll('*');
-    var count = Math.min(originals.length, clones.length);
-    for (var i = 0; i < count; i++){
-      copyComputedStyle(originals[i], clones[i]);
-      syncElementState(originals[i], clones[i]);
-    }
-    var scripts = cloneRoot.querySelectorAll('script');
-    for (var s = scripts.length - 1; s >= 0; s--) scripts[s].remove();
-  }
-  function waitForImages(){
-    var imgs = Array.prototype.slice.call(document.images || []);
-    return Promise.all(imgs.map(function(img){
-      if (img.complete) return Promise.resolve();
-      return new Promise(function(resolve){
-        img.addEventListener('load', resolve, { once: true });
-        img.addEventListener('error', resolve, { once: true });
-      });
-    }));
-  }
-  function renderSnapshot(id){
-    var w = Math.max(1, window.innerWidth || document.documentElement.clientWidth || 1);
-    var h = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1);
-    var dpr = window.devicePixelRatio || 1;
-    var docW = Math.max(w, document.documentElement.scrollWidth || 0, document.body ? document.body.scrollWidth : 0);
-    var docH = Math.max(h, document.documentElement.scrollHeight || 0, document.body ? document.body.scrollHeight : 0);
-    var clone = document.documentElement.cloneNode(true);
-    clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-    inlineSnapshotStyles(document.documentElement, clone);
-    var serializer = new XMLSerializer();
-    var html = serializer.serializeToString(clone);
-    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' +
-      '<foreignObject x="' + (-window.scrollX || 0) + '" y="' + (-window.scrollY || 0) + '" width="' + docW + '" height="' + docH + '">' +
-      html +
-      '</foreignObject></svg>';
-    var img = new Image();
-    img.onload = function(){
-      try {
-        var canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, Math.floor(w * dpr));
-        canvas.height = Math.max(1, Math.floor(h * dpr));
-        var ctx = canvas.getContext('2d');
-        if (!ctx) throw new Error('no 2d context');
-        ctx.scale(dpr, dpr);
-        ctx.drawImage(img, 0, 0, w, h);
-        window.parent.postMessage({ type: 'od:snapshot:result', id: id, dataUrl: canvas.toDataURL('image/png'), w: canvas.width, h: canvas.height }, '*');
-      } catch (err) {
-        window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: String(err && err.message || err) }, '*');
+  <script data-od-snapshot-bridge="">(function () {
+      function copyComputedStyle(source, target) {
+        if (!source || !target || source.nodeType !== 1 || target.nodeType !== 1) return;
+        var computed = window.getComputedStyle(source);
+        var style = target.getAttribute('style') || '';
+        for (var i = 0; i < computed.length; i++) {
+          var prop = computed[i];
+          style += prop + ':' + computed.getPropertyValue(prop) + ';';
+        }
+        target.setAttribute('style', style);
       }
-    };
-    img.onerror = function(){
-      window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: 'snapshot image failed' }, '*');
-    };
-    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-  }
-  window.addEventListener('message', function(ev){
-    var data = ev && ev.data;
-    if (!data || data.type !== 'od:snapshot' || !data.id) return;
-    waitForImages().then(function(){ renderSnapshot(String(data.id)); });
-  });
-})();</script><script data-od-srcdoc-transport-activation="">(function(){
-  window.addEventListener('message', function(ev){
-    var data = ev && ev.data;
-    if (!data || data.type !== 'od:srcdoc-transport-activate' || typeof data.html !== 'string') return;
-    document.open();
-    document.write(data.html);
-    document.close();
-  });
-})();</script></body></html>
+      function syncElementState(source, target) {
+        var tag = source.tagName ? source.tagName.toLowerCase() : '';
+        if (tag === 'img' && source.currentSrc) target.setAttribute('src', source.currentSrc);
+        if (tag === 'input' || tag === 'textarea') target.setAttribute('value', source.value || '');
+        if (tag === 'canvas') {
+          try {
+            var img = document.createElement('img');
+            img.setAttribute('src', source.toDataURL('image/png'));
+            img.setAttribute('style', target.getAttribute('style') || '');
+            target.parentNode && target.parentNode.replaceChild(img, target);
+          } catch (_) { }
+        }
+      }
+      function inlineSnapshotStyles(originalRoot, cloneRoot) {
+        copyComputedStyle(originalRoot, cloneRoot);
+        syncElementState(originalRoot, cloneRoot);
+        var originals = originalRoot.querySelectorAll('*');
+        var clones = cloneRoot.querySelectorAll('*');
+        var count = Math.min(originals.length, clones.length);
+        for (var i = 0; i < count; i++) {
+          copyComputedStyle(originals[i], clones[i]);
+          syncElementState(originals[i], clones[i]);
+        }
+        var scripts = cloneRoot.querySelectorAll('script');
+        for (var s = scripts.length - 1; s >= 0; s--) scripts[s].remove();
+      }
+      function waitForImages() {
+        var imgs = Array.prototype.slice.call(document.images || []);
+        return Promise.all(imgs.map(function (img) {
+          if (img.complete) return Promise.resolve();
+          return new Promise(function (resolve) {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          });
+        }));
+      }
+      function renderSnapshot(id) {
+        var w = Math.max(1, window.innerWidth || document.documentElement.clientWidth || 1);
+        var h = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1);
+        var dpr = window.devicePixelRatio || 1;
+        var docW = Math.max(w, document.documentElement.scrollWidth || 0, document.body ? document.body.scrollWidth : 0);
+        var docH = Math.max(h, document.documentElement.scrollHeight || 0, document.body ? document.body.scrollHeight : 0);
+        var clone = document.documentElement.cloneNode(true);
+        clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+        inlineSnapshotStyles(document.documentElement, clone);
+        var serializer = new XMLSerializer();
+        var html = serializer.serializeToString(clone);
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' +
+          '<foreignObject x="' + (-window.scrollX || 0) + '" y="' + (-window.scrollY || 0) + '" width="' + docW + '" height="' + docH + '">' +
+          html +
+          '</foreignObject></svg>';
+        var img = new Image();
+        img.onload = function () {
+          try {
+            var canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, Math.floor(w * dpr));
+            canvas.height = Math.max(1, Math.floor(h * dpr));
+            var ctx = canvas.getContext('2d');
+            if (!ctx) throw new Error('no 2d context');
+            ctx.scale(dpr, dpr);
+            ctx.drawImage(img, 0, 0, w, h);
+            window.parent.postMessage({ type: 'od:snapshot:result', id: id, dataUrl: canvas.toDataURL('image/png'), w: canvas.width, h: canvas.height }, '*');
+          } catch (err) {
+            window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: String(err && err.message || err) }, '*');
+          }
+        };
+        img.onerror = function () {
+          window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: 'snapshot image failed' }, '*');
+        };
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+      window.addEventListener('message', function (ev) {
+        var data = ev && ev.data;
+        if (!data || data.type !== 'od:snapshot' || !data.id) return;
+        waitForImages().then(function () { renderSnapshot(String(data.id)); });
+      });
+    })();</script>
+  <script data-od-srcdoc-transport-activation="">(function () {
+      window.addEventListener('message', function (ev) {
+        var data = ev && ev.data;
+        if (!data || data.type !== 'od:srcdoc-transport-activate' || typeof data.html !== 'string') return;
+        document.open();
+        document.write(data.html);
+        document.close();
+      });
+    })();</script>
+</body>
+
+</html>
