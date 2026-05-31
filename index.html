@@ -7,18 +7,20 @@
   <title>Zernan Vash Arive | BS Computer Science Portfolio</title>
   <meta name="description"
     content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://zernanvash.dev/" />
   <meta property="og:title" content="Zernan Vash Arive | BS Computer Science Portfolio" />
-  <meta property="og:description" content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
-  
+  <meta property="og:description"
+    content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
+
   <!-- Twitter -->
   <meta property="twitter:card" content="summary" />
   <meta property="twitter:url" content="https://zernanvash.dev/" />
   <meta property="twitter:title" content="Zernan Vash Arive | BS Computer Science Portfolio" />
-  <meta property="twitter:description" content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
+  <meta property="twitter:description"
+    content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -83,9 +85,12 @@
       background-color: var(--bg);
       background-image:
         linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 32px 32px;
-      background-position: center top;
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        url('assets/newspaper_bg.jpg');
+      background-size: 32px 32px, 32px 32px, cover;
+      background-repeat: repeat, repeat, no-repeat;
+      background-attachment: scroll, scroll, fixed;
+      background-position: center top, center top, center center;
       color: var(--ink);
       font-family: var(--font-main);
       font-size: 18px;
@@ -118,9 +123,9 @@
       opacity: 0.12;
       mix-blend-mode: multiply;
       background-image:
-        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0 2px, transparent 2px),
-        radial-gradient(circle at 80% 40%, rgba(0,0,0,0.04) 0 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.03) 0 2px, transparent 2px);
+        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px),
+        radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.04) 0 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.03) 0 2px, transparent 2px);
       background-size: 180px 180px;
     }
 
@@ -479,7 +484,8 @@
       display: grid;
       place-items: center;
       border: 3px solid var(--ink);
-      background: var(--accent);
+      background: var(--accent) url('assets/scraps.jpg') no-repeat center/cover;
+      background-blend-mode: multiply;
       color: var(--accent-ink);
       font: 900 32px/1 var(--font-mono);
       clip-path: polygon(5% 0, 100% 6%, 94% 100%, 0 91%);
@@ -1033,6 +1039,7 @@
     .paper-tape {
       position: relative;
     }
+
     .paper-tape::before {
       content: "";
       position: absolute;
@@ -1052,6 +1059,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .halftone::after {
       content: "";
       position: absolute;
@@ -1066,14 +1074,15 @@
 
     .print-rough {
       text-shadow:
-        0.6px 0 rgba(0,0,0,0.35),
-        -0.6px 0 rgba(0,0,0,0.15);
+        0.6px 0 rgba(0, 0, 0, 0.35),
+        -0.6px 0 rgba(0, 0, 0, 0.15);
     }
 
     .section-paper {
       position: relative;
       z-index: 1;
     }
+
     .section-paper::before {
       content: "";
       position: absolute;
@@ -1086,11 +1095,9 @@
 
     .section-divider {
       height: 18px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--ink) 0 12px,
-        transparent 12px 24px
-      );
+      background: repeating-linear-gradient(90deg,
+          var(--ink) 0 12px,
+          transparent 12px 24px);
       margin: 40px 0;
       border: 2px solid var(--ink);
       border-left: none;
@@ -1367,11 +1374,14 @@
             <span class="issue-label kicker" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
             <span
               style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
-              de Dagupan · CS Student · DOST Scholar</span>
+              de Dagupan · BS Computer Science · DOST Scholar</span>
           </div>
-          <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the work</span>.</h1>
-          <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for software
-            engineering internships and cybersecurity roles. I focus on building secure, innovative software and strengthening network resilience through hands-on, impactful projects.</p>
+          <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the
+              work</span>.</h1>
+          <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for
+            software
+            engineering internships and cybersecurity roles. I focus on building secure, innovative software and
+            strengthening network resilience through hands-on, impactful projects.</p>
           <div class="identity-line" aria-label="Portfolio focus areas">
             <span class="chip">Java & Systems</span>
             <span class="chip">Python, C, C++</span>
@@ -1386,9 +1396,11 @@
           <div class="note-strip" aria-label="Quick reviewer notes">
             <div class="note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
                 tradeoffs.</span></div>
-            <div class="note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span>
+            <div class="note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear
+                tool.</span>
             </div>
-            <div class="note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span>
+            <div class="note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help
+                next.</span>
             </div>
           </div>
         </div>
@@ -1397,7 +1409,7 @@
           <div class="profile-header">
             <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
-              <h2>Motivated CS student aiming for secure software development.</h2>
+              <h2>Motivated BS Computer Science student aiming for secure software development.</h2>
               <p>I focus on programming, analytical problem-solving, and cybersecurity. Here are my project clippings,
                 activities, and skills.</p>
             </div>
@@ -1438,19 +1450,23 @@
           <div class="learning-board" aria-label="Current learning board">
             <div class="learning-row">
               <b>Co-Curriculars</b>
-              <span>Member of Universidad de Dagupan's Cybersecurity Varsity (AY 2024-Present) and former System Developer for the CSIT Society's Programming Sub-Org (AY 2023-2024).</span>
+              <span>Member of Universidad de Dagupan's Cybersecurity Varsity (AY 2024-Present) and former System
+                Developer for the CSIT Society's Programming Sub-Org (AY 2023-2024).</span>
             </div>
             <div class="learning-row">
               <b>Education</b>
-              <span>Pursuing BS Computer Science at Universidad de Dagupan (DOST scholar & Dean's Lister). San Fabian NHS (2023, with honors) & Cabanatuan City SHS (2022, with honors) graduate.</span>
+              <span>Pursuing BS Computer Science at Universidad de Dagupan (DOST scholar & Dean's Lister). San Fabian
+                NHS (2023, with honors) & Cabanatuan City SHS (2022, with honors) graduate.</span>
             </div>
             <div class="learning-row">
               <b>Cybersecurity CTFs</b>
-              <span>Active in cybersecurity challenges like Trend Micro CTF, FIRST ASEAN CTF, Cyber Range Exercises (HackForGov 3), and DCODE challenge workshops.</span>
+              <span>Active in cybersecurity challenges like Trend Micro CTF, FIRST ASEAN CTF, Cyber Range Exercises
+                (HackForGov 3), and DCODE challenge workshops.</span>
             </div>
             <div class="learning-row">
               <b>Core Capabilities</b>
-              <span>Problem-solving, leadership & team management, effective communication, highly adaptable/rapid learner, and collaborative team player.</span>
+              <span>Problem-solving, leadership & team management, effective communication, highly adaptable/rapid
+                learner, and collaborative team player.</span>
             </div>
           </div>
         </div>
@@ -1490,7 +1506,8 @@
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 01</span><span class="kicker">System Dev</span></div>
+              <div class="project-meta"><span class="kicker">Clipping 01</span><span class="kicker">System Dev</span>
+              </div>
               <h3 class="print-rough">Programming Sub-Organization System</h3>
               <p>A custom system built as the System Developer for the Programming Sub-Organization under the Computer
                 Science and Information Technology Society at Universidad de Dagupan.</p>
@@ -1515,7 +1532,8 @@
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 02</span><span class="kicker">Robotics</span></div>
+              <div class="project-meta"><span class="kicker">Clipping 02</span><span class="kicker">Robotics</span>
+              </div>
               <h3 class="print-rough">Mobile Robotics Competition Controller</h3>
               <p>A robotics controller script written for Universidad de Dagupan's Mobile Robotics Competition, focusing
                 on hardware-software interfaces and real-time sensor loops.</p>
@@ -1539,7 +1557,8 @@ cscript /nologo check_ports.vbs
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 03</span><span class="kicker">System Dev</span></div>
+              <div class="project-meta"><span class="kicker">Clipping 03</span><span class="kicker">System Dev</span>
+              </div>
               <h3 class="print-rough">Batch & VBScript Security Audit Scripts</h3>
               <p>System management scripts built using Batch and VBScript to automate configuration checks, check ports,
                 and secure system directories during network operations.</p>
@@ -1564,7 +1583,8 @@ cscript /nologo check_ports.vbs
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 04</span><span class="kicker">Game Dev</span></div>
+              <div class="project-meta"><span class="kicker">Clipping 04</span><span class="kicker">Game Dev</span>
+              </div>
               <h3 class="print-rough">Java Game Development Collision Engine</h3>
               <p>A 2D collision resolution engine built in Java for a Game Development Workshop, featuring coordinate
                 mapping, collision response, and raycasting bounds check.</p>
@@ -1607,7 +1627,8 @@ cscript /nologo check_ports.vbs
         <div class="credentials-grid">
           <!-- Column 1: Awards & Honors -->
           <div class="panel paper-tape" style="box-shadow: 4px 4px 0 var(--ink);">
-            <span class="issue-label kicker" style="background: var(--accent-red); color: var(--paper);">Awards & Honors</span>
+            <span class="issue-label kicker" style="background: var(--accent-red); color: var(--paper);">Awards &
+              Honors</span>
             <ul class="credentials-list">
               <li>
                 <span style="font-size: 16px; line-height: 1;">🏆</span>
@@ -1656,55 +1677,81 @@ cscript /nologo check_ports.vbs
 
           <!-- Column 2: Selected Trainings & Seminars -->
           <div class="learning-board paper-tape" style="padding: 24px; box-shadow: 4px 4px 0 var(--ink);">
-            <span class="issue-label kicker" style="background: var(--ink); color: var(--paper);">Trainings, Seminars & CTFs</span>
+            <span class="issue-label kicker" style="background: var(--ink); color: var(--paper);">Trainings, Seminars &
+              CTFs</span>
             <div style="margin-top: 20px; display: grid; gap: 12px;">
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Jul 2025</b>
                 <div>
                   <strong style="display: block; font-size: 13px; color: var(--ink);">Hack the Chain 25.2</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Viction blockchain workshop and 24h hackathon. Mapandan, Pangasinan.</span>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Viction
+                    blockchain workshop and 24h hackathon. Mapandan, Pangasinan.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Feb 2025</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">UD Knowledge Festival 2025</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Emerging Technologies: Shaping the Future of Digital Innovation.</span>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">UD Knowledge Festival
+                    2025</strong>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Emerging
+                    Technologies: Shaping the Future of Digital Innovation.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Aug 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">Trend Micro University CTF</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Global Capture The Flag virtual competition testing security practices.</span>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">Trend Micro University
+                    CTF</strong>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Global
+                    Capture The Flag virtual competition testing security practices.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Jul 2024</b>
                 <div>
                   <strong style="display: block; font-size: 13px; color: var(--ink);">FIRST CTF for ASEAN</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">ASEAN regional virtual CTF cybersecurity exercises.</span>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">ASEAN
+                    regional virtual CTF cybersecurity exercises.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Jun 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">HackForGov 3 Day 1 Seminar</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Cyber Range Exercises and incident response workshops.</span>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">HackForGov 3 Day 1
+                    Seminar</strong>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Cyber
+                    Range Exercises and incident response workshops.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">May 2024</b>
                 <div>
                   <strong style="display: block; font-size: 13px; color: var(--ink);">DCODE: UD Cyber Challenge</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">4-day CTF workshop, hands-on training, and challenge events.</span>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">4-day
+                    CTF workshop, hands-on training, and challenge events.</span>
                 </div>
               </div>
-              <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
+              <div class="learning-row"
+                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Nov 2023</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">Synergising IoT & Robotics</strong>
-                  <span style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Workshop on unleashing the power of intelligent systems & automation.</span>
+                  <strong style="display: block; font-size: 13px; color: var(--ink);">Synergising IoT &
+                    Robotics</strong>
+                  <span
+                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Workshop
+                    on unleashing the power of intelligent systems & automation.</span>
                 </div>
               </div>
             </div>
