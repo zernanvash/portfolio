@@ -1,0 +1,12 @@
+# Temporary scratch scripts
+scratch/
+
+# Raw extracted images (unoptimized)
+assets/extracted/
+
+# Large high-res raw assets
+assets/AdobeStock_*
+
+# Temporary screenshots / layout critiques
+*.png
+critique.json

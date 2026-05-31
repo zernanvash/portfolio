@@ -87,10 +87,10 @@
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
         url('assets/newspaper_bg.jpg');
-      background-size: 32px 32px, 32px 32px, cover;
-      background-repeat: repeat, repeat, no-repeat;
-      background-attachment: scroll, scroll, fixed;
-      background-position: center top, center top, center center;
+      background-size: 32px 32px, 32px 32px, 1920px auto;
+      background-repeat: repeat, repeat, repeat-y;
+      background-attachment: scroll, scroll, scroll;
+      background-position: center top, center top, center top;
       color: var(--ink);
       font-family: var(--font-main);
       font-size: 18px;
@@ -1104,6 +1104,84 @@
       border-right: none;
     }
 
+    .scrap-paper-1 {
+      background: url('assets/optimized/el_912_2.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-1:hover {
+      transform: translate(-3px, -3px) rotate(-0.5deg) !important;
+      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+    }
+
+    .scrap-paper-2 {
+      background: url('assets/optimized/el_912_3.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-2:hover {
+      transform: translate(-3px, -3px) rotate(0.5deg) !important;
+      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+    }
+
+    .scrap-paper-3 {
+      background: url('assets/optimized/el_774_3.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-3:hover {
+      transform: translate(-3px, -3px) rotate(-1deg) !important;
+      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+    }
+
+    .scrap-paper-4 {
+      background: url('assets/optimized/el_912_5.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-4:hover {
+      transform: translate(-3px, -3px) rotate(0.8deg) !important;
+      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+    }
+
+    .scrap-paper-5 {
+      background: url('assets/optimized/el_912_9.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(4px 4px 0 var(--ink));
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-5:hover {
+      transform: translate(-3px, -3px) rotate(-0.5deg) !important;
+      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+    }
+
+    .scrap-paper-note {
+      background: url('assets/optimized/el_912_12.webp') no-repeat center/100% 100% !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      filter: drop-shadow(3px 3px 0 var(--ink)) !important;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .scrap-paper-note:hover {
+      transform: scale(1.02) rotate(-0.5deg) !important;
+      filter: drop-shadow(5px 5px 0 var(--ink)) !important;
+    }
+
     .contact-panel {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 390px;
@@ -1394,18 +1472,18 @@
             <a class="btn btn-secondary" href="#contact">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
-            <div class="note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
+            <div class="note scrap-paper-note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
                 tradeoffs.</span></div>
-            <div class="note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear
+            <div class="note scrap-paper-note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear
                 tool.</span>
             </div>
-            <div class="note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help
+            <div class="note scrap-paper-note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help
                 next.</span>
             </div>
           </div>
         </div>
 
-        <aside class="profile-card clipping paper-tape halftone" aria-label="Student profile summary">
+        <aside class="profile-card scrap-paper-3 clipping paper-tape halftone" aria-label="Student profile summary">
           <div class="profile-header">
             <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
@@ -1433,7 +1511,7 @@
         </div>
 
         <div class="intro-grid">
-          <aside class="panel paper-tape">
+          <aside class="panel scrap-paper-1 paper-tape">
             <span class="issue-label kicker">Personal note</span>
             <h3>I focus on secure software logic and clean execution.</h3>
             <p>I usually build my code starting from data structures and security conditions. I enjoy participating in
@@ -1447,7 +1525,7 @@
             </div>
           </aside>
 
-          <div class="learning-board" aria-label="Current learning board">
+          <div class="learning-board scrap-paper-3" aria-label="Current learning board">
             <div class="learning-row">
               <b>Co-Curriculars</b>
               <span>Member of Universidad de Dagupan's Cybersecurity Varsity (AY 2024-Present) and former System
@@ -1604,19 +1682,19 @@ cscript /nologo check_ports.vbs
         </div>
 
         <div class="proof-grid">
-          <article class="proof-card paper-tape halftone">
+          <article class="proof-card scrap-paper-2 paper-tape halftone">
             <b class="kicker">Technical range</b>
             <h3 class="print-rough">Systems developer, game dev, and cybersecurity CTF participant.</h3>
             <p>The projects show different types of thinking: database rules, IoT robotics controller loops, secure
               system scripting, and coordinate collision algorithms.</p>
           </article>
-          <article class="proof-card paper-tape">
+          <article class="proof-card scrap-paper-4 paper-tape">
             <b class="kicker">Communication</b>
             <h3 class="print-rough">Detailed write-ups and documentation on logic systems.</h3>
             <p>For each project, I can explain the models, the main edge cases, what I tested, and what I would improve
               next.</p>
           </article>
-          <article class="proof-card paper-tape halftone">
+          <article class="proof-card scrap-paper-5 paper-tape halftone">
             <b class="kicker">Fit</b>
             <h3 class="print-rough">DOST scholar and BS Computer Science student ready for internships.</h3>
             <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
@@ -1626,7 +1704,7 @@ cscript /nologo check_ports.vbs
 
         <div class="credentials-grid">
           <!-- Column 1: Awards & Honors -->
-          <div class="panel paper-tape" style="box-shadow: 4px 4px 0 var(--ink);">
+          <div class="panel scrap-paper-3 paper-tape">
             <span class="issue-label kicker" style="background: var(--accent-red); color: var(--paper);">Awards &
               Honors</span>
             <ul class="credentials-list">
@@ -1676,7 +1754,7 @@ cscript /nologo check_ports.vbs
           </div>
 
           <!-- Column 2: Selected Trainings & Seminars -->
-          <div class="learning-board paper-tape" style="padding: 24px; box-shadow: 4px 4px 0 var(--ink);">
+          <div class="learning-board scrap-paper-2 paper-tape" style="padding: 24px;">
             <span class="issue-label kicker" style="background: var(--ink); color: var(--paper);">Trainings, Seminars &
               CTFs</span>
             <div style="margin-top: 20px; display: grid; gap: 12px;">
@@ -1774,7 +1852,7 @@ cscript /nologo check_ports.vbs
               <a class="btn btn-secondary" href="#work">Review projects</a>
             </div>
           </div>
-          <form class="contact-card" id="contact-form">
+          <form class="contact-card scrap-paper-3" id="contact-form">
             <div class="field">
               <label for="name">Your name</label>
               <input id="name" name="name" autocomplete="name" placeholder="Hiring manager, recruiter, or client" />
