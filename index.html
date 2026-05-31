@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -55,11 +55,12 @@
       --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-display: 'Playfair Display', Georgia, serif;
       --font-mono: 'Fira Mono', ui-monospace, Monaco, "Cascadia Code", monospace;
+      --font-kicker: 'Archivo Black', -apple-system, sans-serif;
       --container: 1200px;
       --gutter: 30px;
       --radius: 0px;
       /* sharp newspaper cuts */
-      --shadow-paper: 6px 6px 0 var(--ink);
+      --shadow-paper: 3px 3px 0 var(--ink), 6px 6px 0 rgba(10, 10, 10, 0.12), 8px 8px 12px rgba(10, 10, 10, 0.08);
       /* solid block shadows */
       --focus: 0 0 0 3px var(--accent), 0 0 0 5px var(--ink);
       --grid-line: rgba(10, 10, 10, 0.035);
@@ -106,6 +107,21 @@
       z-index: 9999;
       opacity: 0.055;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.12;
+      mix-blend-mode: multiply;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06) 0 2px, transparent 2px),
+        radial-gradient(circle at 80% 40%, rgba(0,0,0,0.04) 0 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(0,0,0,0.03) 0 2px, transparent 2px);
+      background-size: 180px 180px;
     }
 
     a {
@@ -752,10 +768,18 @@
       transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
     }
 
+    .project-card:nth-child(odd) {
+      transform: rotate(-1.2deg);
+    }
+
+    .project-card:nth-child(even) {
+      transform: rotate(1deg);
+    }
+
     .project-card:hover {
       background: var(--paper);
-      transform: translate(-3px, -3px);
-      box-shadow: 10px 10px 0 var(--ink);
+      transform: rotate(0deg) translate(-6px, -6px) !important;
+      box-shadow: 12px 12px 0 var(--ink);
     }
 
     .project-card.featured {
@@ -797,7 +821,7 @@
       border: 3px solid var(--ink);
       background: var(--paper);
       overflow: hidden;
-      clip-path: polygon(0 1%, 100% 0, 99% 100%, 1% 99%);
+      clip-path: polygon(1% 4%, 96% 0%, 100% 12%, 98% 94%, 94% 100%, 3% 97%, 0% 86%, 2% 8%);
       box-shadow: 2px 2px 0 var(--ink);
     }
 
@@ -998,6 +1022,79 @@
       color: var(--muted);
       text-transform: uppercase;
       font-weight: 700;
+    }
+
+    .kicker {
+      font-family: var(--font-kicker);
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+    }
+
+    .paper-tape {
+      position: relative;
+    }
+    .paper-tape::before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 24px;
+      top: -14px;
+      left: 30px;
+      background: rgba(255, 255, 210, 0.75);
+      border-left: 1px solid rgba(0, 0, 0, 0.15);
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
+      transform: rotate(-6deg);
+      backdrop-filter: blur(1px);
+      z-index: 10;
+    }
+
+    .halftone {
+      position: relative;
+      overflow: hidden;
+    }
+    .halftone::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.18;
+      background-image: radial-gradient(circle, var(--ink) 12%, transparent 13%);
+      background-size: 8px 8px;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .print-rough {
+      text-shadow:
+        0.6px 0 rgba(0,0,0,0.35),
+        -0.6px 0 rgba(0,0,0,0.15);
+    }
+
+    .section-paper {
+      position: relative;
+      z-index: 1;
+    }
+    .section-paper::before {
+      content: "";
+      position: absolute;
+      inset: 40px -20px;
+      background: #ebe6da;
+      z-index: -1;
+      transform: rotate(-1deg);
+      border: 2px solid var(--ink);
+    }
+
+    .section-divider {
+      height: 18px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--ink) 0 12px,
+        transparent 12px 24px
+      );
+      margin: 40px 0;
+      border: 2px solid var(--ink);
+      border-left: none;
+      border-right: none;
     }
 
     .contact-panel {
@@ -1238,7 +1335,7 @@
     <div class="container">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Portfolio home">
-          <span class="brand-mark">ZA</span>
+          <span class="brand-mark kicker">ZA</span>
           <span>ZERNAN VASH ARIVE</span>
         </a>
         <div class="nav-links" aria-label="Page sections">
@@ -1267,12 +1364,12 @@
       <section class="hero" aria-labelledby="hero-title" style="padding-top: 30px;">
         <div>
           <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
-            <span class="issue-label" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
+            <span class="issue-label kicker" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
             <span
               style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
               de Dagupan · CS Student · DOST Scholar</span>
           </div>
-          <h1 id="hero-title">I build useful software, then <span class="mark">show the work</span>.</h1>
+          <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the work</span>.</h1>
           <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for software
             engineering internships and cybersecurity roles. I focus on building secure, innovative software and strengthening network resilience through hands-on, impactful projects.</p>
           <div class="identity-line" aria-label="Portfolio focus areas">
@@ -1287,16 +1384,16 @@
             <a class="btn btn-secondary" href="#contact">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
-            <div class="note"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
+            <div class="note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
                 tradeoffs.</span></div>
-            <div class="note"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span>
+            <div class="note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span>
             </div>
-            <div class="note"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span>
+            <div class="note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span>
             </div>
           </div>
         </div>
 
-        <aside class="profile-card clipping" aria-label="Student profile summary">
+        <aside class="profile-card clipping paper-tape halftone" aria-label="Student profile summary">
           <div class="profile-header">
             <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
@@ -1314,6 +1411,8 @@
         </aside>
       </section>
 
+      <div class="section-divider"></div>
+
       <section id="intro" aria-labelledby="intro-title">
         <div class="section-head">
           <h2 id="intro-title">Before the links, here is how I work.</h2>
@@ -1322,8 +1421,8 @@
         </div>
 
         <div class="intro-grid">
-          <aside class="panel">
-            <span class="issue-label">Personal note</span>
+          <aside class="panel paper-tape">
+            <span class="issue-label kicker">Personal note</span>
             <h3>I focus on secure software logic and clean execution.</h3>
             <p>I usually build my code starting from data structures and security conditions. I enjoy participating in
               cybersecurity CTF challenges and mobile robotics competitions, which train me to work effectively under
@@ -1357,6 +1456,8 @@
         </div>
       </section>
 
+      <div class="section-divider"></div>
+
       <section id="work" aria-labelledby="work-title">
         <div class="section-head">
           <h2 id="work-title">Project clippings with context.</h2>
@@ -1372,8 +1473,8 @@
         </div>
 
         <div class="project-grid">
-          <article class="project-card featured" data-category="fullstack">
-            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary">
+          <article class="project-card featured paper-tape" data-category="fullstack">
+            <div class="project-demo halftone" data-stamp="System note" aria-label="CSIT sub-org system demo summary">
               <div class="demo-window">
                 <div class="demo-title"><span>Programming Sub-Org</span><strong>System Dev</strong></div>
                 <div class="demo-table">
@@ -1383,21 +1484,21 @@
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill">Java</span>
-                <span class="pill">SQL</span>
-                <span class="pill">CSIT</span>
+                <span class="pill kicker">Java</span>
+                <span class="pill kicker">SQL</span>
+                <span class="pill kicker">CSIT</span>
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span>Clipping 01</span><span>System Dev</span></div>
-              <h3>Programming Sub-Organization System</h3>
+              <div class="project-meta"><span class="kicker">Clipping 01</span><span class="kicker">System Dev</span></div>
+              <h3 class="print-rough">Programming Sub-Organization System</h3>
               <p>A custom system built as the System Developer for the Programming Sub-Organization under the Computer
                 Science and Information Technology Society at Universidad de Dagupan.</p>
               <div class="proof-row"><span>Data model</span><span>Validation</span><span>Database rules</span></div>
             </div>
           </article>
 
-          <article class="project-card compact" data-category="robotics">
+          <article class="project-card compact paper-tape" data-category="robotics">
             <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary">
               <div class="demo-window">
                 <div class="demo-title"><span>Mobile Robotics</span><strong>C++</strong></div>
@@ -1408,21 +1509,21 @@
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill">C++</span>
-                <span class="pill">C</span>
-                <span class="pill">Arduino</span>
+                <span class="pill kicker">C++</span>
+                <span class="pill kicker">C</span>
+                <span class="pill kicker">Arduino</span>
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span>Clipping 02</span><span>Robotics</span></div>
-              <h3>Mobile Robotics Competition Controller</h3>
+              <div class="project-meta"><span class="kicker">Clipping 02</span><span class="kicker">Robotics</span></div>
+              <h3 class="print-rough">Mobile Robotics Competition Controller</h3>
               <p>A robotics controller script written for Universidad de Dagupan's Mobile Robotics Competition, focusing
                 on hardware-software interfaces and real-time sensor loops.</p>
               <div class="proof-row"><span>IoT control</span><span>Sensor loop</span><span>Robotics</span></div>
             </div>
           </article>
 
-          <article class="project-card compact" data-category="fullstack">
+          <article class="project-card compact paper-tape" data-category="fullstack">
             <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary">
               <div class="demo-window">
                 <div class="demo-title"><span>System Scripting</span><strong>Batch</strong></div>
@@ -1432,21 +1533,21 @@ cscript /nologo check_ports.vbs
 <em>Audit slow paths</em></pre>
               </div>
               <div class="tag-row">
-                <span class="pill">Batch</span>
-                <span class="pill">VBScript</span>
-                <span class="pill">Security</span>
+                <span class="pill kicker">Batch</span>
+                <span class="pill kicker">VBScript</span>
+                <span class="pill kicker">Security</span>
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span>Clipping 03</span><span>System Dev</span></div>
-              <h3>Batch & VBScript Security Audit Scripts</h3>
+              <div class="project-meta"><span class="kicker">Clipping 03</span><span class="kicker">System Dev</span></div>
+              <h3 class="print-rough">Batch & VBScript Security Audit Scripts</h3>
               <p>System management scripts built using Batch and VBScript to automate configuration checks, check ports,
                 and secure system directories during network operations.</p>
               <div class="proof-row"><span>Automation</span><span>System scripts</span><span>Audit logic</span></div>
             </div>
           </article>
 
-          <article class="project-card compact" data-category="gamedev">
+          <article class="project-card compact paper-tape" data-category="gamedev">
             <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary">
               <div class="demo-window">
                 <div class="demo-title"><span>Collision Engine</span><strong>Java</strong></div>
@@ -1457,14 +1558,14 @@ cscript /nologo check_ports.vbs
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill">Java</span>
-                <span class="pill">2D Canvas</span>
-                <span class="pill">Game Dev</span>
+                <span class="pill kicker">Java</span>
+                <span class="pill kicker">2D Canvas</span>
+                <span class="pill kicker">Game Dev</span>
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span>Clipping 04</span><span>Game Dev</span></div>
-              <h3>Java Game Development Collision Engine</h3>
+              <div class="project-meta"><span class="kicker">Clipping 04</span><span class="kicker">Game Dev</span></div>
+              <h3 class="print-rough">Java Game Development Collision Engine</h3>
               <p>A 2D collision resolution engine built in Java for a Game Development Workshop, featuring coordinate
                 mapping, collision response, and raycasting bounds check.</p>
               <div class="proof-row"><span>Vector math</span><span>Game loop</span><span>Canvas rendering</span></div>
@@ -1472,6 +1573,8 @@ cscript /nologo check_ports.vbs
           </article>
         </div>
       </section>
+
+      <div class="section-divider"></div>
 
       <section id="proof" aria-labelledby="proof-title">
         <div class="section-head">
@@ -1481,21 +1584,21 @@ cscript /nologo check_ports.vbs
         </div>
 
         <div class="proof-grid">
-          <article class="proof-card">
-            <b>Technical range</b>
-            <h3>Systems developer, game dev, and cybersecurity CTF participant.</h3>
+          <article class="proof-card paper-tape halftone">
+            <b class="kicker">Technical range</b>
+            <h3 class="print-rough">Systems developer, game dev, and cybersecurity CTF participant.</h3>
             <p>The projects show different types of thinking: database rules, IoT robotics controller loops, secure
               system scripting, and coordinate collision algorithms.</p>
           </article>
-          <article class="proof-card">
-            <b>Communication</b>
-            <h3>Detailed write-ups and documentation on logic systems.</h3>
+          <article class="proof-card paper-tape">
+            <b class="kicker">Communication</b>
+            <h3 class="print-rough">Detailed write-ups and documentation on logic systems.</h3>
             <p>For each project, I can explain the models, the main edge cases, what I tested, and what I would improve
               next.</p>
           </article>
-          <article class="proof-card">
-            <b>Fit</b>
-            <h3>DOST scholar and BS Computer Science student ready for internships.</h3>
+          <article class="proof-card paper-tape halftone">
+            <b class="kicker">Fit</b>
+            <h3 class="print-rough">DOST scholar and BS Computer Science student ready for internships.</h3>
             <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
               math, and document my work systematically.</p>
           </article>
@@ -1503,8 +1606,8 @@ cscript /nologo check_ports.vbs
 
         <div class="credentials-grid">
           <!-- Column 1: Awards & Honors -->
-          <div class="panel" style="box-shadow: 4px 4px 0 var(--ink);">
-            <span class="issue-label" style="background: var(--accent-red); color: var(--paper);">Awards & Honors</span>
+          <div class="panel paper-tape" style="box-shadow: 4px 4px 0 var(--ink);">
+            <span class="issue-label kicker" style="background: var(--accent-red); color: var(--paper);">Awards & Honors</span>
             <ul class="credentials-list">
               <li>
                 <span style="font-size: 16px; line-height: 1;">🏆</span>
@@ -1552,8 +1655,8 @@ cscript /nologo check_ports.vbs
           </div>
 
           <!-- Column 2: Selected Trainings & Seminars -->
-          <div class="learning-board" style="padding: 24px; box-shadow: 4px 4px 0 var(--ink);">
-            <span class="issue-label" style="background: var(--ink); color: var(--paper);">Trainings, Seminars & CTFs</span>
+          <div class="learning-board paper-tape" style="padding: 24px; box-shadow: 4px 4px 0 var(--ink);">
+            <span class="issue-label kicker" style="background: var(--ink); color: var(--paper);">Trainings, Seminars & CTFs</span>
             <div style="margin-top: 20px; display: grid; gap: 12px;">
               <div class="learning-row" style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
                 <b style="font-size: 10px;">Jul 2025</b>
@@ -1609,11 +1712,13 @@ cscript /nologo check_ports.vbs
         </div>
       </section>
 
+      <div class="section-divider"></div>
+
       <section id="contact" aria-labelledby="contact-title">
         <div class="contact-panel">
           <div>
-            <span class="issue-label">Contact note</span>
-            <h2 id="contact-title">Reach out for the resume, code links, or a walkthrough.</h2>
+            <span class="issue-label kicker">Contact note</span>
+            <h2 id="contact-title" class="print-rough">Reach out for the resume, code links, or a walkthrough.</h2>
             <p>I can send a resume, share repo links, walk through a project, or talk about a system tool or game build.
               A short message is enough.</p>
             <div class="hero-actions">
