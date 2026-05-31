@@ -34,6 +34,8 @@
       /* crisp newsprint off-white */
       --paper-2: #e5e1d7;
       /* muted cardboard beige */
+      --paper-texture-1: url('assets/paper_input_1.jpg');
+      --paper-texture-2: url('assets/paper_input_2.jpg');
       --ink: #0a0a0a;
       /* deep midnight charcoal */
       --ink-2: #262626;
@@ -62,7 +64,7 @@
       --gutter: 30px;
       --radius: 0px;
       /* sharp newspaper cuts */
-      --shadow-paper: 3px 3px 0 var(--ink), 6px 6px 0 rgba(10, 10, 10, 0.12), 8px 8px 12px rgba(10, 10, 10, 0.08);
+      --shadow-paper: 4px 4px 0 var(--ink), 8px 8px 18px rgba(10, 10, 10, 0.08);
       /* solid block shadows */
       --focus: 0 0 0 3px var(--accent), 0 0 0 5px var(--ink);
       --grid-line: rgba(10, 10, 10, 0.035);
@@ -162,7 +164,8 @@
       top: 0;
       z-index: 30;
       border-bottom: 2px solid var(--ink);
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
+      box-shadow: 0 3px 0 rgba(10, 10, 10, 0.06);
     }
 
     .nav {
@@ -242,7 +245,7 @@
       border: 3px solid var(--ink);
       border-radius: var(--radius);
       padding: 0 18px;
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       color: var(--ink);
       font-family: var(--font-mono);
       font-size: 13px;
@@ -250,7 +253,7 @@
       font-weight: 900;
       line-height: 1;
       position: relative;
-      box-shadow: 4px 4px 0 var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
       transition: transform 100ms ease, box-shadow 100ms ease, background 140ms ease;
       white-space: nowrap;
     }
@@ -258,7 +261,7 @@
     .btn:hover {
       background: var(--accent);
       transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
     }
 
     .btn:active {
@@ -282,9 +285,9 @@
     }
 
     .btn-secondary:hover {
-      background: var(--paper-2);
+      background: var(--paper-texture-2) center/cover, var(--paper-2);
       border-color: var(--ink);
-      box-shadow: 4px 4px 0 var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     .btn:focus-visible,
@@ -301,9 +304,9 @@
       height: 44px;
       border: 3px solid var(--ink);
       border-radius: var(--radius);
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       color: var(--ink);
-      box-shadow: 4px 4px 0 var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     .mobile-panel {
@@ -330,7 +333,23 @@
       grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.78fr);
       gap: clamp(30px, 5vw, 70px);
       align-items: center;
-      padding: 66px 0 76px;
+      padding: 30px 0 76px;
+    }
+
+    .hero-kicker-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-subtitle {
+      display: inline-block;
+      color: var(--accent-red);
+      font: 700 11px/1.35 var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .issue-label {
@@ -346,6 +365,21 @@
       text-transform: uppercase;
       transform: rotate(-1.5deg);
       box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .issue-label.is-level {
+      margin: 0;
+      transform: rotate(-0.5deg);
+    }
+
+    .issue-label.is-red {
+      background: var(--accent-red);
+      color: var(--paper);
+    }
+
+    .issue-label.is-ink {
+      background: var(--ink);
+      color: var(--paper);
     }
 
     h1 {
@@ -408,7 +442,7 @@
       border: 2px solid var(--ink);
       border-radius: 0;
       padding: 6px 12px;
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       color: var(--ink);
       font: 700 11px/1 var(--font-mono);
       text-transform: uppercase;
@@ -433,15 +467,15 @@
     .clipping {
       position: relative;
       border: 3px solid var(--ink);
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       box-shadow: var(--shadow-paper);
-      transform: rotate(1deg);
+      transform: rotate(0.35deg);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .clipping:hover {
       transform: rotate(0deg) translate(-2px, -2px);
-      box-shadow: 10px 10px 0 var(--ink);
+      box-shadow: 6px 6px 0 var(--ink), 10px 10px 20px rgba(10, 10, 10, 0.08);
     }
 
     .clipping::before {
@@ -475,7 +509,7 @@
       grid-template-columns: auto 1fr;
       gap: 20px;
       align-items: start;
-      background: var(--paper);
+      background: transparent;
     }
 
     .profile-initials {
@@ -508,7 +542,7 @@
 
     .status-list {
       display: grid;
-      background: var(--paper);
+      background: rgba(255, 255, 255, 0.4);
     }
 
     .status-row {
@@ -542,7 +576,7 @@
 
     .note {
       border: 3px solid var(--ink);
-      background: var(--paper);
+      background: var(--paper-texture-2) center/cover, var(--paper);
       padding: 20px;
       min-height: 140px;
       box-shadow: 4px 4px 0 var(--ink);
@@ -550,17 +584,16 @@
     }
 
     .note:hover {
-      transform: scale(1.02) rotate(-0.5deg) !important;
+      transform: translate(-2px, -2px);
       box-shadow: 6px 6px 0 var(--ink);
-      background: var(--paper-2);
     }
 
     .note:nth-child(2) {
-      transform: rotate(-1deg);
+      transform: rotate(-0.35deg);
     }
 
     .note:nth-child(3) {
-      transform: rotate(1.2deg);
+      transform: rotate(0.35deg);
     }
 
     .note b {
@@ -625,7 +658,7 @@
     .learning-board {
       border: 3px solid var(--ink);
       border-radius: var(--radius);
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
     }
 
     .panel {
@@ -638,8 +671,8 @@
     }
 
     .panel:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 10px 10px 0 var(--ink);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink), 10px 10px 18px rgba(10, 10, 10, 0.08);
     }
 
     .panel h3 {
@@ -685,7 +718,7 @@
     }
 
     .learning-board {
-      background: var(--paper-2);
+      background: var(--paper-texture-2) center/cover, var(--paper-2);
       padding: 20px;
       display: grid;
       gap: 14px;
@@ -696,23 +729,23 @@
       grid-template-columns: 160px 1fr;
       gap: 18px;
       border: 2px solid var(--ink);
-      background: var(--paper);
+      background: rgba(255, 255, 255, 0.58);
       padding: 18px;
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .learning-row:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 var(--ink);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .learning-row:nth-child(odd) {
-      clip-path: polygon(0 2%, 99% 0, 100% 98%, 1% 100%);
+      clip-path: none;
     }
 
     .learning-row:nth-child(even) {
-      clip-path: polygon(1% 0, 100% 3%, 99% 100%, 0 97%);
+      clip-path: none;
     }
 
     .learning-row b {
@@ -734,7 +767,7 @@
       border: 3px solid var(--ink);
       border-radius: 0;
       padding: 0 18px;
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       color: var(--ink-2);
       font-family: var(--font-mono);
       font-size: 13px;
@@ -775,17 +808,17 @@
     }
 
     .project-card:nth-child(odd) {
-      transform: rotate(-1.2deg);
+      transform: none;
     }
 
     .project-card:nth-child(even) {
-      transform: rotate(1deg);
+      transform: none;
     }
 
     .project-card:hover {
-      background: var(--paper);
-      transform: rotate(0deg) translate(-6px, -6px) !important;
-      box-shadow: 12px 12px 0 var(--ink);
+      background: var(--paper-texture-1) center/cover, var(--paper);
+      transform: translate(-3px, -3px);
+      box-shadow: 7px 7px 0 var(--ink), 12px 12px 20px rgba(10, 10, 10, 0.08);
     }
 
     .project-card.featured {
@@ -800,7 +833,7 @@
       min-height: 252px;
       padding: 20px;
       border-bottom: 3px solid var(--ink);
-      background: var(--paper-2);
+      background: var(--paper-texture-2) center/cover, var(--paper-2);
       display: grid;
       gap: 12px;
       align-content: start;
@@ -825,9 +858,8 @@
 
     .demo-window {
       border: 3px solid var(--ink);
-      background: var(--paper);
+      background: rgba(255, 255, 255, 0.6);
       overflow: hidden;
-      clip-path: polygon(1% 4%, 96% 0%, 100% 12%, 98% 94%, 94% 100%, 3% 97%, 0% 86%, 2% 8%);
       box-shadow: 2px 2px 0 var(--ink);
     }
 
@@ -951,19 +983,19 @@
     }
 
     .proof-card:nth-child(2) {
-      transform: rotate(-0.8deg);
+      transform: none;
     }
 
     .proof-card:nth-child(3) {
-      transform: rotate(0.8deg);
+      transform: none;
     }
 
     .proof-card:nth-child(2):hover {
-      transform: rotate(0deg) translate(-3px, -3px);
+      transform: translate(-2px, -2px);
     }
 
     .proof-card:nth-child(3):hover {
-      transform: rotate(0deg) translate(-3px, -3px);
+      transform: translate(-2px, -2px);
     }
 
     .proof-card b {
@@ -1010,6 +1042,19 @@
       align-items: start;
     }
 
+    .award-icon {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      background: var(--accent);
+      color: var(--ink);
+      font: 900 10px/1 var(--font-mono);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
     .credentials-list li:last-child {
       border-bottom: 0;
       padding-bottom: 0;
@@ -1028,6 +1073,11 @@
       color: var(--muted);
       text-transform: uppercase;
       font-weight: 700;
+    }
+
+    .credentials-list li .award-icon {
+      color: var(--ink);
+      font: 900 10px/1 var(--font-mono);
     }
 
     .kicker {
@@ -1064,7 +1114,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.18;
+      opacity: 0.08;
       background-image: radial-gradient(circle, var(--ink) 12%, transparent 13%);
       background-size: 8px 8px;
       mix-blend-mode: multiply;
@@ -1104,82 +1154,53 @@
       border-right: none;
     }
 
-    .scrap-paper-1 {
-      background: url('assets/optimized/el_912_2.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(4px 4px 0 var(--ink));
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-    .scrap-paper-1:hover {
-      transform: translate(-3px, -3px) rotate(-0.5deg) !important;
-      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
-    }
-
-    .scrap-paper-2 {
-      background: url('assets/optimized/el_912_3.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(4px 4px 0 var(--ink));
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-    .scrap-paper-2:hover {
-      transform: translate(-3px, -3px) rotate(0.5deg) !important;
-      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
-    }
-
-    .scrap-paper-3 {
-      background: url('assets/optimized/el_774_3.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(4px 4px 0 var(--ink));
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-    .scrap-paper-3:hover {
-      transform: translate(-3px, -3px) rotate(-1deg) !important;
-      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
-    }
-
-    .scrap-paper-4 {
-      background: url('assets/optimized/el_912_5.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(4px 4px 0 var(--ink));
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-    .scrap-paper-4:hover {
-      transform: translate(-3px, -3px) rotate(0.8deg) !important;
-      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
-    }
-
+    .scrap-paper-1,
+    .scrap-paper-3,
     .scrap-paper-5 {
-      background: url('assets/optimized/el_912_9.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(4px 4px 0 var(--ink));
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-    .scrap-paper-5:hover {
-      transform: translate(-3px, -3px) rotate(-0.5deg) !important;
-      filter: drop-shadow(8px 8px 0 var(--ink)) !important;
+      background: var(--paper-texture-1) center/cover, var(--paper);
     }
 
+    .scrap-paper-2,
+    .scrap-paper-4,
     .scrap-paper-note {
-      background: url('assets/optimized/el_912_12.webp') no-repeat center/100% 100% !important;
-      border: none !important;
-      box-shadow: none !important;
-      background-color: transparent !important;
-      filter: drop-shadow(3px 3px 0 var(--ink)) !important;
-      transition: transform 0.15s ease, filter 0.15s ease;
+      background: var(--paper-texture-2) center/cover, var(--paper);
     }
-    .scrap-paper-note:hover {
-      transform: scale(1.02) rotate(-0.5deg) !important;
-      filter: drop-shadow(5px 5px 0 var(--ink)) !important;
+
+    .training-board {
+      padding: 24px;
+    }
+
+    .training-list {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .training-row {
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
+      padding: 12px;
+      margin: 0;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .training-date {
+      font-size: 10px;
+    }
+
+    .training-title {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .training-desc {
+      display: block;
+      margin-top: 2px;
+      color: var(--ink-2);
+      font-size: 11px;
+      line-height: 1.35;
     }
 
     .contact-panel {
@@ -1187,7 +1208,7 @@
       grid-template-columns: minmax(0, 1fr) 390px;
       gap: 28px;
       padding: clamp(28px, 4vw, 50px);
-      background: var(--paper);
+      background: var(--paper-texture-1) center/cover, var(--paper);
       box-shadow: var(--shadow-paper);
       border: 3px solid var(--ink);
     }
@@ -1210,7 +1231,7 @@
 
     .contact-card {
       border: 3px solid var(--ink);
-      background: var(--paper-2);
+      background: var(--paper-texture-2) center/cover, var(--paper-2);
       padding: 24px;
       align-self: start;
       box-shadow: 4px 4px 0 var(--ink);
@@ -1234,17 +1255,23 @@
       width: 100%;
       border: 3px solid var(--ink);
       border-radius: 0;
-      background: var(--paper);
       color: var(--ink);
       padding: 12px 14px;
       font-family: var(--font-main);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
+    input {
+      background: var(--paper-texture-1) center/cover, var(--paper);
+    }
+
+    textarea {
+      background: var(--paper-texture-2) center/cover, var(--paper);
+    }
+
     input:focus,
     textarea:focus {
       outline: none;
-      background: var(--paper);
       box-shadow: 4px 4px 0 var(--accent);
       transform: translate(-2px, -2px);
     }
@@ -1446,13 +1473,11 @@
 
   <main id="top">
     <div class="container">
-      <section class="hero" aria-labelledby="hero-title" style="padding-top: 30px;">
+      <section class="hero" aria-labelledby="hero-title">
         <div>
-          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
-            <span class="issue-label kicker" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
-            <span
-              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
-              de Dagupan · BS Computer Science · DOST Scholar</span>
+          <div class="hero-kicker-row">
+            <span class="issue-label kicker is-level">Vol. 1 - Issue 01</span>
+            <span class="hero-subtitle">Universidad de Dagupan - BS Computer Science - DOST Scholar</span>
           </div>
           <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the
               work</span>.</h1>
@@ -1705,130 +1730,116 @@ cscript /nologo check_ports.vbs
         <div class="credentials-grid">
           <!-- Column 1: Awards & Honors -->
           <div class="panel scrap-paper-3 paper-tape">
-            <span class="issue-label kicker" style="background: var(--accent-red); color: var(--paper);">Awards &
+            <span class="issue-label kicker is-red">Awards &
               Honors</span>
             <ul class="credentials-list">
               <li>
-                <span style="font-size: 16px; line-height: 1;">🏆</span>
+                <span class="award-icon">01</span>
                 <div>
                   <strong>Champion, Hack the Chain 25.2</strong>
-                  <span>July 2025 · Viction Blockchain Hackathon (Mapandan)</span>
+                  <span>July 2025 - Viction Blockchain Hackathon (Mapandan)</span>
                 </div>
               </li>
               <li>
-                <span style="font-size: 16px; line-height: 1;">⭐️</span>
+                <span class="award-icon">02</span>
                 <div>
                   <strong>Outstanding Student & Academic Excellence</strong>
-                  <span>1st Sem AY 2024-2025 · Universidad de Dagupan</span>
+                  <span>1st Sem AY 2024-2025 - Universidad de Dagupan</span>
                 </div>
               </li>
               <li>
-                <span style="font-size: 16px; line-height: 1;">⭐️</span>
+                <span class="award-icon">03</span>
                 <div>
                   <strong>Academic Excellence Awardee</strong>
-                  <span>1st Sem AY 2023-2024 · Universidad de Dagupan</span>
+                  <span>1st Sem AY 2023-2024 - Universidad de Dagupan</span>
                 </div>
               </li>
               <li>
-                <span style="font-size: 16px; line-height: 1;">🎓</span>
+                <span class="award-icon">04</span>
                 <div>
                   <strong>DOST-SEI S&T Merit Scholar</strong>
-                  <span>Awarded in 2023 · DOST Scholarship Program</span>
+                  <span>Awarded in 2023 - DOST Scholarship Program</span>
                 </div>
               </li>
               <li>
-                <span style="font-size: 16px; line-height: 1;">🎖</span>
+                <span class="award-icon">05</span>
                 <div>
                   <strong>High School Graduation with Honors</strong>
-                  <span>AY 2022-2023 · San Fabian National High School</span>
+                  <span>AY 2022-2023 - San Fabian National High School</span>
                 </div>
               </li>
               <li>
-                <span style="font-size: 16px; line-height: 1;">🎖</span>
+                <span class="award-icon">06</span>
                 <div>
                   <strong>Senior High Academic Honors</strong>
-                  <span>AY 2021-2022 · Cabanatuan City Senior High School</span>
+                  <span>AY 2021-2022 - Cabanatuan City Senior High School</span>
                 </div>
               </li>
             </ul>
           </div>
 
           <!-- Column 2: Selected Trainings & Seminars -->
-          <div class="learning-board scrap-paper-2 paper-tape" style="padding: 24px;">
-            <span class="issue-label kicker" style="background: var(--ink); color: var(--paper);">Trainings, Seminars &
+          <div class="learning-board training-board scrap-paper-2 paper-tape">
+            <span class="issue-label kicker is-ink">Trainings, Seminars &
               CTFs</span>
-            <div style="margin-top: 20px; display: grid; gap: 12px;">
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Jul 2025</b>
+            <div class="training-list">
+              <div class="learning-row training-row">
+                <b class="training-date">Jul 2025</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">Hack the Chain 25.2</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Viction
+                  <strong class="training-title">Hack the Chain 25.2</strong>
+                  <span class="training-desc">Viction
                     blockchain workshop and 24h hackathon. Mapandan, Pangasinan.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Feb 2025</b>
+              <div class="learning-row training-row">
+                <b class="training-date">Feb 2025</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">UD Knowledge Festival
+                  <strong class="training-title">UD Knowledge Festival
                     2025</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Emerging
+                  <span class="training-desc">Emerging
                     Technologies: Shaping the Future of Digital Innovation.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Aug 2024</b>
+              <div class="learning-row training-row">
+                <b class="training-date">Aug 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">Trend Micro University
+                  <strong class="training-title">Trend Micro University
                     CTF</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Global
+                  <span class="training-desc">Global
                     Capture The Flag virtual competition testing security practices.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Jul 2024</b>
+              <div class="learning-row training-row">
+                <b class="training-date">Jul 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">FIRST CTF for ASEAN</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">ASEAN
+                  <strong class="training-title">FIRST CTF for ASEAN</strong>
+                  <span class="training-desc">ASEAN
                     regional virtual CTF cybersecurity exercises.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Jun 2024</b>
+              <div class="learning-row training-row">
+                <b class="training-date">Jun 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">HackForGov 3 Day 1
+                  <strong class="training-title">HackForGov 3 Day 1
                     Seminar</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Cyber
+                  <span class="training-desc">Cyber
                     Range Exercises and incident response workshops.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">May 2024</b>
+              <div class="learning-row training-row">
+                <b class="training-date">May 2024</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">DCODE: UD Cyber Challenge</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">4-day
+                  <strong class="training-title">DCODE: UD Cyber Challenge</strong>
+                  <span class="training-desc">4-day
                     CTF workshop, hands-on training, and challenge events.</span>
                 </div>
               </div>
-              <div class="learning-row"
-                style="grid-template-columns: 80px 1fr; gap: 12px; padding: 12px; margin: 0; box-shadow: 2px 2px 0 var(--ink);">
-                <b style="font-size: 10px;">Nov 2023</b>
+              <div class="learning-row training-row">
+                <b class="training-date">Nov 2023</b>
                 <div>
-                  <strong style="display: block; font-size: 13px; color: var(--ink);">Synergising IoT &
+                  <strong class="training-title">Synergising IoT &
                     Robotics</strong>
-                  <span
-                    style="font-size: 11px; line-height: 1.35; display: block; margin-top: 2px; color: var(--ink-2);">Workshop
+                  <span class="training-desc">Workshop
                     on unleashing the power of intelligent systems & automation.</span>
                 </div>
               </div>
