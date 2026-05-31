@@ -1,31 +1,69 @@
 <!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zernan Vash Arive | BS Computer Science Portfolio</title>
-  <meta name="description"
-    content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://zernanvash.dev/" />
-  <meta property="og:title" content="Zernan Vash Arive | BS Computer Science Portfolio" />
-  <meta property="og:description"
-    content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary" />
-  <meta property="twitter:url" content="https://zernanvash.dev/" />
-  <meta property="twitter:title" content="Zernan Vash Arive | BS Computer Science Portfolio" />
-  <meta property="twitter:description"
-    content="BS Computer Science student at Universidad de Dagupan, DOST Scholar, and Cybersecurity Varsity member. Specializing in secure software engineering, robotics control, and system scripting." />
+<html lang="en"><head><script data-od-sandbox-shim="">(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+  document.addEventListener('click', (e) => {
+    if (!e.target || !(e.target instanceof Element)) return;
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (href === null) return;
+    var isAnchor = href.startsWith('#') || href === '';
+    if (isAnchor) {
+      e.preventDefault();
+      if (href === '' || href === '#') {
+        window.scrollTo({ top: 0 });
+        history.replaceState(null, '', ' ');
+      } else {
+        var targetId = href.slice(1);
+        var target = targetId ? document.getElementById(targetId) : null;
+        if (target) {
+          target.scrollIntoView();
+          location.hash === href && history.replaceState(null, '', ' ');
+          location.hash = href;
+        }
+      }
+    } else if (link.getAttribute('target') === '_blank') {
+      e.preventDefault();
+      let safe = false;
+      try {
+        var url = new URL(href, location.href);
+        safe =
+          url.protocol === 'http:' ||
+          url.protocol === 'https:' ||
+          url.protocol === 'mailto:';
+      } catch (_) {}
+      safe && window.open(href, '_blank', 'noopener,noreferrer');
+    }
+  });
+})();</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Computer Science Student Portfolio</title>
+  <meta name="description" content="A practical computer science student portfolio built in a VOX newspaper editorial style, showcasing full-stack development, data analysis, systems, and algorithms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fira+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f5f2eb;
@@ -34,9 +72,6 @@
       /* crisp newsprint off-white */
       --paper-2: #e5e1d7;
       /* muted cardboard beige */
-      --paper-texture-1: url('assets/paper_input_1.jpg');
-      --paper-texture-2: url('assets/paper_input_2.jpg');
-      --panel-overlay: url('assets/optimized/el_912_5.webp');
       --ink: #0a0a0a;
       /* deep midnight charcoal */
       --ink-2: #262626;
@@ -60,12 +95,11 @@
       --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-display: 'Playfair Display', Georgia, serif;
       --font-mono: 'Fira Mono', ui-monospace, Monaco, "Cascadia Code", monospace;
-      --font-kicker: 'Archivo Black', -apple-system, sans-serif;
       --container: 1200px;
       --gutter: 30px;
       --radius: 0px;
       /* sharp newspaper cuts */
-      --shadow-paper: 4px 4px 0 var(--ink), 8px 8px 18px rgba(10, 10, 10, 0.08);
+      --shadow-paper: 6px 6px 0 var(--ink);
       /* solid block shadows */
       --focus: 0 0 0 3px var(--accent), 0 0 0 5px var(--ink);
       --grid-line: rgba(10, 10, 10, 0.035);
@@ -86,14 +120,6 @@
       min-height: 100vh;
       overflow-x: hidden;
       background-color: var(--bg);
-      background-image:
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
-        url('assets/newspaper_bg.jpg');
-      background-size: 32px 32px, 32px 32px, 1920px auto;
-      background-repeat: repeat, repeat, repeat-y;
-      background-attachment: scroll, scroll, scroll;
-      background-position: center top, center top, center top;
       color: var(--ink);
       font-family: var(--font-main);
       font-size: 18px;
@@ -101,13 +127,6 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       position: relative;
-    }
-
-    body,
-    button,
-    input,
-    textarea {
-      overflow-wrap: anywhere;
     }
 
     /* Paper Noise Overlay */
@@ -130,13 +149,10 @@
       inset: 0;
       pointer-events: none;
       z-index: 9998;
-      opacity: 0.12;
+      opacity: 0.11;
       mix-blend-mode: multiply;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px),
-        radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.04) 0 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.03) 0 2px, transparent 2px);
-      background-size: 180px 180px;
+      background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 1.5H8' stroke='%230a0a0a' stroke-width='0.55' stroke-opacity='0.48'/%3E%3C/svg%3E");
+      background-size: 8px 8px;
     }
 
     a {
@@ -172,8 +188,7 @@
       top: 0;
       z-index: 30;
       border-bottom: 2px solid var(--ink);
-      background: var(--paper-texture-1) center/cover, var(--paper);
-      box-shadow: 0 3px 0 rgba(10, 10, 10, 0.06);
+      background: var(--paper);
     }
 
     .nav {
@@ -192,12 +207,6 @@
       font-weight: 900;
       font-size: 22px;
       letter-spacing: -0.02em;
-      min-width: 0;
-    }
-
-    .brand span:last-child {
-      min-width: 0;
-      overflow-wrap: anywhere;
     }
 
     .brand-mark {
@@ -259,7 +268,7 @@
       border: 3px solid var(--ink);
       border-radius: var(--radius);
       padding: 0 18px;
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       color: var(--ink);
       font-family: var(--font-mono);
       font-size: 13px;
@@ -267,7 +276,7 @@
       font-weight: 900;
       line-height: 1;
       position: relative;
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
       transition: transform 100ms ease, box-shadow 100ms ease, background 140ms ease;
       white-space: nowrap;
     }
@@ -275,7 +284,7 @@
     .btn:hover {
       background: var(--accent);
       transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 var(--ink);
+      box-shadow: 6px 6px 0 var(--ink);
     }
 
     .btn:active {
@@ -299,9 +308,9 @@
     }
 
     .btn-secondary:hover {
-      background: var(--paper-texture-2) center/cover, var(--paper-2);
+      background: var(--paper-2);
       border-color: var(--ink);
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .btn:focus-visible,
@@ -318,9 +327,9 @@
       height: 44px;
       border: 3px solid var(--ink);
       border-radius: var(--radius);
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       color: var(--ink);
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .mobile-panel {
@@ -345,25 +354,9 @@
       min-height: calc(100vh - 124px);
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.78fr);
-      gap: clamp(30px, 5vw, 70px);
+      gap: clamp(42px, 6vw, 88px);
       align-items: center;
-      padding: 30px 0 76px;
-    }
-
-    .hero-kicker-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .hero-subtitle {
-      display: inline-block;
-      color: var(--accent-red);
-      font: 700 11px/1.35 var(--font-mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      padding: 84px 0 98px;
     }
 
     .issue-label {
@@ -381,21 +374,6 @@
       box-shadow: 3px 3px 0 var(--ink);
     }
 
-    .issue-label.is-level {
-      margin: 0;
-      transform: rotate(-0.5deg);
-    }
-
-    .issue-label.is-red {
-      background: var(--accent-red);
-      color: var(--paper);
-    }
-
-    .issue-label.is-ink {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
     h1 {
       font-family: var(--font-display);
       font-weight: 900;
@@ -410,7 +388,7 @@
     .mark {
       display: inline;
       padding: 2px 8px;
-      background: linear-gradient(100deg, rgba(255, 242, 0, 0.85) 4%, rgba(255, 242, 0, 0.92) 95%);
+      background: var(--accent);
       box-shadow: -2px 1px 0 rgba(0, 0, 0, 0.1);
       clip-path: polygon(1% 1%, 99% 3%, 98% 97%, 2% 95%);
       color: var(--ink);
@@ -421,31 +399,15 @@
 
     .hero-copy {
       max-width: 700px;
-      margin-top: 24px;
+      margin-top: 30px;
       color: var(--ink-2);
       font-size: clamp(19px, 1.8vw, 25px);
-      line-height: 1.45;
+      line-height: 1.55;
       text-wrap: pretty;
     }
 
-    .hero-copy::first-letter {
-      font-family: var(--font-display);
-      font-size: 3.8em;
-      float: left;
-      line-height: 0.82;
-      margin-right: 12px;
-      margin-top: 4px;
-      font-weight: 900;
-      color: var(--paper);
-      background: var(--ink);
-      padding: 4px 10px;
-      border: 3px solid var(--accent);
-      box-shadow: 3px 3px 0 var(--ink);
-      transform: rotate(-2deg);
-    }
-
     .identity-line {
-      margin-top: 26px;
+      margin-top: 34px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -456,7 +418,7 @@
       border: 2px solid var(--ink);
       border-radius: 0;
       padding: 6px 12px;
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       color: var(--ink);
       font: 700 11px/1 var(--font-mono);
       text-transform: uppercase;
@@ -475,21 +437,21 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 40px;
     }
 
     .clipping {
       position: relative;
       border: 3px solid var(--ink);
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       box-shadow: var(--shadow-paper);
-      transform: rotate(0.35deg);
+      transform: rotate(1deg);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .clipping:hover {
       transform: rotate(0deg) translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--ink), 10px 10px 20px rgba(10, 10, 10, 0.08);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
     .clipping::before {
@@ -510,12 +472,6 @@
       overflow: hidden;
     }
 
-    @media (min-width: 981px) {
-      .profile-card {
-        margin-top: -70px;
-      }
-    }
-
     .profile-header {
       padding: 28px;
       border-bottom: 3px solid var(--ink);
@@ -523,7 +479,7 @@
       grid-template-columns: auto 1fr;
       gap: 20px;
       align-items: start;
-      background: transparent;
+      background: var(--paper);
     }
 
     .profile-initials {
@@ -532,8 +488,7 @@
       display: grid;
       place-items: center;
       border: 3px solid var(--ink);
-      background: var(--accent) url('assets/scraps.jpg') no-repeat center/cover;
-      background-blend-mode: multiply;
+      background: var(--accent);
       color: var(--accent-ink);
       font: 900 32px/1 var(--font-mono);
       clip-path: polygon(5% 0, 100% 6%, 94% 100%, 0 91%);
@@ -556,7 +511,7 @@
 
     .status-list {
       display: grid;
-      background: rgba(255, 255, 255, 0.4);
+      background: var(--paper);
     }
 
     .status-row {
@@ -584,13 +539,13 @@
     .note-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 32px;
+      gap: 24px;
+      margin-top: 42px;
     }
 
     .note {
       border: 3px solid var(--ink);
-      background: var(--paper-texture-2) center/cover, var(--paper);
+      background: var(--paper);
       padding: 20px;
       min-height: 140px;
       box-shadow: 4px 4px 0 var(--ink);
@@ -598,16 +553,17 @@
     }
 
     .note:hover {
-      transform: translate(-2px, -2px);
+      transform: scale(1.02) rotate(-0.5deg) !important;
       box-shadow: 6px 6px 0 var(--ink);
+      background: var(--paper-2);
     }
 
     .note:nth-child(2) {
-      transform: rotate(-0.35deg);
+      transform: rotate(-1deg);
     }
 
     .note:nth-child(3) {
-      transform: rotate(0.35deg);
+      transform: rotate(1.2deg);
     }
 
     .note b {
@@ -630,16 +586,16 @@
     }
 
     section {
-      padding: 80px 0;
+      padding: 108px 0;
       border-top: 5px double var(--ink);
     }
 
     .section-head {
       display: grid;
       grid-template-columns: minmax(0, 0.98fr) minmax(280px, 0.45fr);
-      gap: 32px;
+      gap: 48px;
       align-items: end;
-      margin-bottom: 34px;
+      margin-bottom: 52px;
     }
 
     .section-head h2 {
@@ -651,76 +607,60 @@
       text-wrap: balance;
     }
 
-    .editorial-title {
-      display: flex;
-      align-items: start;
-      gap: clamp(14px, 2vw, 22px);
-    }
-
-    .editorial-initial {
-      width: clamp(62px, 7vw, 92px);
-      aspect-ratio: 1;
-      flex: 0 0 auto;
-      display: grid;
+    .section-initial {
+      display: inline-grid;
       place-items: center;
-      margin-top: 0.05em;
+      width: 0.96em;
+      height: 0.96em;
+      margin-right: 0.08em;
       border: 3px solid var(--ink);
-      background: var(--paper-texture-2) center/cover, var(--accent);
-      color: var(--ink);
-      font: 900 clamp(42px, 5vw, 72px)/0.82 var(--font-display);
+      font-family: var(--font-display);
+      font-weight: 900;
+      line-height: 1;
+      vertical-align: -0.04em;
       box-shadow: 4px 4px 0 var(--ink);
-      transform: rotate(-2deg);
     }
 
-    .editorial-title.projects .editorial-initial {
-      background: var(--paper-texture-1) center/cover, var(--accent-soft);
+    .section-initial.i {
+      width: 0.88em;
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--accent);
+      transform: rotate(-2deg);
+      font-style: italic;
+    }
+
+    .section-initial.b {
+      background: var(--accent);
+      color: var(--accent-ink);
+      clip-path: polygon(4% 0, 100% 8%, 92% 100%, 0 92%);
+      transform: rotate(-3deg);
+    }
+
+    .section-initial.p {
+      background: var(--paper);
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+      text-shadow: 3px 3px 0 var(--accent);
       transform: rotate(2deg);
     }
 
-    .editorial-title.proof .editorial-initial {
-      background: var(--paper-texture-2) center/cover, var(--paper);
-      transform: rotate(-1deg);
-    }
-
-    .editorial-title.contact .editorial-initial {
-      background: var(--ink);
+    .section-initial.w {
+      width: 1.18em;
+      background: var(--accent-red);
       color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      transform: rotate(-1deg);
+      text-transform: uppercase;
+    }
+
+    .section-initial.r {
+      background: var(--paper-2);
+      color: var(--ink);
+      border-style: double;
+      box-shadow: inset 0 0 0 4px var(--paper), 4px 4px 0 var(--ink);
       transform: rotate(1.5deg);
-    }
-
-    .contact-panel .editorial-title.contact {
-      position: relative;
-      isolation: isolate;
-      margin-top: 16px;
-      padding: clamp(18px, 2.8vw, 28px);
-      border: 3px solid var(--ink);
-      background: var(--paper-texture-1) center/cover, var(--paper);
-      box-shadow: 5px 5px 0 var(--ink);
-      overflow: hidden;
-    }
-
-    .contact-panel .editorial-title.contact::before {
-      content: "";
-      position: absolute;
-      inset: -18px;
-      z-index: -2;
-      background: url('assets/optimized/el_912_5.webp') center/cover no-repeat;
-      opacity: 0.78;
-      mix-blend-mode: multiply;
-      transform: rotate(-1deg) scale(1.04);
-    }
-
-    .contact-panel .editorial-title.contact::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: rgba(255, 255, 255, 0.58);
-      pointer-events: none;
-    }
-
-    .editorial-title span:last-child {
-      min-width: 0;
     }
 
     .section-head p {
@@ -732,7 +672,7 @@
     .intro-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-      gap: 18px;
+      gap: 28px;
       align-items: stretch;
     }
 
@@ -744,75 +684,21 @@
     .learning-board {
       border: 3px solid var(--ink);
       border-radius: var(--radius);
-      background: var(--paper-texture-1) center/cover, var(--paper);
-    }
-
-    .panel,
-    .note,
-    .proof-card,
-    .contact-card,
-    .contact-panel,
-    .learning-board,
-    .project-body,
-    .profile-card {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    .panel::after,
-    .note::after,
-    .proof-card::after,
-    .contact-card::after,
-    .contact-panel::after,
-    .learning-board::after,
-    .project-body::after,
-    .profile-card::after {
-      content: "";
-      position: absolute;
-      inset: -18px;
-      z-index: 0;
-      pointer-events: none;
-      background: var(--panel-overlay) center/cover no-repeat;
-      opacity: 0.24;
-      mix-blend-mode: multiply;
-      transform: rotate(-1deg) scale(1.04);
-    }
-
-    .panel>*,
-    .note>*,
-    .proof-card>*,
-    .contact-card>*,
-    .contact-panel>*,
-    .learning-board>*,
-    .project-body>*,
-    .profile-card>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .note::after,
-    .proof-card::after {
-      opacity: 0.3;
-    }
-
-    .learning-board::after,
-    .project-body::after {
-      opacity: 0.2;
+      background: var(--paper);
     }
 
     .panel {
-      padding: 28px;
+      padding: 34px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       box-shadow: var(--shadow-paper);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .panel:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--ink), 10px 10px 18px rgba(10, 10, 10, 0.08);
+      transform: translate(-3px, -3px);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
     .panel h3 {
@@ -858,34 +744,34 @@
     }
 
     .learning-board {
-      background: var(--paper-texture-2) center/cover, var(--paper-2);
-      padding: 20px;
+      background: var(--paper-2);
+      padding: 26px;
       display: grid;
-      gap: 14px;
+      gap: 20px;
     }
 
     .learning-row {
       display: grid;
       grid-template-columns: 160px 1fr;
-      gap: 18px;
+      gap: 24px;
       border: 2px solid var(--ink);
-      background: rgba(255, 255, 255, 0.58);
-      padding: 18px;
-      box-shadow: 2px 2px 0 var(--ink);
+      background: var(--paper);
+      padding: 22px;
+      box-shadow: 3px 3px 0 var(--ink);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .learning-row:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 var(--ink);
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--ink);
     }
 
     .learning-row:nth-child(odd) {
-      clip-path: none;
+      clip-path: polygon(0 2%, 99% 0, 100% 98%, 1% 100%);
     }
 
     .learning-row:nth-child(even) {
-      clip-path: none;
+      clip-path: polygon(1% 0, 100% 3%, 99% 100%, 0 97%);
     }
 
     .learning-row b {
@@ -899,7 +785,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 34px;
     }
 
     .filter {
@@ -907,7 +793,7 @@
       border: 3px solid var(--ink);
       border-radius: 0;
       padding: 0 18px;
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       color: var(--ink-2);
       font-family: var(--font-mono);
       font-size: 13px;
@@ -934,7 +820,7 @@
     .project-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
+      gap: 30px;
     }
 
     .project-card {
@@ -947,18 +833,10 @@
       transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
     }
 
-    .project-card:nth-child(odd) {
-      transform: none;
-    }
-
-    .project-card:nth-child(even) {
-      transform: none;
-    }
-
     .project-card:hover {
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       transform: translate(-3px, -3px);
-      box-shadow: 7px 7px 0 var(--ink), 12px 12px 20px rgba(10, 10, 10, 0.08);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
     .project-card.featured {
@@ -971,11 +849,11 @@
 
     .project-demo {
       min-height: 252px;
-      padding: 20px;
+      padding: 26px;
       border-bottom: 3px solid var(--ink);
-      background: var(--paper-texture-2) center/cover, var(--paper-2);
+      background: var(--paper-2);
       display: grid;
-      gap: 12px;
+      gap: 16px;
       align-content: start;
       position: relative;
     }
@@ -994,13 +872,13 @@
       text-transform: uppercase;
       transform: rotate(2deg);
       box-shadow: 2px 2px 0 var(--ink);
-      max-width: calc(100% - 36px);
     }
 
     .demo-window {
       border: 3px solid var(--ink);
-      background: rgba(255, 255, 255, 0.6);
+      background: var(--paper);
       overflow: hidden;
+      clip-path: polygon(0 1%, 100% 0, 99% 100%, 1% 99%);
       box-shadow: 2px 2px 0 var(--ink);
     }
 
@@ -1070,7 +948,7 @@
     }
 
     .project-body {
-      padding: 22px;
+      padding: 28px;
       display: grid;
       align-content: start;
     }
@@ -1113,30 +991,30 @@
     .proof-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 30px;
     }
 
     .proof-card {
-      padding: 24px;
+      padding: 30px;
       min-height: 232px;
       box-shadow: var(--shadow-paper);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .proof-card:nth-child(2) {
-      transform: none;
+      transform: rotate(-0.8deg);
     }
 
     .proof-card:nth-child(3) {
-      transform: none;
+      transform: rotate(0.8deg);
     }
 
     .proof-card:nth-child(2):hover {
-      transform: translate(-2px, -2px);
+      transform: rotate(0deg) translate(-3px, -3px);
     }
 
     .proof-card:nth-child(3):hover {
-      transform: translate(-2px, -2px);
+      transform: rotate(0deg) translate(-3px, -3px);
     }
 
     .proof-card b {
@@ -1158,198 +1036,12 @@
       letter-spacing: -0.04em;
     }
 
-    .credentials-grid {
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 32px;
-      border-top: 5px double var(--ink);
-      padding-top: 48px;
-    }
-
-    .credentials-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 20px 0 0;
-      display: grid;
-      gap: 18px;
-    }
-
-    .credentials-list li {
-      border-bottom: 1.5px dashed var(--rule-soft);
-      padding-bottom: 14px;
-      display: flex;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .award-icon {
-      width: 30px;
-      height: 30px;
-      flex: 0 0 auto;
-      display: grid;
-      place-items: center;
-      border: 2px solid var(--ink);
-      background: var(--accent);
-      color: var(--ink);
-      font: 900 10px/1 var(--font-mono);
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .credentials-list li:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .credentials-list li strong {
-      display: block;
-      font-family: var(--font-main);
-      font-size: 16px;
-      color: var(--ink);
-    }
-
-    .credentials-list li span {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .credentials-list li .award-icon {
-      color: var(--ink);
-      font: 900 10px/1 var(--font-mono);
-    }
-
-    .kicker {
-      font-family: var(--font-kicker);
-      text-transform: uppercase;
-      letter-spacing: -0.03em;
-    }
-
-    .paper-tape {
-      position: relative;
-    }
-
-    .paper-tape::before {
-      content: "";
-      position: absolute;
-      width: 90px;
-      height: 24px;
-      top: -14px;
-      left: 30px;
-      background: rgba(255, 255, 210, 0.75);
-      border-left: 1px solid rgba(0, 0, 0, 0.15);
-      border-right: 1px solid rgba(0, 0, 0, 0.15);
-      transform: rotate(-6deg);
-      backdrop-filter: blur(1px);
-      z-index: 10;
-    }
-
-    .halftone {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .halftone::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.08;
-      background-image: radial-gradient(circle, var(--ink) 12%, transparent 13%);
-      background-size: 8px 8px;
-      mix-blend-mode: multiply;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .print-rough {
-      text-shadow:
-        0.6px 0 rgba(0, 0, 0, 0.35),
-        -0.6px 0 rgba(0, 0, 0, 0.15);
-    }
-
-    .section-paper {
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-paper::before {
-      content: "";
-      position: absolute;
-      inset: 40px -20px;
-      background: #ebe6da;
-      z-index: -1;
-      transform: rotate(-1deg);
-      border: 2px solid var(--ink);
-    }
-
-    .section-divider {
-      height: 18px;
-      background: repeating-linear-gradient(90deg,
-          var(--ink) 0 12px,
-          transparent 12px 24px);
-      margin: 40px 0;
-      border: 2px solid var(--ink);
-      border-left: none;
-      border-right: none;
-    }
-
-    .scrap-paper-1,
-    .scrap-paper-3,
-    .scrap-paper-5 {
-      background: var(--paper-texture-1) center/cover, var(--paper);
-    }
-
-    .scrap-paper-2,
-    .scrap-paper-4,
-    .scrap-paper-note {
-      background: var(--paper-texture-2) center/cover, var(--paper);
-    }
-
-    .training-board {
-      padding: 24px;
-    }
-
-    .training-list {
-      margin-top: 20px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .training-row {
-      grid-template-columns: 80px 1fr;
-      gap: 12px;
-      padding: 12px;
-      margin: 0;
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .training-date {
-      font-size: 10px;
-    }
-
-    .training-title {
-      display: block;
-      color: var(--ink);
-      font-size: 13px;
-      line-height: 1.25;
-    }
-
-    .training-desc {
-      display: block;
-      margin-top: 2px;
-      color: var(--ink-2);
-      font-size: 11px;
-      line-height: 1.35;
-    }
-
     .contact-panel {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 390px;
       gap: 28px;
       padding: clamp(28px, 4vw, 50px);
-      background: var(--paper-texture-1) center/cover, var(--paper);
+      background: var(--paper);
       box-shadow: var(--shadow-paper);
       border: 3px solid var(--ink);
     }
@@ -1372,7 +1064,7 @@
 
     .contact-card {
       border: 3px solid var(--ink);
-      background: var(--paper-texture-2) center/cover, var(--paper-2);
+      background: var(--paper-2);
       padding: 24px;
       align-self: start;
       box-shadow: 4px 4px 0 var(--ink);
@@ -1396,23 +1088,17 @@
       width: 100%;
       border: 3px solid var(--ink);
       border-radius: 0;
+      background: var(--paper);
       color: var(--ink);
       padding: 12px 14px;
       font-family: var(--font-main);
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
-    input {
-      background: var(--paper-texture-1) center/cover, var(--paper);
-    }
-
-    textarea {
-      background: var(--paper-texture-2) center/cover, var(--paper);
-    }
-
     input:focus,
     textarea:focus {
       outline: none;
+      background: var(--paper);
       box-shadow: 4px 4px 0 var(--accent);
       transform: translate(-2px, -2px);
     }
@@ -1420,14 +1106,6 @@
     textarea {
       min-height: 116px;
       resize: vertical;
-    }
-
-    .contact-card,
-    .demo-window,
-    .contact-panel .editorial-title.contact,
-    input,
-    textarea {
-      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .form-row {
@@ -1478,33 +1156,36 @@
 
       .hero,
       .intro-grid,
-      .contact-panel,
-      .credentials-grid {
+      .contact-panel {
         grid-template-columns: 1fr;
       }
 
       .hero {
         min-height: auto;
-        padding: 54px 0;
+        padding: 68px 0 76px;
       }
 
       .profile-card {
         max-width: 640px;
-        margin-inline: auto;
       }
 
       .section-head {
         grid-template-columns: 1fr;
         align-items: start;
+        gap: 24px;
+        margin-bottom: 42px;
       }
 
-      .editorial-title {
-        align-items: center;
+      .section-initial {
+        width: 0.82em;
+        height: 0.82em;
+        margin-right: 0.04em;
       }
 
       .note-strip,
       .proof-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
 
       .learning-row {
@@ -1516,10 +1197,6 @@
       .project-card.compact {
         grid-column: span 12;
       }
-
-      .contact-panel {
-        gap: 24px;
-      }
     }
 
     @media (max-width: 720px) {
@@ -1529,26 +1206,10 @@
 
       body {
         font-size: 17px;
-        line-height: 1.55;
       }
 
       .nav-links {
         display: none;
-      }
-
-      .nav {
-        min-height: 62px;
-      }
-
-      .brand {
-        gap: 10px;
-        font-size: 18px;
-      }
-
-      .brand-mark {
-        width: 38px;
-        height: 38px;
-        font-size: 12px;
       }
 
       .mobile-menu {
@@ -1557,68 +1218,15 @@
       }
 
       section {
-        padding: 54px 0;
-      }
-
-      .hero {
-        gap: 30px;
-        padding: 38px 0 54px;
+        padding: 68px 0;
       }
 
       h1 {
-        font-size: clamp(42px, 13vw, 60px);
-        line-height: 1.05;
-      }
-
-      .hero-copy {
-        font-size: 18px;
-      }
-
-      .hero-copy::first-letter {
-        font-size: 3em;
-        margin-right: 9px;
-        padding: 3px 8px;
-      }
-
-      .editorial-title {
-        gap: 12px;
-      }
-
-      .editorial-initial {
-        width: 54px;
-        font-size: 40px;
-        box-shadow: 3px 3px 0 var(--ink);
-      }
-
-      .section-head h2,
-      .contact-panel h2 {
-        font-size: clamp(34px, 10vw, 46px);
-        line-height: 1;
-        letter-spacing: -0.025em;
-      }
-
-      .section-head {
-        gap: 16px;
-        margin-bottom: 26px;
-      }
-
-      .filters {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .filter {
-        width: 100%;
-        padding: 0 10px;
-        font-size: 11px;
+        font-size: clamp(44px, 14vw, 66px);
       }
 
       .hero-actions .btn {
         flex: 1 1 100%;
-        white-space: normal;
-        text-align: center;
-        min-height: 48px;
-        line-height: 1.25;
       }
 
       .profile-header {
@@ -1630,34 +1238,11 @@
         min-height: 0;
       }
 
-      .project-demo {
-        min-height: 0;
-        padding: 16px;
-        padding-top: 52px;
-      }
-
-      .project-demo::after {
-        left: 16px;
-        right: auto;
-        top: 14px;
-      }
-
-      .demo-title,
-      .project-meta {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
       .project-body,
       .panel,
       .proof-card,
-      .contact-card,
-      .contact-panel {
-        padding: 18px;
-      }
-
-      .contact-panel .editorial-title.contact {
-        padding: 16px;
+      .contact-card {
+        padding: 22px;
       }
 
       .status-row {
@@ -1689,244 +1274,248 @@
         grid-template-columns: 1fr;
       }
     }
-
-    @media (max-width: 460px) {
-      :root {
-        --gutter: 12px;
-      }
-
-      .brand span:last-child {
-        max-width: 210px;
-      }
-
-      .hero-kicker-row {
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .issue-label,
-      .hero-subtitle,
-      .chip,
-      .pill,
-      .proof-row span {
-        font-size: 10px;
-        line-height: 1.25;
-      }
-
-      h1 {
-        font-size: clamp(38px, 14vw, 52px);
-      }
-
-      .editorial-title {
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .editorial-initial {
-        width: 46px;
-        font-size: 34px;
-        border-width: 2px;
-      }
-
-      .section-head h2,
-      .contact-panel h2 {
-        font-size: clamp(30px, 10.5vw, 40px);
-      }
-
-      .note,
-      .learning-row,
-      .project-body,
-      .panel,
-      .proof-card,
-      .contact-card,
-      .contact-panel {
-        padding: 16px;
-      }
-
-      .contact-panel .editorial-title.contact {
-        padding: 14px;
-      }
-
-      .profile-header {
-        padding: 16px;
-      }
-
-      .profile-header h2,
-      .panel h3,
-      .proof-card h3 {
-        font-size: 26px;
-      }
-
-      .filters {
-        grid-template-columns: 1fr;
-      }
-
-      .toast {
-        right: 12px;
-        bottom: 12px;
-        max-width: calc(100vw - 24px);
-      }
-    }
   </style>
-</head>
+<style data-od-tweaks-bridge-style="">
+[data-od-tweaks-hidden] .tw-panel {
+  transform: translateX(calc(100% + 32px)) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.tw-restore { display: none !important; }
+</style><script data-od-tweaks-bridge="">(function(){
+  // Synchronously hide BEFORE the artifact body parses so the panel never
+  // flashes on initial paint. The host removes the attribute via postMessage
+  // once it knows the desired state.
+  document.documentElement.setAttribute('data-od-tweaks-hidden', '');
+
+  var suppressEcho = false;
+  var observer = null;
+
+  function panelEl(){ return document.querySelector('.tw-panel'); }
+
+  function applyClassesToPanel(visible){
+    var panel = panelEl();
+    if (panel) panel.classList.toggle('tw-hidden', !visible);
+  }
+
+  function setPanelVisible(visible){
+    suppressEcho = true;
+    document.documentElement.toggleAttribute('data-od-tweaks-hidden', !visible);
+    applyClassesToPanel(visible);
+    // Clear flag after the MutationObserver has had a chance to fire for this
+    // change so we don't echo our own host-driven toggles back to the host.
+    Promise.resolve().then(function(){ suppressEcho = false; });
+  }
+
+  function postState(){
+    var panel = panelEl();
+    if (!panel) return;
+    try {
+      parent.postMessage({
+        type: 'od:tweaks-panel-state',
+        visible: !panel.classList.contains('tw-hidden'),
+      }, '*');
+    } catch (e) {}
+  }
+
+  function postAvailability(){
+    try {
+      parent.postMessage({
+        type: 'od:tweaks-available',
+        available: !!panelEl(),
+      }, '*');
+    } catch (e) {}
+  }
+
+  function attachObserver(){
+    var panel = panelEl();
+    if (!panel || observer) return;
+    observer = new MutationObserver(function(){
+      if (suppressEcho) return;
+      postState();
+    });
+    observer.observe(panel, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function onReady(){
+    // Capture the panel authored visibility BEFORE we apply the host hidden
+    // attribute. The bridge sets data-od-tweaks-hidden synchronously in head
+    // (before the body parses), so on entry to onReady the attribute is
+    // always present even though the artifact may have authored the panel
+    // as default-visible. Reading the panel class first is the only place
+    // we can still observe the author intent. Then drive the attribute,
+    // classes, and posted state from that captured value so a default
+    // visible tw-panel reports visible:true and the toolbar toggle starts
+    // ON. Issue surfaced in PR #1643 review.
+    var panel = panelEl();
+    var initialVisible = !!panel && !panel.classList.contains('tw-hidden');
+    document.documentElement.toggleAttribute('data-od-tweaks-hidden', !initialVisible);
+    applyClassesToPanel(initialVisible);
+    attachObserver();
+    postAvailability();
+    // Post the captured initial visibility so the toolbar toggle reflects
+    // the default state on mount. Without this the toggle reads OFF while
+    // a default-visible tw-panel artifact clearly shows its panel and the
+    // user would have to click toggle-on then toggle-off to actually hide.
+    postState();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady);
+  } else {
+    onReady();
+  }
+
+  window.addEventListener('message', function(ev){
+    if (!ev.data || ev.data.type !== 'od:tweaks-panel-visible') return;
+    setPanelVisible(!!ev.data.visible);
+  });
+})();</script></head>
 
 <body>
-  <header class="topbar">
-    <div class="container">
-      <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="#top" aria-label="Portfolio home">
-          <span class="brand-mark kicker">ZA</span>
+  <header class="topbar" data-od-id="path-0">
+    <div class="container" data-od-id="path-0-0">
+      <nav class="nav" aria-label="Primary navigation" data-od-id="path-0-0-0">
+        <a class="brand" href="#top" aria-label="Portfolio home" data-od-id="path-0-0-0-0">
+          <span class="brand-mark">ZA</span>
           <span>ZERNAN VASH ARIVE</span>
         </a>
-        <div class="nav-links" aria-label="Page sections">
-          <a href="#intro">Intro</a>
-          <a href="#work">Projects</a>
-          <a href="#proof">Proof</a>
-          <a class="btn btn-primary" href="#contact">Contact</a>
+        <div class="nav-links" aria-label="Page sections" data-od-id="path-0-0-0-1">
+          <a href="#intro" data-od-id="path-0-0-0-1-0">Intro</a>
+          <a href="#work" data-od-id="path-0-0-0-1-1">Projects</a>
+          <a href="#proof" data-od-id="path-0-0-0-1-2">Proof</a>
+          <a class="btn btn-primary" href="#contact" data-od-id="path-0-0-0-1-3">Contact</a>
         </div>
-        <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false">
+        <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" data-od-id="path-0-0-0-2">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
           </svg>
         </button>
       </nav>
-      <div class="mobile-panel" id="mobile-panel">
-        <a href="#intro">Intro</a>
-        <a href="#work">Projects</a>
-        <a href="#proof">Proof</a>
-        <a href="#contact">Contact</a>
+      <div class="mobile-panel" id="mobile-panel" data-od-id="path-0-0-1">
+        <a href="#intro" data-od-id="path-0-0-1-0">Intro</a>
+        <a href="#work" data-od-id="path-0-0-1-1">Projects</a>
+        <a href="#proof" data-od-id="path-0-0-1-2">Proof</a>
+        <a href="#contact" data-od-id="path-0-0-1-3">Contact</a>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <div class="container">
-      <section class="hero" aria-labelledby="hero-title">
+  <main id="top" data-od-id="path-1">
+    <div class="container" data-od-id="path-1-0">
+      <section class="hero" aria-labelledby="hero-title" style="padding-top: 30px;" data-od-id="path-1-0-0">
         <div>
-          <div class="hero-kicker-row">
-            <span class="issue-label kicker is-level">Vol. 1 - Issue 01</span>
-            <span class="hero-subtitle">Universidad de Dagupan - BS Computer Science - DOST Scholar</span>
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
+            <span class="issue-label" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
+              de Dagupan · CS Student · DOST Scholar</span>
           </div>
-          <h1 id="hero-title" class="print-rough">I build useful software, then <span class="mark print-rough">show the
-              work</span></h1>
-          <p class="hero-copy">I am a passionate BS Computer Science student at Universidad de Dagupan looking for
-            software
-            engineering internships and cybersecurity roles. I focus on building secure, innovative software and
-            strengthening network resilience through hands-on, impactful projects.</p>
+          <h1 id="hero-title" data-od-id="path-1-0-0-0-1">I build useful software, then <span class="mark">show the work</span>.</h1>
+          <p class="hero-copy">I am a BS Computer Science student at Universidad de Dagupan looking for software
+            engineering internships and cybersecurity roles. This page is built like a short newsletter: quick context,
+            project clippings, and the proof a busy reviewer needs.</p>
           <div class="identity-line" aria-label="Portfolio focus areas">
-            <span class="chip">Java & Systems</span>
+            <span class="chip">Java &amp; Systems</span>
             <span class="chip">Python, C, C++</span>
             <span class="chip">Game Development</span>
             <span class="chip">Cybersecurity / CTF</span>
           </div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#work">Read the project notes</a>
-            <button class="btn" type="button" data-copy="zernanvasharive16@gmail.com">Copy email</button>
-            <a class="btn btn-secondary" href="#contact">Ask for resume</a>
+            <a class="btn btn-primary" href="#work" data-od-id="path-1-0-0-0-4-0">Read the project notes</a>
+            <button class="btn" type="button" data-copy="zernanvasharive16@gmail.com" data-od-id="path-1-0-0-0-4-1">Copy email</button>
+            <a class="btn btn-secondary" href="#contact" data-od-id="path-1-0-0-0-4-2">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
-            <div class="note scrap-paper-note paper-tape"><b>Employers</b><span>Scan how I model data, test edge cases,
-                and explain
+            <div class="note"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
                 tradeoffs.</span></div>
-            <div class="note scrap-paper-note paper-tape"><b>Clients</b><span>See whether I can turn a small workflow
-                into a clear
-                tool.</span>
+            <div class="note"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span>
             </div>
-            <div class="note scrap-paper-note paper-tape"><b>Mentors</b><span>Spot where I am learning and what feedback
-                would help
-                next.</span>
+            <div class="note"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span>
             </div>
           </div>
         </div>
 
-        <aside class="profile-card scrap-paper-3 clipping paper-tape halftone" aria-label="Student profile summary">
-          <div class="profile-header">
+        <aside class="profile-card clipping" aria-label="Student profile summary" data-od-id="path-1-0-0-1">
+          <div class="profile-header" data-od-id="path-1-0-0-1-0">
             <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
-              <h2>Motivated BS Computer Science student aiming for secure software development.</h2>
+              <h2 data-od-id="path-1-0-0-1-0-1-0">Motivated CS student aiming for secure software development.</h2>
               <p>I focus on programming, analytical problem-solving, and cybersecurity. Here are my project clippings,
                 activities, and skills.</p>
             </div>
           </div>
-          <div class="status-list">
+          <div class="status-list" data-od-id="path-1-0-0-1-1">
             <div class="status-row"><span>Degree</span><strong>BS Computer Science</strong></div>
             <div class="status-row"><span>College</span><strong>Universidad de Dagupan</strong></div>
-            <div class="status-row"><span>Honors</span><strong>Scholar & Dean's Lister</strong></div>
+            <div class="status-row"><span>Honors</span><strong>Scholar &amp; Dean's Lister</strong></div>
             <div class="status-row"><span>Contact</span><strong>zernanvasharive16@gmail.com</strong></div>
           </div>
         </aside>
       </section>
 
-      <div class="section-divider"></div>
-
-      <section id="intro" aria-labelledby="intro-title">
-        <div class="section-head">
-          <h2 id="intro-title" class="editorial-title"><span class="editorial-initial"
-              aria-hidden="true">B</span><span>efore the links, here is how I work.</span></h2>
+      <section id="intro" aria-labelledby="intro-title" data-od-id="path-1-0-1">
+        <div class="section-head" data-od-id="path-1-0-1-0">
+          <h2 id="intro-title" data-od-id="path-1-0-1-0-0"><span class="section-initial b">B</span>efore the links, here is how I work.</h2>
           <p>Most portfolio pages jump straight to cards. I want the first minute to explain my habits: how I break down
             a problem, what I check, and what kind of work I am ready to take on.</p>
         </div>
 
-        <div class="intro-grid">
-          <aside class="panel scrap-paper-1 paper-tape">
-            <span class="issue-label kicker">Personal note</span>
-            <h3>I focus on secure software logic and clean execution.</h3>
+        <div class="intro-grid" data-od-id="path-1-0-1-1">
+          <aside class="panel" data-od-id="path-1-0-1-1-0">
+            <span class="issue-label">Personal note</span>
+            <h3 data-od-id="path-1-0-1-1-0-1">I focus on secure software logic and clean execution.</h3>
             <p>I usually build my code starting from data structures and security conditions. I enjoy participating in
               cybersecurity CTF challenges and mobile robotics competitions, which train me to work effectively under
               pressure.</p>
-            <div class="fact-list">
+            <div class="fact-list" data-od-id="path-1-0-1-1-0-3">
               <div class="fact"><span>Studying</span><strong>BS Computer Science</strong></div>
               <div class="fact"><span>Scholarship</span><strong>DOST-SEI Merit Scholar</strong></div>
-              <div class="fact"><span>Co-Curricular</span><strong>UD Cybersecurity Varsity</strong></div>
-              <div class="fact"><span>Past Role</span><strong>CSIT Sub-Org Developer</strong></div>
+              <div class="fact"><span>Role</span><strong>CSIT Society Developer</strong></div>
+              <div class="fact"><span>Activities</span><strong>Cybersecurity CTF &amp; Robotics</strong></div>
             </div>
           </aside>
 
-          <div class="learning-board scrap-paper-3" aria-label="Current learning board">
+          <div class="learning-board" aria-label="Current learning board">
             <div class="learning-row">
-              <b>Co-Curriculars</b>
-              <span>Member of Universidad de Dagupan's Cybersecurity Varsity (AY 2024-Present) and former System
-                Developer for the CSIT Society's Programming Sub-Org (AY 2023-2024).</span>
+              <b>System Development</b>
+              <span>I worked as a System Developer for the Programming Sub-Organization of Universidad de Dagupan's CSIT
+                Society.</span>
             </div>
             <div class="learning-row">
-              <b>Education</b>
-              <span>Pursuing BS Computer Science at Universidad de Dagupan (DOST scholar & Dean's Lister). San Fabian
-                NHS (2023, with honors) & Cabanatuan City SHS (2022, with honors) graduate.</span>
+              <b>Cybersecurity</b>
+              <span>Motivated by cybersecurity concepts, I participate in workshops and DCODE CTF challenges to test my
+                analytical skills.</span>
             </div>
             <div class="learning-row">
-              <b>Cybersecurity CTFs</b>
-              <span>Active in cybersecurity challenges like Trend Micro CTF, FIRST ASEAN CTF, Cyber Range Exercises
-                (HackForGov 3), and DCODE challenge workshops.</span>
+              <b>Specialized Skills</b>
+              <span>I develop system scripting in Batch and VBScript, and build IoT integrations for mobile robotics
+                competitions.</span>
             </div>
             <div class="learning-row">
-              <b>Core Capabilities</b>
-              <span>Problem-solving, leadership & team management, effective communication, highly adaptable/rapid
-                learner, and collaborative team player.</span>
+              <b>College Honors</b>
+              <span>DOST-SEI scholar and Dean's Lister, aiming to drive innovative secure software development.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <div class="section-divider"></div>
-
-      <section id="work" aria-labelledby="work-title">
-        <div class="section-head">
-          <h2 id="work-title" class="editorial-title projects"><span class="editorial-initial"
-              aria-hidden="true">P</span><span>roject clippings with context.</span></h2>
+      <section id="work" aria-labelledby="work-title" data-od-id="path-1-0-2">
+        <div class="section-head" data-od-id="path-1-0-2-0">
+          <h2 id="work-title" data-od-id="path-1-0-2-0-0"><span class="section-initial p">P</span>roject clippings with context.</h2>
           <p>Each clipping gives the same useful facts: what the project does, what technical part matters, and what I
             would show in a walkthrough.</p>
         </div>
 
-        <div class="filters" aria-label="Project filters">
-          <button class="filter" type="button" aria-pressed="true" data-filter="all">All</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack">System Dev</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="robotics">Robotics</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="gamedev">Game Dev</button>
+        <div class="filters" aria-label="Project filters" data-od-id="path-1-0-2-1">
+          <button class="filter" type="button" aria-pressed="true" data-filter="all" data-od-id="path-1-0-2-1-0">All</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack" data-od-id="path-1-0-2-1-1">System Dev</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="robotics" data-od-id="path-1-0-2-1-2">Robotics</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="gamedev" data-od-id="path-1-0-2-1-3">Game Dev</button>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card featured paper-tape" data-category="fullstack">
-            <div class="project-demo halftone" data-stamp="System note" aria-label="CSIT sub-org system demo summary">
+        <div class="project-grid" data-od-id="path-1-0-2-2">
+          <article class="project-card featured" data-category="fullstack" data-od-id="path-1-0-2-2-0">
+            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary" data-od-id="path-1-0-2-2-0-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Programming Sub-Org</span><strong>System Dev</strong></div>
                 <div class="demo-table">
@@ -1936,23 +1525,22 @@
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill kicker">Java</span>
-                <span class="pill kicker">SQL</span>
-                <span class="pill kicker">CSIT</span>
+                <span class="pill">Java</span>
+                <span class="pill">SQL</span>
+                <span class="pill">CSIT</span>
               </div>
             </div>
-            <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 01</span><span class="kicker">System Dev</span>
-              </div>
-              <h3 class="print-rough">Programming Sub-Organization System</h3>
+            <div class="project-body" data-od-id="path-1-0-2-2-0-1">
+              <div class="project-meta"><span>Clipping 01</span><span>System Dev</span></div>
+              <h3 data-od-id="path-1-0-2-2-0-1-1">Programming Sub-Organization System</h3>
               <p>A custom system built as the System Developer for the Programming Sub-Organization under the Computer
                 Science and Information Technology Society at Universidad de Dagupan.</p>
               <div class="proof-row"><span>Data model</span><span>Validation</span><span>Database rules</span></div>
             </div>
           </article>
 
-          <article class="project-card compact paper-tape" data-category="robotics">
-            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary">
+          <article class="project-card compact" data-category="robotics" data-od-id="path-1-0-2-2-1">
+            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary" data-od-id="path-1-0-2-2-1-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Mobile Robotics</span><strong>C++</strong></div>
                 <div class="demo-table">
@@ -1962,23 +1550,22 @@
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill kicker">C++</span>
-                <span class="pill kicker">C</span>
-                <span class="pill kicker">Arduino</span>
+                <span class="pill">C++</span>
+                <span class="pill">C</span>
+                <span class="pill">Arduino</span>
               </div>
             </div>
-            <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 02</span><span class="kicker">Robotics</span>
-              </div>
-              <h3 class="print-rough">Mobile Robotics Competition Controller</h3>
+            <div class="project-body" data-od-id="path-1-0-2-2-1-1">
+              <div class="project-meta"><span>Clipping 02</span><span>Robotics</span></div>
+              <h3 data-od-id="path-1-0-2-2-1-1-1">Mobile Robotics Competition Controller</h3>
               <p>A robotics controller script written for Universidad de Dagupan's Mobile Robotics Competition, focusing
                 on hardware-software interfaces and real-time sensor loops.</p>
               <div class="proof-row"><span>IoT control</span><span>Sensor loop</span><span>Robotics</span></div>
             </div>
           </article>
 
-          <article class="project-card compact paper-tape" data-category="fullstack">
-            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary">
+          <article class="project-card compact" data-category="fullstack" data-od-id="path-1-0-2-2-2">
+            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary" data-od-id="path-1-0-2-2-2-0">
               <div class="demo-window">
                 <div class="demo-title"><span>System Scripting</span><strong>Batch</strong></div>
                 <pre class="mini-code">@echo off
@@ -1987,23 +1574,22 @@ cscript /nologo check_ports.vbs
 <em>Audit slow paths</em></pre>
               </div>
               <div class="tag-row">
-                <span class="pill kicker">Batch</span>
-                <span class="pill kicker">VBScript</span>
-                <span class="pill kicker">Security</span>
+                <span class="pill">Batch</span>
+                <span class="pill">VBScript</span>
+                <span class="pill">Security</span>
               </div>
             </div>
-            <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 03</span><span class="kicker">System Dev</span>
-              </div>
-              <h3 class="print-rough">Batch & VBScript Security Audit Scripts</h3>
+            <div class="project-body" data-od-id="path-1-0-2-2-2-1">
+              <div class="project-meta"><span>Clipping 03</span><span>System Dev</span></div>
+              <h3 data-od-id="path-1-0-2-2-2-1-1">Batch &amp; VBScript Security Audit Scripts</h3>
               <p>System management scripts built using Batch and VBScript to automate configuration checks, check ports,
                 and secure system directories during network operations.</p>
               <div class="proof-row"><span>Automation</span><span>System scripts</span><span>Audit logic</span></div>
             </div>
           </article>
 
-          <article class="project-card compact paper-tape" data-category="gamedev">
-            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary">
+          <article class="project-card compact" data-category="gamedev" data-od-id="path-1-0-2-2-3">
+            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary" data-od-id="path-1-0-2-2-3-0">
               <div class="demo-window">
                 <div class="demo-title"><span>Collision Engine</span><strong>Java</strong></div>
                 <div class="demo-table">
@@ -2013,15 +1599,14 @@ cscript /nologo check_ports.vbs
                 </div>
               </div>
               <div class="tag-row">
-                <span class="pill kicker">Java</span>
-                <span class="pill kicker">2D Canvas</span>
-                <span class="pill kicker">Game Dev</span>
+                <span class="pill">Java</span>
+                <span class="pill">2D Canvas</span>
+                <span class="pill">Game Dev</span>
               </div>
             </div>
-            <div class="project-body">
-              <div class="project-meta"><span class="kicker">Clipping 04</span><span class="kicker">Game Dev</span>
-              </div>
-              <h3 class="print-rough">Java Game Development Collision Engine</h3>
+            <div class="project-body" data-od-id="path-1-0-2-2-3-1">
+              <div class="project-meta"><span>Clipping 04</span><span>Game Dev</span></div>
+              <h3 data-od-id="path-1-0-2-2-3-1-1">Java Game Development Collision Engine</h3>
               <p>A 2D collision resolution engine built in Java for a Game Development Workshop, featuring coordinate
                 mapping, collision response, and raycasting bounds check.</p>
               <div class="proof-row"><span>Vector math</span><span>Game loop</span><span>Canvas rendering</span></div>
@@ -2030,187 +1615,60 @@ cscript /nologo check_ports.vbs
         </div>
       </section>
 
-      <div class="section-divider"></div>
-
-      <section id="proof" aria-labelledby="proof-title">
-        <div class="section-head">
-          <h2 id="proof-title" class="editorial-title proof"><span class="editorial-initial"
-              aria-hidden="true">W</span><span>hat a reviewer can learn in one pass.</span></h2>
+      <section id="proof" aria-labelledby="proof-title" data-od-id="path-1-0-3">
+        <div class="section-head" data-od-id="path-1-0-3-0">
+          <h2 id="proof-title" data-od-id="path-1-0-3-0-0"><span class="section-initial w">W</span>hat a reviewer can learn in one pass.</h2>
           <p>This section keeps the signals practical. It tells an employer or client what kind of conversation my work
             can support.</p>
         </div>
 
-        <div class="proof-grid">
-          <article class="proof-card scrap-paper-2 paper-tape halftone">
-            <b class="kicker">Technical range</b>
-            <h3 class="print-rough">Systems developer, game dev, and cybersecurity CTF participant.</h3>
+        <div class="proof-grid" data-od-id="path-1-0-3-1">
+          <article class="proof-card" data-od-id="path-1-0-3-1-0">
+            <b>Technical range</b>
+            <h3 data-od-id="path-1-0-3-1-0-1">Systems developer, game dev, and cybersecurity CTF participant.</h3>
             <p>The projects show different types of thinking: database rules, IoT robotics controller loops, secure
               system scripting, and coordinate collision algorithms.</p>
           </article>
-          <article class="proof-card scrap-paper-4 paper-tape">
-            <b class="kicker">Communication</b>
-            <h3 class="print-rough">Detailed write-ups and documentation on logic systems.</h3>
+          <article class="proof-card" data-od-id="path-1-0-3-1-1">
+            <b>Communication</b>
+            <h3 data-od-id="path-1-0-3-1-1-1">Detailed write-ups and documentation on logic systems.</h3>
             <p>For each project, I can explain the models, the main edge cases, what I tested, and what I would improve
               next.</p>
           </article>
-          <article class="proof-card scrap-paper-5 paper-tape halftone">
-            <b class="kicker">Fit</b>
-            <h3 class="print-rough">DOST scholar and BS Computer Science student ready for internships.</h3>
+          <article class="proof-card" data-od-id="path-1-0-3-1-2">
+            <b>Fit</b>
+            <h3 data-od-id="path-1-0-3-1-2-1">DOST scholar and BS Computer Science student ready for internships.</h3>
             <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
               math, and document my work systematically.</p>
           </article>
         </div>
-
-        <div class="credentials-grid">
-          <!-- Column 1: Awards & Honors -->
-          <div class="panel scrap-paper-3 paper-tape">
-            <span class="issue-label kicker is-red">Awards &
-              Honors</span>
-            <ul class="credentials-list">
-              <li>
-                <span class="award-icon">01</span>
-                <div>
-                  <strong>Champion, Hack the Chain 25.2</strong>
-                  <span>July 2025 - Viction Blockchain Hackathon (Mapandan)</span>
-                </div>
-              </li>
-              <li>
-                <span class="award-icon">02</span>
-                <div>
-                  <strong>Outstanding Student & Academic Excellence</strong>
-                  <span>1st Sem AY 2024-2025 - Universidad de Dagupan</span>
-                </div>
-              </li>
-              <li>
-                <span class="award-icon">03</span>
-                <div>
-                  <strong>Academic Excellence Awardee</strong>
-                  <span>1st Sem AY 2023-2024 - Universidad de Dagupan</span>
-                </div>
-              </li>
-              <li>
-                <span class="award-icon">04</span>
-                <div>
-                  <strong>DOST-SEI S&T Merit Scholar</strong>
-                  <span>Awarded in 2023 - DOST Scholarship Program</span>
-                </div>
-              </li>
-              <li>
-                <span class="award-icon">05</span>
-                <div>
-                  <strong>High School Graduation with Honors</strong>
-                  <span>AY 2022-2023 - San Fabian National High School</span>
-                </div>
-              </li>
-              <li>
-                <span class="award-icon">06</span>
-                <div>
-                  <strong>Senior High Academic Honors</strong>
-                  <span>AY 2021-2022 - Cabanatuan City Senior High School</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 2: Selected Trainings & Seminars -->
-          <div class="learning-board training-board scrap-paper-2 paper-tape">
-            <span class="issue-label kicker is-ink">Trainings, Seminars &
-              CTFs</span>
-            <div class="training-list">
-              <div class="learning-row training-row">
-                <b class="training-date">Jul 2025</b>
-                <div>
-                  <strong class="training-title">Hack the Chain 25.2</strong>
-                  <span class="training-desc">Viction
-                    blockchain workshop and 24h hackathon. Mapandan, Pangasinan.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">Feb 2025</b>
-                <div>
-                  <strong class="training-title">UD Knowledge Festival
-                    2025</strong>
-                  <span class="training-desc">Emerging
-                    Technologies: Shaping the Future of Digital Innovation.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">Aug 2024</b>
-                <div>
-                  <strong class="training-title">Trend Micro University
-                    CTF</strong>
-                  <span class="training-desc">Global
-                    Capture The Flag virtual competition testing security practices.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">Jul 2024</b>
-                <div>
-                  <strong class="training-title">FIRST CTF for ASEAN</strong>
-                  <span class="training-desc">ASEAN
-                    regional virtual CTF cybersecurity exercises.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">Jun 2024</b>
-                <div>
-                  <strong class="training-title">HackForGov 3 Day 1
-                    Seminar</strong>
-                  <span class="training-desc">Cyber
-                    Range Exercises and incident response workshops.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">May 2024</b>
-                <div>
-                  <strong class="training-title">DCODE: UD Cyber Challenge</strong>
-                  <span class="training-desc">4-day
-                    CTF workshop, hands-on training, and challenge events.</span>
-                </div>
-              </div>
-              <div class="learning-row training-row">
-                <b class="training-date">Nov 2023</b>
-                <div>
-                  <strong class="training-title">Synergising IoT &
-                    Robotics</strong>
-                  <span class="training-desc">Workshop
-                    on unleashing the power of intelligent systems & automation.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
-      <div class="section-divider"></div>
-
-      <section id="contact" aria-labelledby="contact-title">
-        <div class="contact-panel">
+      <section id="contact" aria-labelledby="contact-title" data-od-id="path-1-0-4">
+        <div class="contact-panel" data-od-id="path-1-0-4-0">
           <div>
-            <span class="issue-label kicker">Contact note</span>
-            <h2 id="contact-title" class="editorial-title contact print-rough"><span class="editorial-initial"
-                aria-hidden="true">R</span><span>each out for the resume, code links, or a walkthrough.</span></h2>
+            <span class="issue-label">Contact note</span>
+            <h2 id="contact-title" data-od-id="path-1-0-4-0-0-1"><span class="section-initial r">R</span>each out for the resume, code links, or a walkthrough.</h2>
             <p>I can send a resume, share repo links, walk through a project, or talk about a system tool or game build.
               A short message is enough.</p>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-copy="zernanvasharive16@gmail.com">Copy email</button>
-              <a class="btn" href="https://github.com/zernanvash" target="_blank" rel="noopener">GitHub Profile</a>
-              <a class="btn btn-secondary" href="#work">Review projects</a>
+              <button class="btn btn-primary" type="button" data-copy="zernanvasharive16@gmail.com" data-od-id="path-1-0-4-0-0-3-0">Copy email</button>
+              <a class="btn" href="https://github.com/zernanvash" target="_blank" rel="noopener" data-od-id="path-1-0-4-0-0-3-1">GitHub Profile</a>
+              <a class="btn btn-secondary" href="#work" data-od-id="path-1-0-4-0-0-3-2">Review projects</a>
             </div>
           </div>
-          <form class="contact-card scrap-paper-3" id="contact-form">
-            <div class="field">
+          <form class="contact-card" id="contact-form" data-od-id="path-1-0-4-0-1">
+            <div class="field" data-od-id="path-1-0-4-0-1-0">
               <label for="name">Your name</label>
-              <input id="name" name="name" autocomplete="name" placeholder="Hiring manager, recruiter, or client" />
+              <input id="name" name="name" autocomplete="name" placeholder="Hiring manager, recruiter, or client" data-od-id="path-1-0-4-0-1-0-1">
             </div>
-            <div class="field">
+            <div class="field" data-od-id="path-1-0-4-0-1-1">
               <label for="message">Message</label>
-              <textarea id="message" name="message"
-                placeholder="I would like to see your resume and project links."></textarea>
+              <textarea id="message" name="message" placeholder="I would like to see your resume and project links." data-od-id="path-1-0-4-0-1-1-1"></textarea>
             </div>
-            <div class="form-row">
-              <span class="copy-status" id="form-status" aria-live="polite"></span>
-              <button class="btn btn-primary" type="submit">Prepare email</button>
+            <div class="form-row" data-od-id="path-1-0-4-0-1-2">
+              <span class="copy-status" id="form-status" aria-live="polite" data-od-id="path-1-0-4-0-1-2-0"></span>
+              <button class="btn btn-primary" type="submit" data-od-id="path-1-0-4-0-1-2-1">Prepare email</button>
             </div>
           </form>
         </div>
@@ -2218,7 +1676,7 @@ cscript /nologo check_ports.vbs
     </div>
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" data-od-id="path-2"></div>
 
   <script>
     (function () {
@@ -2305,6 +1763,102 @@ cscript /nologo check_ports.vbs
       }
     })();
   </script>
-</body>
 
-</html>
+
+
+<script data-od-snapshot-bridge="">(function(){
+  function copyComputedStyle(source, target){
+    if (!source || !target || source.nodeType !== 1 || target.nodeType !== 1) return;
+    var computed = window.getComputedStyle(source);
+    var style = target.getAttribute('style') || '';
+    for (var i = 0; i < computed.length; i++){
+      var prop = computed[i];
+      style += prop + ':' + computed.getPropertyValue(prop) + ';';
+    }
+    target.setAttribute('style', style);
+  }
+  function syncElementState(source, target){
+    var tag = source.tagName ? source.tagName.toLowerCase() : '';
+    if (tag === 'img' && source.currentSrc) target.setAttribute('src', source.currentSrc);
+    if (tag === 'input' || tag === 'textarea') target.setAttribute('value', source.value || '');
+    if (tag === 'canvas') {
+      try {
+        var img = document.createElement('img');
+        img.setAttribute('src', source.toDataURL('image/png'));
+        img.setAttribute('style', target.getAttribute('style') || '');
+        target.parentNode && target.parentNode.replaceChild(img, target);
+      } catch (_) {}
+    }
+  }
+  function inlineSnapshotStyles(originalRoot, cloneRoot){
+    copyComputedStyle(originalRoot, cloneRoot);
+    syncElementState(originalRoot, cloneRoot);
+    var originals = originalRoot.querySelectorAll('*');
+    var clones = cloneRoot.querySelectorAll('*');
+    var count = Math.min(originals.length, clones.length);
+    for (var i = 0; i < count; i++){
+      copyComputedStyle(originals[i], clones[i]);
+      syncElementState(originals[i], clones[i]);
+    }
+    var scripts = cloneRoot.querySelectorAll('script');
+    for (var s = scripts.length - 1; s >= 0; s--) scripts[s].remove();
+  }
+  function waitForImages(){
+    var imgs = Array.prototype.slice.call(document.images || []);
+    return Promise.all(imgs.map(function(img){
+      if (img.complete) return Promise.resolve();
+      return new Promise(function(resolve){
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    }));
+  }
+  function renderSnapshot(id){
+    var w = Math.max(1, window.innerWidth || document.documentElement.clientWidth || 1);
+    var h = Math.max(1, window.innerHeight || document.documentElement.clientHeight || 1);
+    var dpr = window.devicePixelRatio || 1;
+    var docW = Math.max(w, document.documentElement.scrollWidth || 0, document.body ? document.body.scrollWidth : 0);
+    var docH = Math.max(h, document.documentElement.scrollHeight || 0, document.body ? document.body.scrollHeight : 0);
+    var clone = document.documentElement.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+    inlineSnapshotStyles(document.documentElement, clone);
+    var serializer = new XMLSerializer();
+    var html = serializer.serializeToString(clone);
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' +
+      '<foreignObject x="' + (-window.scrollX || 0) + '" y="' + (-window.scrollY || 0) + '" width="' + docW + '" height="' + docH + '">' +
+      html +
+      '</foreignObject></svg>';
+    var img = new Image();
+    img.onload = function(){
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.floor(w * dpr));
+        canvas.height = Math.max(1, Math.floor(h * dpr));
+        var ctx = canvas.getContext('2d');
+        if (!ctx) throw new Error('no 2d context');
+        ctx.scale(dpr, dpr);
+        ctx.drawImage(img, 0, 0, w, h);
+        window.parent.postMessage({ type: 'od:snapshot:result', id: id, dataUrl: canvas.toDataURL('image/png'), w: canvas.width, h: canvas.height }, '*');
+      } catch (err) {
+        window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: String(err && err.message || err) }, '*');
+      }
+    };
+    img.onerror = function(){
+      window.parent.postMessage({ type: 'od:snapshot:result', id: id, error: 'snapshot image failed' }, '*');
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+  window.addEventListener('message', function(ev){
+    var data = ev && ev.data;
+    if (!data || data.type !== 'od:snapshot' || !data.id) return;
+    waitForImages().then(function(){ renderSnapshot(String(data.id)); });
+  });
+})();</script><script data-od-srcdoc-transport-activation="">(function(){
+  window.addEventListener('message', function(ev){
+    var data = ev && ev.data;
+    if (!data || data.type !== 'od:srcdoc-transport-activate' || typeof data.html !== 'string') return;
+    document.open();
+    document.write(data.html);
+    document.close();
+  });
+})();</script></body></html>
