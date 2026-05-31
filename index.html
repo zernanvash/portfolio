@@ -1,35 +1,61 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Computer Science Student Portfolio</title>
+  <meta name="description"
+    content="A practical computer science student portfolio built in a VOX newspaper editorial style, showcasing full-stack development, data analysis, systems, and algorithms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg: #f7efe3;
-      --paper: #fffaf0;
-      --paper-2: #efe0c8;
-      --ink: #18120d;
-      --ink-2: #493d34;
-      --muted: #75685e;
-      --rule: #cdbda8;
-      --rule-soft: #e7d9c8;
-      --accent: #e2b900;
-      --accent-ink: #18120d;
-      --accent-soft: #f4df72;
-      --success: #547344;
-      --warn: #9d6627;
-      --danger: #9a3a2e;
-      --font-main: Georgia, "Times New Roman", serif;
-      --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
-      --container: 1180px;
-      --gutter: 34px;
-      --radius: 3px;
-      --shadow-paper: 8px 8px 0 rgba(24, 18, 13, 0.1);
-      --focus: 0 0 0 4px rgba(226, 185, 0, 0.38);
+      --bg: #f5f2eb;
+      /* warm newspaper cream */
+      --paper: #faf8f5;
+      /* crisp newsprint off-white */
+      --paper-2: #e5e1d7;
+      /* muted cardboard beige */
+      --ink: #0a0a0a;
+      /* deep midnight charcoal */
+      --ink-2: #262626;
+      /* editorial dark gray */
+      --muted: #595959;
+      /* print gray */
+      --rule: #0a0a0a;
+      /* crisp black borders */
+      --rule-soft: #dcd8cf;
+      /* softer dividers */
+      --accent: #fff200;
+      /* VOX neon highlight yellow */
+      --accent-ink: #0a0a0a;
+      --accent-soft: #fff99c;
+      /* soft yellow overlay */
+      --accent-red: #e11d48;
+      /* editorial accent red */
+      --success: #1b4332;
+      --warn: #d97706;
+      --danger: #b91c1c;
+      --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-mono: 'Fira Mono', ui-monospace, Monaco, "Cascadia Code", monospace;
+      --container: 1200px;
+      --gutter: 30px;
+      --radius: 0px;
+      /* sharp newspaper cuts */
+      --shadow-paper: 6px 6px 0 var(--ink);
+      /* solid block shadows */
+      --focus: 0 0 0 3px var(--accent), 0 0 0 5px var(--ink);
+      --grid-line: rgba(10, 10, 10, 0.035);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       background: var(--bg);
@@ -41,19 +67,57 @@
       margin: 0;
       min-height: 100vh;
       overflow-x: hidden;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-position: center top;
       color: var(--ink);
       font-family: var(--font-main);
       font-size: 18px;
-      line-height: 1.68;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      position: relative;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font: inherit; }
-    button { cursor: pointer; }
-    h1, h2, h3, h4, p { margin: 0; }
+    /* Paper Noise Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+    }
 
     .container {
       width: min(var(--container), calc(100% - (var(--gutter) * 2)));
@@ -80,8 +144,10 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      font-family: var(--font-display);
       font-weight: 900;
-      letter-spacing: -0.01em;
+      font-size: 22px;
+      letter-spacing: -0.02em;
     }
 
     .brand-mark {
@@ -89,11 +155,12 @@
       height: 42px;
       display: grid;
       place-items: center;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--accent);
       color: var(--accent-ink);
-      font: 900 13px/1 var(--font-mono);
-      transform: rotate(-2deg);
+      font: 900 14px/1 var(--font-mono);
+      transform: rotate(-3deg);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     .nav-links {
@@ -105,7 +172,33 @@
       font-weight: 800;
     }
 
-    .nav-links a:not(.btn):hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; }
+    .nav-links a:not(.btn) {
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a:not(.btn)::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-red);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .nav-links a:not(.btn):hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links a:not(.btn):hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
     .btn {
       min-height: 44px;
@@ -113,30 +206,71 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       border-radius: var(--radius);
       padding: 0 18px;
       background: var(--paper);
       color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
       font-weight: 900;
       line-height: 1;
-      transition: transform 140ms ease, background 140ms ease;
+      position: relative;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 100ms ease, box-shadow 100ms ease, background 140ms ease;
       white-space: nowrap;
     }
 
-    .btn:hover { background: var(--accent-soft); transform: translate(-2px, -2px); }
-    .btn-primary { background: var(--accent); color: var(--accent-ink); }
-    .btn-secondary { background: transparent; }
-    .btn:focus-visible, input:focus-visible, textarea:focus-visible, .filter:focus-visible { outline: 0; box-shadow: var(--focus); }
+    .btn:hover {
+      background: var(--accent);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--paper);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: var(--paper-2);
+      border-color: var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .btn:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    .filter:focus-visible {
+      outline: 0;
+      box-shadow: var(--focus);
+    }
 
     .mobile-menu {
       display: none;
       width: 44px;
       height: 44px;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       border-radius: var(--radius);
       background: var(--paper);
       color: var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .mobile-panel {
@@ -152,35 +286,10 @@
       font-weight: 850;
     }
 
-    .mobile-panel.open { display: block; }
-
-    .masthead {
-      padding: 34px 0 20px;
-      border-bottom: 4px solid var(--ink);
+    .mobile-panel.open {
+      display: block;
     }
 
-    .masthead-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 24px;
-      align-items: end;
-      color: var(--ink-2);
-      font: 900 12px/1.4 var(--font-mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .masthead-title {
-      justify-self: center;
-      font-family: var(--font-main);
-      font-size: clamp(42px, 8vw, 96px);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-      color: var(--ink);
-      text-transform: none;
-    }
-
-    .masthead-row span:last-child { text-align: right; }
 
     .hero {
       min-height: calc(100vh - 124px);
@@ -195,29 +304,36 @@
       display: inline-flex;
       align-items: center;
       width: fit-content;
-      padding: 7px 10px;
-      border: 2px solid var(--ink);
-      background: var(--accent);
-      color: var(--accent-ink);
-      font: 900 12px/1 var(--font-mono);
+      padding: 5px 12px;
+      border: 3px solid var(--ink);
+      background: var(--accent-red);
+      color: var(--paper);
+      font: 700 11px/1 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transform: rotate(-1deg);
+      transform: rotate(-1.5deg);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
       max-width: 820px;
       margin-top: 22px;
-      font-size: clamp(52px, 8vw, 112px);
-      line-height: 0.92;
-      letter-spacing: -0.07em;
+      font-size: clamp(48px, 7vw, 98px);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
       text-wrap: balance;
     }
 
     .mark {
       display: inline;
-      padding: 0 0.12em;
-      background: var(--accent);
+      padding: 2px 8px;
+      background: linear-gradient(100deg, rgba(255, 242, 0, 0.85) 4%, rgba(255, 242, 0, 0.92) 95%);
+      box-shadow: -2px 1px 0 rgba(0, 0, 0, 0.1);
+      clip-path: polygon(1% 1%, 99% 3%, 98% 97%, 2% 95%);
+      color: var(--ink);
+      font-style: italic;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
@@ -226,9 +342,25 @@
       max-width: 700px;
       margin-top: 24px;
       color: var(--ink-2);
-      font-size: clamp(20px, 2vw, 27px);
-      line-height: 1.42;
+      font-size: clamp(19px, 1.8vw, 25px);
+      line-height: 1.45;
       text-wrap: pretty;
+    }
+
+    .hero-copy::first-letter {
+      font-family: var(--font-display);
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.82;
+      margin-right: 12px;
+      margin-top: 4px;
+      font-weight: 900;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 4px 10px;
+      border: 3px solid var(--accent);
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: rotate(-2deg);
     }
 
     .identity-line {
@@ -238,14 +370,24 @@
       gap: 10px;
     }
 
-    .chip, .pill {
-      border: 1px solid var(--ink);
+    .chip,
+    .pill {
+      border: 2px solid var(--ink);
       border-radius: 0;
-      padding: 7px 10px;
+      padding: 6px 12px;
       background: var(--paper);
       color: var(--ink);
-      font: 900 12px/1 var(--font-mono);
+      font: 700 11px/1 var(--font-mono);
       text-transform: uppercase;
+      box-shadow: 2px 2px 0 var(--ink);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+    }
+
+    .chip:hover,
+    .pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--ink);
+      background: var(--accent-soft);
     }
 
     .hero-actions {
@@ -257,10 +399,16 @@
 
     .clipping {
       position: relative;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--paper);
       box-shadow: var(--shadow-paper);
       transform: rotate(1deg);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .clipping:hover {
+      transform: rotate(0deg) translate(-2px, -2px);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
     .clipping::before {
@@ -269,10 +417,11 @@
       left: 22px;
       right: 22px;
       top: -10px;
-      height: 22px;
+      height: 20px;
       background: var(--accent-soft);
-      border: 1px solid rgba(24, 18, 13, 0.22);
+      border: 2px solid var(--ink);
       transform: rotate(-2deg);
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
     }
 
     .profile-card {
@@ -282,7 +431,7 @@
 
     .profile-header {
       padding: 28px;
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 20px;
@@ -295,17 +444,20 @@
       height: 86px;
       display: grid;
       place-items: center;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--accent);
       color: var(--accent-ink);
-      font: 900 30px/1 var(--font-mono);
+      font: 900 32px/1 var(--font-mono);
       clip-path: polygon(5% 0, 100% 6%, 94% 100%, 0 91%);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
     .profile-header h2 {
+      font-family: var(--font-display);
       font-size: 30px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
     .profile-header p {
@@ -314,59 +466,85 @@
       line-height: 1.5;
     }
 
-    .status-list { display: grid; background: var(--paper); }
+    .status-list {
+      display: grid;
+      background: var(--paper);
+    }
 
     .status-row {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 16px;
-      padding: 15px 24px;
-      border-bottom: 1px solid var(--rule);
+      padding: 16px 24px;
+      border-bottom: 2px solid var(--rule-soft);
       color: var(--muted);
       font-size: 15px;
+      font-weight: 500;
     }
 
-    .status-row:last-child { border-bottom: 0; }
-    .status-row strong { color: var(--ink); text-align: right; }
+    .status-row:last-child {
+      border-bottom: 0;
+    }
+
+    .status-row strong {
+      color: var(--ink);
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
 
     .note-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 28px;
+      gap: 16px;
+      margin-top: 32px;
     }
 
     .note {
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--paper);
-      padding: 16px;
-      min-height: 132px;
+      padding: 20px;
+      min-height: 140px;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
     }
 
-    .note:nth-child(2) { transform: rotate(-0.7deg); }
-    .note:nth-child(3) { transform: rotate(0.8deg); }
+    .note:hover {
+      transform: scale(1.02) rotate(-0.5deg) !important;
+      box-shadow: 6px 6px 0 var(--ink);
+      background: var(--paper-2);
+    }
+
+    .note:nth-child(2) {
+      transform: rotate(-1deg);
+    }
+
+    .note:nth-child(3) {
+      transform: rotate(1.2deg);
+    }
 
     .note b {
       display: block;
-      font: 900 12px/1 var(--font-mono);
-      color: var(--ink);
+      font: 700 11px/1 var(--font-mono);
+      color: var(--paper);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 10px;
-      background: var(--accent);
+      margin-bottom: 12px;
+      background: var(--accent-red);
       width: fit-content;
-      padding: 4px 6px;
+      padding: 4px 8px;
+      box-shadow: 2px 2px 0 var(--ink);
     }
 
     .note span {
       color: var(--ink-2);
-      font-size: 16px;
-      line-height: 1.45;
+      font-size: 15px;
+      line-height: 1.5;
     }
 
     section {
-      padding: 78px 0;
-      border-top: 2px solid var(--ink);
+      padding: 80px 0;
+      border-top: 5px double var(--ink);
     }
 
     .section-head {
@@ -378,9 +556,11 @@
     }
 
     .section-head h2 {
-      font-size: clamp(40px, 5vw, 72px);
+      font-family: var(--font-display);
+      font-size: clamp(38px, 4.5vw, 68px);
+      font-weight: 900;
       line-height: 0.96;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.03em;
       text-wrap: balance;
     }
 
@@ -397,8 +577,13 @@
       align-items: stretch;
     }
 
-    .panel, .tile, .project-card, .contact-panel, .proof-card, .learning-board {
-      border: 2px solid var(--ink);
+    .panel,
+    .tile,
+    .project-card,
+    .contact-panel,
+    .proof-card,
+    .learning-board {
+      border: 3px solid var(--ink);
       border-radius: var(--radius);
       background: var(--paper);
     }
@@ -409,15 +594,27 @@
       flex-direction: column;
       gap: 20px;
       box-shadow: var(--shadow-paper);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .panel:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
     .panel h3 {
+      font-family: var(--font-display);
       font-size: 32px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
-    .panel p, .project-card p, .contact-panel p, .proof-card p, .learning-row span {
+    .panel p,
+    .project-card p,
+    .contact-panel p,
+    .proof-card p,
+    .learning-row span {
       color: var(--ink-2);
       line-height: 1.6;
     }
@@ -426,43 +623,61 @@
       display: grid;
       gap: 0;
       margin-top: auto;
-      border-top: 2px solid var(--ink);
+      border-top: 3px solid var(--ink);
     }
 
     .fact {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--rule);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule-soft);
       color: var(--muted);
       font-size: 15px;
+      font-weight: 500;
     }
 
-    .fact strong { color: var(--ink); text-align: right; }
+    .fact strong {
+      color: var(--ink);
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
 
     .learning-board {
       background: var(--paper-2);
-      padding: 18px;
+      padding: 20px;
       display: grid;
-      gap: 12px;
+      gap: 14px;
     }
 
     .learning-row {
       display: grid;
-      grid-template-columns: 155px 1fr;
+      grid-template-columns: 160px 1fr;
       gap: 18px;
-      border: 1px solid var(--ink);
+      border: 2px solid var(--ink);
       background: var(--paper);
-      padding: 15px;
+      padding: 18px;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
-    .learning-row:nth-child(odd) { clip-path: polygon(0 3%, 99% 0, 100% 96%, 1% 100%); }
-    .learning-row:nth-child(even) { clip-path: polygon(1% 0, 100% 4%, 99% 100%, 0 96%); }
+    .learning-row:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+
+    .learning-row:nth-child(odd) {
+      clip-path: polygon(0 2%, 99% 0, 100% 98%, 1% 100%);
+    }
+
+    .learning-row:nth-child(even) {
+      clip-path: polygon(1% 0, 100% 3%, 99% 100%, 0 97%);
+    }
 
     .learning-row b {
       color: var(--ink);
-      font: 900 12px/1.35 var(--font-mono);
+      font: 700 11px/1.35 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
@@ -471,22 +686,36 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     .filter {
-      min-height: 38px;
-      border: 2px solid var(--ink);
+      min-height: 40px;
+      border: 3px solid var(--ink);
       border-radius: 0;
-      padding: 0 15px;
+      padding: 0 18px;
       background: var(--paper);
       color: var(--ink-2);
-      font: 900 14px/1 var(--font-main);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 900;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      cursor: pointer;
+    }
+
+    .filter:hover {
+      background: var(--accent-soft);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .filter[aria-pressed="true"] {
       background: var(--accent);
       color: var(--accent-ink);
+      box-shadow: none;
+      transform: translate(2px, 2px);
     }
 
     .project-grid {
@@ -501,21 +730,28 @@
       display: grid;
       grid-template-rows: auto 1fr;
       overflow: hidden;
-      transition: transform 140ms ease, background 140ms ease;
+      box-shadow: var(--shadow-paper);
+      transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
     }
 
     .project-card:hover {
-      background: #fff6db;
+      background: var(--paper);
       transform: translate(-3px, -3px);
+      box-shadow: 10px 10px 0 var(--ink);
     }
 
-    .project-card.featured { grid-column: span 7; }
-    .project-card.compact { grid-column: span 5; }
+    .project-card.featured {
+      grid-column: span 7;
+    }
+
+    .project-card.compact {
+      grid-column: span 5;
+    }
 
     .project-demo {
       min-height: 252px;
       padding: 20px;
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
       background: var(--paper-2);
       display: grid;
       gap: 12px;
@@ -529,20 +765,22 @@
       right: 18px;
       top: 18px;
       border: 2px solid var(--ink);
-      background: var(--accent);
-      color: var(--accent-ink);
-      padding: 5px 7px;
-      font: 900 11px/1 var(--font-mono);
+      background: var(--accent-red);
+      color: var(--paper);
+      padding: 5px 8px;
+      font: 700 11px/1 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transform: rotate(2deg);
+      box-shadow: 2px 2px 0 var(--ink);
     }
 
     .demo-window {
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--paper);
       overflow: hidden;
-      clip-path: polygon(0 2%, 100% 0, 98% 100%, 1% 98%);
+      clip-path: polygon(0 1%, 100% 0, 99% 100%, 1% 99%);
+      box-shadow: 2px 2px 0 var(--ink);
     }
 
     .demo-title {
@@ -551,34 +789,47 @@
       justify-content: space-between;
       gap: 12px;
       padding: 12px 14px;
-      border-bottom: 2px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
       color: var(--muted);
-      font: 900 12px/1 var(--font-mono);
+      font: 700 12px/1 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .demo-title strong { color: var(--ink); background: var(--accent); padding: 4px 6px; }
+    .demo-title strong {
+      color: var(--accent-ink);
+      background: var(--accent);
+      padding: 4px 6px;
+      border: 1.5px solid var(--ink);
+    }
 
-    .demo-table { display: grid; }
+    .demo-table {
+      display: grid;
+    }
 
     .demo-row {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 14px;
       padding: 12px 14px;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1.5px solid var(--rule-soft);
       color: var(--ink-2);
-      font: 900 12px/1.35 var(--font-mono);
+      font: 500 12px/1.35 var(--font-mono);
     }
 
-    .demo-row:last-child { border-bottom: 0; }
-    .demo-row strong { color: var(--ink); }
+    .demo-row:last-child {
+      border-bottom: 0;
+    }
+
+    .demo-row strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
 
     .mini-code {
       padding: 16px;
       color: var(--ink-2);
-      font: 900 12px/1.72 var(--font-mono);
+      font: 700 12px/1.72 var(--font-mono);
       white-space: pre-wrap;
     }
 
@@ -587,6 +838,7 @@
       background: var(--accent);
       font-style: normal;
       padding: 1px 4px;
+      border: 1px solid var(--ink);
     }
 
     .tag-row {
@@ -608,16 +860,18 @@
       gap: 12px;
       margin-bottom: 12px;
       color: var(--muted);
-      font: 900 12px/1.35 var(--font-mono);
+      font: 700 12px/1.35 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .project-body h3 {
+      font-family: var(--font-display);
       margin-bottom: 12px;
-      font-size: clamp(29px, 3vw, 42px);
-      line-height: 1.02;
-      letter-spacing: -0.045em;
+      font-size: clamp(28px, 2.8vw, 38px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
     }
 
     .proof-row {
@@ -629,9 +883,10 @@
 
     .proof-row span {
       color: var(--ink);
-      font: 900 12px/1 var(--font-mono);
-      background: var(--accent);
-      padding: 5px 7px;
+      font: 700 11px/1 var(--font-mono);
+      background: var(--accent-soft);
+      padding: 5px 8px;
+      border: 1.5px solid var(--ink);
     }
 
     .proof-grid {
@@ -644,17 +899,34 @@
       padding: 24px;
       min-height: 232px;
       box-shadow: var(--shadow-paper);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .proof-card:nth-child(2) { transform: rotate(-0.6deg); }
+    .proof-card:nth-child(2) {
+      transform: rotate(-0.8deg);
+    }
+
+    .proof-card:nth-child(3) {
+      transform: rotate(0.8deg);
+    }
+
+    .proof-card:nth-child(2):hover {
+      transform: rotate(0deg) translate(-3px, -3px);
+    }
+
+    .proof-card:nth-child(3):hover {
+      transform: rotate(0deg) translate(-3px, -3px);
+    }
 
     .proof-card b {
-      color: var(--ink);
-      font: 900 12px/1 var(--font-mono);
+      color: var(--paper);
+      font: 700 11px/1 var(--font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      background: var(--accent);
-      padding: 4px 6px;
+      background: var(--accent-red);
+      padding: 4px 8px;
+      box-shadow: 2px 2px 0 var(--ink);
+      border: 1.5px solid var(--ink);
     }
 
     .proof-card h3 {
@@ -672,11 +944,14 @@
       padding: clamp(28px, 4vw, 50px);
       background: var(--paper);
       box-shadow: var(--shadow-paper);
+      border: 3px solid var(--ink);
     }
 
     .contact-panel h2 {
+      font-family: var(--font-display);
       max-width: 720px;
       font-size: clamp(40px, 5vw, 70px);
+      font-weight: 900;
       line-height: 0.96;
       letter-spacing: -0.055em;
       text-wrap: balance;
@@ -689,10 +964,11 @@
     }
 
     .contact-card {
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       background: var(--paper-2);
-      padding: 20px;
+      padding: 24px;
       align-self: start;
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .field {
@@ -703,18 +979,29 @@
 
     label {
       color: var(--ink);
-      font: 900 13px/1 var(--font-mono);
+      font: 700 12px/1 var(--font-mono);
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
-      border: 2px solid var(--ink);
+      border: 3px solid var(--ink);
       border-radius: 0;
       background: var(--paper);
       color: var(--ink);
       padding: 12px 14px;
+      font-family: var(--font-main);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      background: var(--paper);
+      box-shadow: 4px 4px 0 var(--accent);
+      transform: translate(-2px, -2px);
     }
 
     textarea {
@@ -741,17 +1028,21 @@
       right: 20px;
       bottom: 20px;
       z-index: 50;
-      min-width: 180px;
+      min-width: 200px;
       max-width: calc(100vw - 40px);
-      padding: 12px 14px;
-      border: 2px solid var(--ink);
+      padding: 14px 18px;
+      border: 3px solid var(--ink);
       background: var(--accent);
       color: var(--accent-ink);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
       font-weight: 900;
       opacity: 0;
       transform: translateY(8px);
       pointer-events: none;
       transition: opacity 140ms ease, transform 140ms ease;
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
     .toast.show {
@@ -760,48 +1051,131 @@
     }
 
     @media (max-width: 980px) {
-      :root { --gutter: 24px; }
-      .masthead-row { grid-template-columns: 1fr; text-align: left; }
-      .masthead-title { justify-self: start; }
-      .masthead-row span:last-child { text-align: left; }
-      .hero, .intro-grid, .contact-panel { grid-template-columns: 1fr; }
-      .hero { min-height: auto; padding: 54px 0; }
-      .profile-card { max-width: 640px; }
-      .section-head { grid-template-columns: 1fr; align-items: start; }
-      .note-strip, .proof-grid { grid-template-columns: 1fr; }
-      .learning-row { grid-template-columns: 1fr; }
-      .project-card, .project-card.featured, .project-card.compact { grid-column: span 12; }
+      :root {
+        --gutter: 24px;
+      }
+
+      .hero,
+      .intro-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 54px 0;
+      }
+
+      .profile-card {
+        max-width: 640px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .note-strip,
+      .proof-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .learning-row {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card,
+      .project-card.featured,
+      .project-card.compact {
+        grid-column: span 12;
+      }
     }
 
     @media (max-width: 720px) {
-      :root { --gutter: 16px; }
-      body { font-size: 17px; }
-      .nav-links { display: none; }
-      .mobile-menu { display: grid; place-items: center; }
-      .masthead { padding-top: 22px; }
-      .masthead-title { font-size: clamp(38px, 14vw, 62px); }
-      section { padding: 54px 0; }
-      h1 { font-size: clamp(44px, 14vw, 66px); }
-      .hero-actions .btn { flex: 1 1 100%; }
-      .profile-header { grid-template-columns: 1fr; padding: 20px; }
-      .project-card { min-height: 0; }
-      .project-body, .panel, .proof-card, .contact-card { padding: 18px; }
-      .status-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
-      .status-row strong, .fact strong { text-align: left; }
-      .fact { flex-direction: column; gap: 4px; }
-      .form-row { align-items: stretch; flex-direction: column; }
-      .form-row .btn { width: 100%; }
-      .demo-row { grid-template-columns: 1fr; }
+      :root {
+        --gutter: 16px;
+      }
+
+      body {
+        font-size: 17px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: grid;
+        place-items: center;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      h1 {
+        font-size: clamp(44px, 14vw, 66px);
+      }
+
+      .hero-actions .btn {
+        flex: 1 1 100%;
+      }
+
+      .profile-header {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .project-card {
+        min-height: 0;
+      }
+
+      .project-body,
+      .panel,
+      .proof-card,
+      .contact-card {
+        padding: 18px;
+      }
+
+      .status-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 14px 18px;
+      }
+
+      .status-row strong,
+      .fact strong {
+        text-align: left;
+      }
+
+      .fact {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .form-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .form-row .btn {
+        width: 100%;
+      }
+
+      .demo-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <div class="container">
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Portfolio home">
-          <span class="brand-mark">CS</span>
-          <span>Student Field Notes</span>
+          <span class="brand-mark">ZA</span>
+          <span>ZERNAN VASH ARIVE</span>
         </a>
         <div class="nav-links" aria-label="Page sections">
           <a href="#intro">Intro</a>
@@ -811,7 +1185,7 @@
         </div>
         <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
         </button>
       </nav>
@@ -826,50 +1200,53 @@
 
   <main id="top">
     <div class="container">
-      <div class="masthead" aria-label="Portfolio masthead">
-        <div class="masthead-row">
-          <span>Computer Science Portfolio</span>
-          <strong class="masthead-title">Field Notes</strong>
-          <span>Internships · Junior Work · Small Builds</span>
-        </div>
-      </div>
-
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title" style="padding-top: 30px;">
         <div>
-          <span class="issue-label">Issue 01 · Introduction</span>
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
+            <span class="issue-label" style="margin: 0; transform: rotate(-0.5deg);">Vol. 1 · Issue 01</span>
+            <span
+              style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">Universidad
+              de Dagupan · CS Student · DOST Scholar</span>
+          </div>
           <h1 id="hero-title">I build useful software, then <span class="mark">show the work</span>.</h1>
-          <p class="hero-copy">I am a computer science student looking for internships, junior engineering work, and small client projects. This page is built like a short newsletter: quick context, project clippings, and the proof a busy reviewer needs.</p>
+          <p class="hero-copy">I am a BS Computer Science student at Universidad de Dagupan looking for software
+            engineering internships and cybersecurity roles. This page is built like a short newsletter: quick context,
+            project clippings, and the proof a busy reviewer needs.</p>
           <div class="identity-line" aria-label="Portfolio focus areas">
-            <span class="chip">Full-stack apps</span>
-            <span class="chip">Python + data</span>
-            <span class="chip">C / systems</span>
-            <span class="chip">Algorithms</span>
+            <span class="chip">Java & Systems</span>
+            <span class="chip">Python, C, C++</span>
+            <span class="chip">Game Development</span>
+            <span class="chip">Cybersecurity / CTF</span>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#work">Read the project notes</a>
-            <button class="btn" type="button" data-copy="student@example.com">Copy email</button>
+            <button class="btn" type="button" data-copy="zernanvasharive16@gmail.com">Copy email</button>
             <a class="btn btn-secondary" href="#contact">Ask for resume</a>
           </div>
           <div class="note-strip" aria-label="Quick reviewer notes">
-            <div class="note"><b>Employers</b><span>Scan how I model data, test edge cases, and explain tradeoffs.</span></div>
-            <div class="note"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span></div>
-            <div class="note"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span></div>
+            <div class="note"><b>Employers</b><span>Scan how I model data, test edge cases, and explain
+                tradeoffs.</span></div>
+            <div class="note"><b>Clients</b><span>See whether I can turn a small workflow into a clear tool.</span>
+            </div>
+            <div class="note"><b>Mentors</b><span>Spot where I am learning and what feedback would help next.</span>
+            </div>
           </div>
         </div>
 
         <aside class="profile-card clipping" aria-label="Student profile summary">
           <div class="profile-header">
-            <div class="profile-initials" aria-hidden="true">CS</div>
+            <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
-              <h2>A practical student builder, not a finished expert.</h2>
-              <p>I am presenting work that can be reviewed: running paths, code notes, project decisions, and the next questions I would ask.</p>
+              <h2>Motivated CS student aiming for secure software development.</h2>
+              <p>I focus on programming, analytical problem-solving, and cybersecurity. Here are my project clippings,
+                activities, and skills.</p>
             </div>
           </div>
           <div class="status-list">
-            <div class="status-row"><span>Primary field</span><strong>Computer Science</strong></div>
-            <div class="status-row"><span>Best project fit</span><strong>Web apps, data tools</strong></div>
-            <div class="status-row"><span>Proof style</span><strong>Demo, code, notes</strong></div>
-            <div class="status-row"><span>Contact</span><strong>student@example.com</strong></div>
+            <div class="status-row"><span>Degree</span><strong>BS Computer Science</strong></div>
+            <div class="status-row"><span>College</span><strong>Universidad de Dagupan</strong></div>
+            <div class="status-row"><span>Honors</span><strong>Scholar & Dean's Lister</strong></div>
+            <div class="status-row"><span>Contact</span><strong>zernanvasharive16@gmail.com</strong></div>
           </div>
         </aside>
       </section>
@@ -877,38 +1254,44 @@
       <section id="intro" aria-labelledby="intro-title">
         <div class="section-head">
           <h2 id="intro-title">Before the links, here is how I work.</h2>
-          <p>Most portfolio pages jump straight to cards. I want the first minute to explain my habits: how I break down a problem, what I check, and what kind of work I am ready to take on.</p>
+          <p>Most portfolio pages jump straight to cards. I want the first minute to explain my habits: how I break down
+            a problem, what I check, and what kind of work I am ready to take on.</p>
         </div>
 
         <div class="intro-grid">
           <aside class="panel">
             <span class="issue-label">Personal note</span>
-            <h3>I like projects where the logic matters as much as the interface.</h3>
-            <p>I usually start with the data objects, user states, and failure cases. Then I build one complete path through the app. Once that path works, I clean up the code, improve the UI, and write notes that make the project easier to evaluate.</p>
+            <h3>I focus on secure software logic and clean execution.</h3>
+            <p>I usually build my code starting from data structures and security conditions. I enjoy participating in
+              cybersecurity CTF challenges and mobile robotics competitions, which train me to work effectively under
+              pressure.</p>
             <div class="fact-list">
-              <div class="fact"><span>Studying</span><strong>Computer Science</strong></div>
-              <div class="fact"><span>Comfort zone</span><strong>Frontend to database</strong></div>
-              <div class="fact"><span>Current focus</span><strong>Testing and deployment</strong></div>
-              <div class="fact"><span>Best proof</span><strong>Working demos</strong></div>
+              <div class="fact"><span>Studying</span><strong>BS Computer Science</strong></div>
+              <div class="fact"><span>Scholarship</span><strong>DOST-SEI Merit Scholar</strong></div>
+              <div class="fact"><span>Role</span><strong>CSIT Society Developer</strong></div>
+              <div class="fact"><span>Activities</span><strong>Cybersecurity CTF & Robotics</strong></div>
             </div>
           </aside>
 
           <div class="learning-board" aria-label="Current learning board">
             <div class="learning-row">
-              <b>How I start</b>
-              <span>I turn a vague idea into inputs, outputs, constraints, and one path someone can try without a long setup.</span>
+              <b>System Development</b>
+              <span>I worked as a System Developer for the Programming Sub-Organization of Universidad de Dagupan's CSIT
+                Society.</span>
             </div>
             <div class="learning-row">
-              <b>What I value</b>
-              <span>Readable code, honest notes, useful defaults, and projects that keep working after the first demo.</span>
+              <b>Cybersecurity</b>
+              <span>Motivated by cybersecurity concepts, I participate in workshops and DCODE CTF challenges to test my
+                analytical skills.</span>
             </div>
             <div class="learning-row">
-              <b>What I am improving</b>
-              <span>Writing better tests, deploying more consistently, and measuring performance instead of guessing.</span>
+              <b>Specialized Skills</b>
+              <span>I develop system scripting in Batch and VBScript, and build IoT integrations for mobile robotics
+                competitions.</span>
             </div>
             <div class="learning-row">
-              <b>Where I fit</b>
-              <span>Small teams, student research groups, local businesses, and internships where I can build, learn, and explain decisions.</span>
+              <b>College Honors</b>
+              <span>DOST-SEI scholar and Dean's Lister, aiming to drive innovative secure software development.</span>
             </div>
           </div>
         </div>
@@ -917,109 +1300,114 @@
       <section id="work" aria-labelledby="work-title">
         <div class="section-head">
           <h2 id="work-title">Project clippings with context.</h2>
-          <p>Each clipping gives the same useful facts: what the project does, what technical part matters, and what I would show in a walkthrough.</p>
+          <p>Each clipping gives the same useful facts: what the project does, what technical part matters, and what I
+            would show in a walkthrough.</p>
         </div>
 
         <div class="filters" aria-label="Project filters">
           <button class="filter" type="button" aria-pressed="true" data-filter="all">All</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack">Full-stack</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="data">Data</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="systems">Systems</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack">System Dev</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="robotics">Robotics</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="gamedev">Game Dev</button>
         </div>
 
         <div class="project-grid">
           <article class="project-card featured" data-category="fullstack">
-            <div class="project-demo" data-stamp="Demo notes" aria-label="Course planner demo summary">
+            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary">
               <div class="demo-window">
-                <div class="demo-title"><span>Course planner</span><strong>Full-stack</strong></div>
+                <div class="demo-title"><span>Programming Sub-Org</span><strong>System Dev</strong></div>
                 <div class="demo-table">
-                  <div class="demo-row"><span>Plan validation</span><strong>Prerequisite checks</strong></div>
-                  <div class="demo-row"><span>Stored state</span><strong>Saved semesters</strong></div>
-                  <div class="demo-row"><span>Walkthrough focus</span><strong>Data rules</strong></div>
-                </div>
-              </div>
-              <div class="tag-row">
-                <span class="pill">React</span>
-                <span class="pill">Node</span>
-                <span class="pill">SQL</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta"><span>Clipping 01</span><span>Full-stack</span></div>
-              <h3>Course planner with prerequisite checks</h3>
-              <p>A planning app for mapping courses across semesters. The important part is preventing invalid schedules, saving plans cleanly, and making the rules easy to inspect.</p>
-              <div class="proof-row"><span>Data model</span><span>Validation</span><span>API design</span></div>
-            </div>
-          </article>
-
-          <article class="project-card compact" data-category="data">
-            <div class="project-demo" data-stamp="Data note" aria-label="Transit predictor demo summary">
-              <div class="demo-window">
-                <div class="demo-title"><span>Transit predictor</span><strong>Data</strong></div>
-                <div class="demo-table">
-                  <div class="demo-row"><span>Input</span><strong>Route records</strong></div>
-                  <div class="demo-row"><span>Output</span><strong>Delay estimate</strong></div>
-                  <div class="demo-row"><span>Walkthrough focus</span><strong>Model trust</strong></div>
-                </div>
-              </div>
-              <div class="tag-row">
-                <span class="pill">Python</span>
-                <span class="pill">Pandas</span>
-                <span class="pill">Charts</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta"><span>Clipping 02</span><span>Data</span></div>
-              <h3>Campus transit delay predictor</h3>
-              <p>A data project for cleaning records, comparing a simple baseline to a prediction model, and showing when the output should not be trusted.</p>
-              <div class="proof-row"><span>Cleaning</span><span>Evaluation</span><span>Explanation</span></div>
-            </div>
-          </article>
-
-          <article class="project-card compact" data-category="systems">
-            <div class="project-demo" data-stamp="Code note" aria-label="File indexer demo summary">
-              <div class="demo-window">
-                <div class="demo-title"><span>Indexer notes</span><strong>Systems</strong></div>
-                <pre class="mini-code">queue.push(file)
-worker.read()
-lock(index)
-<em>measure slow path</em></pre>
-              </div>
-              <div class="tag-row">
-                <span class="pill">C</span>
-                <span class="pill">Threads</span>
-                <span class="pill">CLI</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta"><span>Clipping 03</span><span>Systems</span></div>
-              <h3>Concurrent file indexer</h3>
-              <p>A command-line project focused on queues, locking, failure handling, and finding where the program slows down under larger folders.</p>
-              <div class="proof-row"><span>Concurrency</span><span>Profiling</span><span>Error handling</span></div>
-            </div>
-          </article>
-
-          <article class="project-card compact" data-category="fullstack">
-            <div class="project-demo" data-stamp="Algo note" aria-label="Pathfinding visualizer demo summary">
-              <div class="demo-window">
-                <div class="demo-title"><span>Algorithm tool</span><strong>Graphs</strong></div>
-                <div class="demo-table">
-                  <div class="demo-row"><span>Algorithms</span><strong>BFS / Dijkstra / A*</strong></div>
-                  <div class="demo-row"><span>Controls</span><strong>Step, pause, reset</strong></div>
-                  <div class="demo-row"><span>Walkthrough focus</span><strong>Complexity</strong></div>
+                  <div class="demo-row"><span>Stored state</span><strong>Student records</strong></div>
+                  <div class="demo-row"><span>System role</span><strong>System Developer</strong></div>
+                  <div class="demo-row"><span>Walkthrough focus</span><strong>Database rules</strong></div>
                 </div>
               </div>
               <div class="tag-row">
                 <span class="pill">Java</span>
-                <span class="pill">Graphs</span>
-                <span class="pill">UI state</span>
+                <span class="pill">SQL</span>
+                <span class="pill">CSIT</span>
               </div>
             </div>
             <div class="project-body">
-              <div class="project-meta"><span>Clipping 04</span><span>Algorithms</span></div>
-              <h3>Pathfinding visualizer</h3>
-              <p>A visual tool for comparing graph search methods. The useful part is the explanation: why each method behaves differently and what tradeoff it makes.</p>
-              <div class="proof-row"><span>Complexity</span><span>State machine</span><span>Teaching tool</span></div>
+              <div class="project-meta"><span>Clipping 01</span><span>System Dev</span></div>
+              <h3>Programming Sub-Organization System</h3>
+              <p>A custom system built as the System Developer for the Programming Sub-Organization under the Computer
+                Science and Information Technology Society at Universidad de Dagupan.</p>
+              <div class="proof-row"><span>Data model</span><span>Validation</span><span>Database rules</span></div>
+            </div>
+          </article>
+
+          <article class="project-card compact" data-category="robotics">
+            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary">
+              <div class="demo-window">
+                <div class="demo-title"><span>Mobile Robotics</span><strong>C++</strong></div>
+                <div class="demo-table">
+                  <div class="demo-row"><span>Input</span><strong>Sensor feeds</strong></div>
+                  <div class="demo-row"><span>Output</span><strong>Motor control</strong></div>
+                  <div class="demo-row"><span>Event</span><strong>Robotics Competition</strong></div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="pill">C++</span>
+                <span class="pill">C</span>
+                <span class="pill">Arduino</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta"><span>Clipping 02</span><span>Robotics</span></div>
+              <h3>Mobile Robotics Competition Controller</h3>
+              <p>A robotics controller script written for Universidad de Dagupan's Mobile Robotics Competition, focusing
+                on hardware-software interfaces and real-time sensor loops.</p>
+              <div class="proof-row"><span>IoT control</span><span>Sensor loop</span><span>Robotics</span></div>
+            </div>
+          </article>
+
+          <article class="project-card compact" data-category="fullstack">
+            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary">
+              <div class="demo-window">
+                <div class="demo-title"><span>System Scripting</span><strong>Batch</strong></div>
+                <pre class="mini-code">@echo off
+echo Running security audit...
+cscript /nologo check_ports.vbs
+<em>Audit slow paths</em></pre>
+              </div>
+              <div class="tag-row">
+                <span class="pill">Batch</span>
+                <span class="pill">VBScript</span>
+                <span class="pill">Security</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta"><span>Clipping 03</span><span>System Dev</span></div>
+              <h3>Batch & VBScript Security Audit Scripts</h3>
+              <p>System management scripts built using Batch and VBScript to automate configuration checks, check ports,
+                and secure system directories during network operations.</p>
+              <div class="proof-row"><span>Automation</span><span>System scripts</span><span>Audit logic</span></div>
+            </div>
+          </article>
+
+          <article class="project-card compact" data-category="gamedev">
+            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary">
+              <div class="demo-window">
+                <div class="demo-title"><span>Collision Engine</span><strong>Java</strong></div>
+                <div class="demo-table">
+                  <div class="demo-row"><span>Game engine</span><strong>Java 2D Canvas</strong></div>
+                  <div class="demo-row"><span>Collision</span><strong>AABB / Raycast</strong></div>
+                  <div class="demo-row"><span>Event</span><strong>Game Dev Workshop</strong></div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="pill">Java</span>
+                <span class="pill">2D Canvas</span>
+                <span class="pill">Game Dev</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-meta"><span>Clipping 04</span><span>Game Dev</span></div>
+              <h3>Java Game Development Collision Engine</h3>
+              <p>A 2D collision resolution engine built in Java for a Game Development Workshop, featuring coordinate
+                mapping, collision response, and raycasting bounds check.</p>
+              <div class="proof-row"><span>Vector math</span><span>Game loop</span><span>Canvas rendering</span></div>
             </div>
           </article>
         </div>
@@ -1028,24 +1416,28 @@ lock(index)
       <section id="proof" aria-labelledby="proof-title">
         <div class="section-head">
           <h2 id="proof-title">What a reviewer can learn in one pass.</h2>
-          <p>This section keeps the signals practical. It tells an employer or client what kind of conversation my work can support.</p>
+          <p>This section keeps the signals practical. It tells an employer or client what kind of conversation my work
+            can support.</p>
         </div>
 
         <div class="proof-grid">
           <article class="proof-card">
             <b>Technical range</b>
-            <h3>Frontend, backend, data, and systems practice.</h3>
-            <p>The projects show different types of thinking: user flows, database rules, data cleaning, command-line behavior, and algorithm explanation.</p>
+            <h3>Systems developer, game dev, and cybersecurity CTF participant.</h3>
+            <p>The projects show different types of thinking: database rules, IoT robotics controller loops, secure
+              system scripting, and coordinate collision algorithms.</p>
           </article>
           <article class="proof-card">
             <b>Communication</b>
-            <h3>I write down decisions, not just final screens.</h3>
-            <p>For each project, I can explain the model, the main edge cases, what I tested, and what I would change next.</p>
+            <h3>Detailed write-ups and documentation on logic systems.</h3>
+            <p>For each project, I can explain the models, the main edge cases, what I tested, and what I would improve
+              next.</p>
           </article>
           <article class="proof-card">
             <b>Fit</b>
-            <h3>Best for teams that want a careful junior builder.</h3>
-            <p>I am not presenting myself as a senior engineer. I am showing that I can learn, build, ask good questions, and make my work reviewable.</p>
+            <h3>DOST scholar and BS Computer Science student ready for internships.</h3>
+            <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
+              math, and document my work systematically.</p>
           </article>
         </div>
       </section>
@@ -1055,10 +1447,11 @@ lock(index)
           <div>
             <span class="issue-label">Contact note</span>
             <h2 id="contact-title">Reach out for the resume, code links, or a walkthrough.</h2>
-            <p>I can send a resume, share repo links, walk through a project, or talk about a small web app or data tool. A short message is enough.</p>
+            <p>I can send a resume, share repo links, walk through a project, or talk about a system tool or game build.
+              A short message is enough.</p>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-copy="student@example.com">Copy email</button>
-              <a class="btn" href="#contact">Ask for resume</a>
+              <button class="btn btn-primary" type="button" data-copy="zernanvasharive16@gmail.com">Copy email</button>
+              <a class="btn" href="https://github.com/zernanvash" target="_blank" rel="noopener">GitHub Profile</a>
               <a class="btn btn-secondary" href="#work">Review projects</a>
             </div>
           </div>
@@ -1069,7 +1462,8 @@ lock(index)
             </div>
             <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="I would like to see your resume and project links."></textarea>
+              <textarea id="message" name="message"
+                placeholder="I would like to see your resume and project links."></textarea>
             </div>
             <div class="form-row">
               <span class="copy-status" id="form-status" aria-live="polite"></span>
@@ -1163,10 +1557,11 @@ lock(index)
           }
           const subject = encodeURIComponent("Computer science portfolio conversation");
           const body = encodeURIComponent((name ? name + "\n\n" : "") + message);
-          window.location.href = "mailto:student@example.com?subject=" + subject + "&body=" + body;
+          window.location.href = "mailto:zernanvasharive16@gmail.com?subject=" + subject + "&body=" + body;
         });
       }
     })();
   </script>
 </body>
+
 </html>
