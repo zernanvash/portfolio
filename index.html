@@ -46,17 +46,6 @@
               location.hash = href;
             }
           }
-        } else if (link.getAttribute('target') === '_blank') {
-          e.preventDefault();
-          let safe = false;
-          try {
-            var url = new URL(href, location.href);
-            safe =
-              url.protocol === 'http:' ||
-              url.protocol === 'https:' ||
-              url.protocol === 'mailto:';
-          } catch (_) { }
-          safe && window.open(href, '_blank', 'noopener,noreferrer');
         }
       });
     })();</script>
