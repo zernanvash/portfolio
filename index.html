@@ -62,9 +62,8 @@
     })();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Computer Science Student Portfolio</title>
-  <meta name="description"
-    content="A practical computer science student portfolio built in a VOX newspaper editorial style, showcasing full-stack development, data analysis, systems, and algorithms.">
+  <title>zernavash.dev</title>
+  <meta name="description" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link
@@ -361,7 +360,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.78fr);
       gap: clamp(42px, 6vw, 88px);
-      align-items: center;
+      align-items: start;
       padding: 84px 0 98px;
     }
 
@@ -830,6 +829,7 @@
     }
 
     .project-card {
+      position: relative;
       grid-column: span 6;
       min-height: 520px;
       display: grid;
@@ -843,6 +843,16 @@
       background: var(--paper);
       transform: translate(-3px, -3px);
       box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    .project-card h3 a::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
     }
 
     .project-card.featured {
@@ -1430,17 +1440,17 @@
               style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-red); letter-spacing: 0.08em; display: inline-block;">
               BS Computer Science Student · DOST Scholar</span>
           </div>
-          <h1 id="hero-title" data-od-id="path-1-0-0-0-1">I build useful software, then <span class="mark">show the work</span>.</h1>
-          <p class="hero-copy">I am a Computer Science student at Universidad de Dagupan looking for software
-            engineering internships and cybersecurity roles.
+          <h1 id="hero-title" data-od-id="path-1-0-0-0-1">I build useful software, then <span class="mark">show the
+              work</span>.</h1>
+          <p class="hero-copy">I am a Computer Science student at Universidad de Dagupan specializing in backend engineering, game development, and software design.
             <!-- This page is built like a short newsletter: quick context,
             project clippings, and the proof a busy reviewer needs. -->
           </p>
           <div class="identity-line" aria-label="Portfolio focus areas">
-            <span class="chip">Java &amp; Systems</span>
-            <span class="chip">Python, C, C++</span>
+            <span class="chip">Software Development</span>
+            <span class="chip">Backend / Databases</span>
+            <span class="chip">Java, Python, C++</span>
             <span class="chip">Game Development</span>
-            <span class="chip">Cybersecurity / CTF</span>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#work" data-od-id="path-1-0-0-0-4-0">Read the project notes</a>
@@ -1462,16 +1472,15 @@
           <div class="profile-header" data-od-id="path-1-0-0-1-0">
             <div class="profile-initials" aria-hidden="true">ZA</div>
             <div>
-              <h2 data-od-id="path-1-0-0-1-0-1-0">Motivated CS student aiming for secure software development.</h2>
-              <p>I focus on programming, analytical problem-solving, and cybersecurity. Here are my project clippings,
-                activities, and skills.</p>
+              <h2 data-od-id="path-1-0-0-1-0-1-0">Building optimized database schemas, APIs, and game physics.</h2>
+              <p>DOST scholar and Computer Science student specializing in performance-oriented backend engineering and modern C++/Java systems development.</p>
             </div>
           </div>
           <div class="status-list" data-od-id="path-1-0-0-1-1">
-            <div class="status-row"><span>Degree</span><strong>BS Computer Science</strong></div>
-            <div class="status-row"><span>College</span><strong>Universidad de Dagupan</strong></div>
-            <div class="status-row"><span>Honors</span><strong>Scholar &amp; Dean's Lister</strong></div>
-            <div class="status-row"><span>Contact</span><strong>zernanvasharive16@gmail.com</strong></div>
+            <div class="status-row"><span>Focus</span><strong>Backend &amp; Game Physics</strong></div>
+            <div class="status-row"><span>Scholarship</span><strong>DOST-SEI Merit Scholar</strong></div>
+            <div class="status-row"><span>Highlights</span><strong>Hack for Gov (2nd &amp; 3rd Place Team)</strong></div>
+            <div class="status-row"><span>Core Stack</span><strong>C++, Python, Java, SQL</strong></div>
           </div>
         </aside>
       </section>
@@ -1487,37 +1496,33 @@
         <div class="intro-grid" data-od-id="path-1-0-1-1">
           <aside class="panel" data-od-id="path-1-0-1-1-0">
             <span class="issue-label">Personal note</span>
-            <h3 data-od-id="path-1-0-1-1-0-1">I focus on secure software logic and clean execution.</h3>
-            <p>I usually build my code starting from data structures and security conditions. I enjoy participating in
-              cybersecurity CTF challenges and mobile robotics competitions, which train me to work effectively under
-              pressure.</p>
+            <h3 data-od-id="path-1-0-1-1-0-1">I focus on robust backend architectures and clean software design.</h3>
+            <p>I build clean, optimized systems starting from database schemas and performance constraints. I design
+              efficient game loops and scalable APIs, training myself to write maintainable code and manage complex systems.</p>
             <div class="fact-list" data-od-id="path-1-0-1-1-0-3">
               <div class="fact"><span>Studying</span><strong>BS Computer Science</strong></div>
               <div class="fact"><span>Scholarship</span><strong>DOST-SEI Merit Scholar</strong></div>
-              <div class="fact"><span>Role</span><strong>CSIT Society Developer</strong></div>
-              <div class="fact"><span>Activities</span><strong>Cybersecurity CTF &amp; Robotics</strong></div>
+              <div class="fact"><span>Highlights</span><strong>Hack for Gov (2nd &amp; 3rd Place Team)</strong></div>
+              <div class="fact"><span>Focus</span><strong>Backend &amp; Game Logic</strong></div>
             </div>
           </aside>
 
           <div class="learning-board" aria-label="Current learning board">
             <div class="learning-row">
-              <b>System Development</b>
-              <span>I worked as a System Developer for the Programming Sub-Organization of Universidad de Dagupan's CSIT
-                Society.</span>
+              <b>Backend Systems</b>
+              <span>I design robust SQLite database schemas, construct local storage state synchronizations, and implement mock-test engines.</span>
             </div>
             <div class="learning-row">
-              <b>Cybersecurity</b>
-              <span>Motivated by cybersecurity concepts, I participate in workshops and DCODE CTF challenges to test my
-                analytical skills.</span>
+              <b>Game Development</b>
+              <span>I construct self-training MENACE game theory AIs, manage character RPG progression metrics, and design custom game mechanics.</span>
             </div>
             <div class="learning-row">
-              <b>Specialized Skills</b>
-              <span>I develop system scripting in Batch and VBScript, and build IoT integrations for mobile robotics
-                competitions.</span>
+              <b>Software Engineering</b>
+              <span>I apply software design patterns, write comprehensive test cases, and optimize algorithms for high performance.</span>
             </div>
             <div class="learning-row">
-              <b>College Honors</b>
-              <span>DOST-SEI scholar and Dean's Lister, aiming to drive innovative secure software development.</span>
+              <b>Academic Excellence</b>
+              <span>DOST-SEI scholar and Dean's Lister, dedicated to writing clean, maintainable, and well-documented codebases.</span>
             </div>
           </div>
         </div>
@@ -1534,115 +1539,152 @@
         <div class="filters" aria-label="Project filters" data-od-id="path-1-0-2-1">
           <button class="filter" type="button" aria-pressed="true" data-filter="all"
             data-od-id="path-1-0-2-1-0">All</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="fullstack"
-            data-od-id="path-1-0-2-1-1">System Dev</button>
-          <button class="filter" type="button" aria-pressed="false" data-filter="robotics"
-            data-od-id="path-1-0-2-1-2">Robotics</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="backend"
+            data-od-id="path-1-0-2-1-1">Backend Dev</button>
+          <button class="filter" type="button" aria-pressed="false" data-filter="software"
+            data-od-id="path-1-0-2-1-2">Software Dev</button>
           <button class="filter" type="button" aria-pressed="false" data-filter="gamedev"
             data-od-id="path-1-0-2-1-3">Game Dev</button>
         </div>
 
         <div class="project-grid" data-od-id="path-1-0-2-2">
-          <article class="project-card featured" data-category="fullstack" data-od-id="path-1-0-2-2-0">
-            <div class="project-demo" data-stamp="System note" aria-label="CSIT sub-org system demo summary"
+          <article class="project-card featured" data-category="software" data-od-id="path-1-0-2-2-0">
+            <div class="project-demo" data-stamp="Active Mock" aria-label="Quiz Reviewer interactive summary"
               data-od-id="path-1-0-2-2-0-0">
               <div class="demo-window">
-                <div class="demo-title"><span>Programming Sub-Org</span><strong>System Dev</strong></div>
+                <div class="demo-title"><span>Quiz Reviewer</span><strong>College Block Mock</strong></div>
+                <div style="padding: 16px; font-family: var(--font-main); font-size: 13px; background: var(--paper); border-bottom: none;">
+                  <div style="font-weight: 700; margin-bottom: 8px; color: var(--ink); line-height: 1.35;">Q: Time complexity of search in balanced BST?</div>
+                  <div style="display: grid; gap: 6px;">
+                    <div style="border: 1.5px solid var(--ink); padding: 6px 10px; background: var(--accent-soft); font-weight: 700; font-family: var(--font-mono); font-size: 11px;">[A] O(log N) - Correct</div>
+                    <div style="border: 1.5px solid var(--rule-soft); padding: 6px 10px; color: var(--muted); font-family: var(--font-mono); font-size: 11px;">[B] O(N)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="pill">JavaScript</span>
+                <span class="pill">HTML5</span>
+                <span class="pill">CSS3</span>
+                <span class="pill">Local Storage</span>
+              </div>
+            </div>
+            <div class="project-body" data-od-id="path-1-0-2-2-0-1">
+              <div class="project-meta"><span>Clipping 01 · 2026</span><span>Software Dev</span></div>
+              <h3><a href="https://quiz-app-83399.web.app/" target="_blank" style="text-decoration: underline; text-underline-offset: 4px;">Quiz Reviewer App</a></h3>
+              <p>A mock-up style quiz reviewer application custom-built and deployed for our college block to practice and prepare for examinations. Features interactive multiple-choice testing, timed mode, and score logging.</p>
+              <div class="proof-row"><span>State management</span><span>Interactive UI</span><span>Mock testing</span></div>
+            </div>
+          </article>
+
+          <article class="project-card compact" data-category="backend" data-od-id="path-1-0-2-2-1">
+            <div class="project-demo" data-stamp="LvlUp Stats" aria-label="LvlUp gamification engine summary"
+              data-od-id="path-1-0-2-2-1-0">
+              <div class="demo-window">
+                <div class="demo-title"><span>LvlUp Web App</span><strong>Laravel</strong></div>
                 <div class="demo-table">
-                  <div class="demo-row"><span>Stored state</span><strong>Student records</strong></div>
-                  <div class="demo-row"><span>System role</span><strong>System Developer</strong></div>
-                  <div class="demo-row"><span>Walkthrough focus</span><strong>Database rules</strong></div>
+                  <div class="demo-row"><span>Level Progress</span><strong>Lv. 42 (Active Hero)</strong></div>
+                  <div class="demo-row"><span>Active Quest</span><strong>Compile Milestones</strong></div>
+                  <div class="demo-row"><span>Resume Gen</span><strong>Auto Markdown/PDF</strong></div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="pill">PHP</span>
+                <span class="pill">Laravel</span>
+                <span class="pill">Resume Gen</span>
+                <span class="pill">MySQL</span>
+              </div>
+            </div>
+            <div class="project-body" data-od-id="path-1-0-2-2-1-1">
+              <div class="project-meta"><span>Clipping 02 · 2025</span><span>Backend Dev</span></div>
+              <h3><a href="https://lvlup-v7yh.onrender.com/" target="_blank" style="text-decoration: underline; text-underline-offset: 4px;">LvlUp Gamification Web App</a></h3>
+              <p>A gamified task and progress tracking web application built with PHP and Laravel, applying RPG leveling mechanics to daily schedules. Features an automated resume generator that compiles milestones into professional formats.</p>
+              <div class="proof-row"><span>Gamification logic</span><span>Laravel MVC</span><span>Resume compiler</span></div>
+            </div>
+          </article>
+
+          <article class="project-card compact" data-category="gamedev" data-od-id="path-1-0-2-2-2">
+            <div class="project-demo" data-stamp="MENACE learning" aria-label="Tic-Tac-Toe MENACE AI summary"
+              data-od-id="path-1-0-2-2-2-0">
+              <div class="demo-window">
+                <div class="demo-title"><span>MENACE AI</span><strong>Java Game</strong></div>
+                <div style="padding: 14px; font-family: var(--font-mono); font-size: 13px; text-align: center; background: var(--paper); border-bottom: none;">
+                  <div style="display: inline-grid; grid-template-columns: repeat(3, 30px); gap: 4px; margin-bottom: 8px;">
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900; background: var(--accent-soft);">X</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;">O</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;">X</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;">O</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900; background: var(--accent);">X</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;"> </div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;"> </div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;">O</div>
+                    <div style="border: 1.5px solid var(--ink); height: 30px; line-height: 28px; font-weight: 900;"> </div>
+                  </div>
+                  <div style="font-size: 11px; color: var(--muted);">Reinforcement Learning · Trial-&-Error</div>
                 </div>
               </div>
               <div class="tag-row">
                 <span class="pill">Java</span>
-                <span class="pill">SQL</span>
-                <span class="pill">CSIT</span>
+                <span class="pill">AI Concepts</span>
+                <span class="pill">Game Theory</span>
+                <span class="pill">Swing</span>
               </div>
             </div>
-            <div class="project-body" data-od-id="path-1-0-2-2-0-1">
-              <div class="project-meta"><span>Clipping 01</span><span>System Dev</span></div>
-              <h3 data-od-id="path-1-0-2-2-0-1-1">Programming Sub-Organization System</h3>
-              <p>A custom system built as the System Developer for the Programming Sub-Organization under the Computer
-                Science and Information Technology Society at Universidad de Dagupan.</p>
-              <div class="proof-row"><span>Data model</span><span>Validation</span><span>Database rules</span></div>
+            <div class="project-body" data-od-id="path-1-0-2-2-2-1">
+              <div class="project-meta"><span>Clipping 03 · 2023</span><span>Game Dev</span></div>
+              <h3><a href="https://github.com/zernanvash/tic-tac-toe" target="_blank" style="text-decoration: underline; text-underline-offset: 4px;">Tic-Tac-Toe (MENACE AI)</a></h3>
+              <p>A custom Java game inspired by the mechanical matchbox machine-learning model (MENACE). Implements self-training reinforcement learning that adjusts move weight distributions dynamically based on win/loss feedback.</p>
+              <div class="proof-row"><span>Reinforcement learning</span><span>Game tree AI</span><span>Java OOP</span></div>
             </div>
           </article>
 
-          <article class="project-card compact" data-category="robotics" data-od-id="path-1-0-2-2-1">
-            <div class="project-demo" data-stamp="Robotics note" aria-label="Robotics controller demo summary"
-              data-od-id="path-1-0-2-2-1-0">
+          <article class="project-card featured" data-category="software" data-od-id="path-1-0-2-2-3">
+            <div class="project-demo" data-stamp="Solver Simulation" aria-label="Numerical solver demo summary"
+              data-od-id="path-1-0-2-2-3-0">
               <div class="demo-window">
-                <div class="demo-title"><span>Mobile Robotics</span><strong>C++</strong></div>
+                <div class="demo-title"><span>Numerical Solver</span><strong>C++ / Qt</strong></div>
                 <div class="demo-table">
-                  <div class="demo-row"><span>Input</span><strong>Sensor feeds</strong></div>
-                  <div class="demo-row"><span>Output</span><strong>Motor control</strong></div>
-                  <div class="demo-row"><span>Event</span><strong>Robotics Competition</strong></div>
+                  <div class="demo-row"><span>Equation</span><strong>dy/dt = -0.07*(y - 25)</strong></div>
+                  <div class="demo-row"><span>Method</span><strong>RK4 (Runge-Kutta)</strong></div>
+                  <div class="demo-row"><span>Iteration 3</span><strong>y = 78.435, t = 3.0</strong></div>
                 </div>
               </div>
               <div class="tag-row">
                 <span class="pill">C++</span>
-                <span class="pill">C</span>
-                <span class="pill">Arduino</span>
-              </div>
-            </div>
-            <div class="project-body" data-od-id="path-1-0-2-2-1-1">
-              <div class="project-meta"><span>Clipping 02</span><span>Robotics</span></div>
-              <h3 data-od-id="path-1-0-2-2-1-1-1">Mobile Robotics Competition Controller</h3>
-              <p>A robotics controller script written for Universidad de Dagupan's Mobile Robotics Competition, focusing
-                on hardware-software interfaces and real-time sensor loops.</p>
-              <div class="proof-row"><span>IoT control</span><span>Sensor loop</span><span>Robotics</span></div>
-            </div>
-          </article>
-
-          <article class="project-card compact" data-category="fullstack" data-od-id="path-1-0-2-2-2">
-            <div class="project-demo" data-stamp="Script note" aria-label="Security scripting demo summary"
-              data-od-id="path-1-0-2-2-2-0">
-              <div class="demo-window">
-                <div class="demo-title"><span>System Scripting</span><strong>Batch</strong></div>
-                <pre class="mini-code">@echo off
-echo Running security audit...
-cscript /nologo check_ports.vbs
-<em>Audit slow paths</em></pre>
-              </div>
-              <div class="tag-row">
-                <span class="pill">Batch</span>
-                <span class="pill">VBScript</span>
-                <span class="pill">Security</span>
-              </div>
-            </div>
-            <div class="project-body" data-od-id="path-1-0-2-2-2-1">
-              <div class="project-meta"><span>Clipping 03</span><span>System Dev</span></div>
-              <h3 data-od-id="path-1-0-2-2-2-1-1">Batch &amp; VBScript Security Audit Scripts</h3>
-              <p>System management scripts built using Batch and VBScript to automate configuration checks, check ports,
-                and secure system directories during network operations.</p>
-              <div class="proof-row"><span>Automation</span><span>System scripts</span><span>Audit logic</span></div>
-            </div>
-          </article>
-
-          <article class="project-card compact" data-category="gamedev" data-od-id="path-1-0-2-2-3">
-            <div class="project-demo" data-stamp="Game note" aria-label="Collision engine demo summary"
-              data-od-id="path-1-0-2-2-3-0">
-              <div class="demo-window">
-                <div class="demo-title"><span>Collision Engine</span><strong>Java</strong></div>
-                <div class="demo-table">
-                  <div class="demo-row"><span>Game engine</span><strong>Java 2D Canvas</strong></div>
-                  <div class="demo-row"><span>Collision</span><strong>AABB / Raycast</strong></div>
-                  <div class="demo-row"><span>Event</span><strong>Game Dev Workshop</strong></div>
-                </div>
-              </div>
-              <div class="tag-row">
-                <span class="pill">Java</span>
-                <span class="pill">2D Canvas</span>
-                <span class="pill">Game Dev</span>
+                <span class="pill">Qt Creator</span>
+                <span class="pill">Numerical Methods</span>
+                <span class="pill">CMake</span>
               </div>
             </div>
             <div class="project-body" data-od-id="path-1-0-2-2-3-1">
-              <div class="project-meta"><span>Clipping 04</span><span>Game Dev</span></div>
-              <h3 data-od-id="path-1-0-2-2-3-1-1">Java Game Development Collision Engine</h3>
-              <p>A 2D collision resolution engine built in Java for a Game Development Workshop, featuring coordinate
-                mapping, collision response, and raycasting bounds check.</p>
-              <div class="proof-row"><span>Vector math</span><span>Game loop</span><span>Canvas rendering</span></div>
+              <div class="project-meta"><span>Clipping 04 · 2026</span><span>Software Dev</span></div>
+              <h3><a href="https://github.com/zernanvash/numerical-method-solver" target="_blank" style="text-decoration: underline; text-underline-offset: 4px;">Numerical Method Solver</a></h3>
+              <p>An interactive desktop application built in C++ and Qt to solve root-finding equations and initial value problems (ODEs) step-by-step. Features dynamic plotting, Newton-Raphson tangent lines, RK4 simulations, and report exports.</p>
+              <div class="proof-row"><span>Algorithm design</span><span>Qt GUI</span><span>Math simulations</span></div>
+            </div>
+          </article>
+          <article class="project-card" style="grid-column: span 12; min-height: 480px;" data-category="gamedev" data-od-id="path-1-0-2-2-4">
+            <div class="project-demo" data-stamp="Roblox Game" aria-label="Night Shift Roblox game summary"
+              data-od-id="path-1-0-2-2-4-0">
+              <div class="demo-window">
+                <div class="demo-title"><span>Night Shift</span><strong>Roblox Engine</strong></div>
+                <div class="demo-table">
+                  <div class="demo-row"><span>Active Task</span><strong>Mop L-Building 6F</strong></div>
+                  <div class="demo-row"><span>Atmosphere</span><strong>VHS Filter / GodRays</strong></div>
+                  <div class="demo-row"><span>Trigger State</span><strong>FlickerSwitch_04 Active</strong></div>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="pill">Luau (Roblox)</span>
+                <span class="pill">Roblox Studio</span>
+                <span class="pill">Game Design</span>
+                <span class="pill">3D Modeling</span>
+              </div>
+            </div>
+            <div class="project-body" data-od-id="path-1-0-2-2-4-1">
+              <div class="project-meta"><span>Clipping 05 · 2026</span><span>Game Dev</span></div>
+              <h3><a href="https://www.roblox.com/games/89279983871745" target="_blank" style="text-decoration: underline; text-underline-offset: 4px;">Night Shift: Universidad</a></h3>
+              <p>A retro-inspired psychological exploration horror game built on Roblox. Players act as a night shift janitor completing checklist chores in an empty university campus while navigating surreal environmental anomalies, impossible architecture, and atmospheric audio/light events.</p>
+              <div class="proof-row"><span>Gameplay systems</span><span>Atmospheric FX</span><span>Luau scripting</span></div>
             </div>
           </article>
         </div>
@@ -1659,21 +1701,18 @@ cscript /nologo check_ports.vbs
         <div class="proof-grid" data-od-id="path-1-0-3-1">
           <article class="proof-card" data-od-id="path-1-0-3-1-0">
             <b>Technical range</b>
-            <h3 data-od-id="path-1-0-3-1-0-1">Systems developer, game dev, and cybersecurity CTF participant.</h3>
-            <p>The projects show different types of thinking: database rules, IoT robotics controller loops, secure
-              system scripting, and coordinate collision algorithms.</p>
+            <h3 data-od-id="path-1-0-3-1-0-1">Backend architectures, software engineering, and game development.</h3>
+            <p>The projects span multiple domains: interactive Web applications, RPG progression leveling, self-training game theory AI, and ODE numerical simulations.</p>
           </article>
           <article class="proof-card" data-od-id="path-1-0-3-1-1">
             <b>Communication</b>
-            <h3 data-od-id="path-1-0-3-1-1-1">Detailed write-ups and documentation on logic systems.</h3>
-            <p>For each project, I can explain the models, the main edge cases, what I tested, and what I would improve
-              next.</p>
+            <h3 data-od-id="path-1-0-3-1-1-1">Technical write-ups, clean documentation, and logic designs.</h3>
+            <p>For each project, I can explain state synchronization rules, gamified XP formulas, self-training MENACE weight updates, and step-by-step RK4 solver outputs.</p>
           </article>
           <article class="proof-card" data-od-id="path-1-0-3-1-2">
             <b>Fit</b>
             <h3 data-od-id="path-1-0-3-1-2-1">DOST scholar and BS Computer Science student ready for internships.</h3>
-            <p>I am showing that I can learn quickly under pressure, write secure automation, solve complex coordinate
-              math, and document my work systematically.</p>
+            <p>I can write clean, performance-optimized, and well-tested code, design intuitive study interfaces, implement reinforcement learning concepts, and collaborate effectively.</p>
           </article>
         </div>
       </section>
