@@ -4,13 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Visual Art Showcase · Zernan Vash Arive</title>
+  <title>Visual Art Showcase · Zernan Vash</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <meta name="description"
     content="A showcase of visual artworks, digital clippings, and illustrations, adopting the same custom VOX newspaper editorial aesthetic.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=VT323&amp;family=Share+Tech+Mono&amp;family=Rajdhani:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -570,6 +571,428 @@
       box-shadow: 2px 2px 0 var(--ink);
     }
 
+    /* Terminal portfolio skin */
+    :root {
+      --blue: #1e90ff;
+      --blue-dim: #1266cc;
+      --blue-glow: rgba(30, 144, 255, 0.18);
+      --blue-faint: rgba(30, 144, 255, 0.07);
+      --orange: #ff7b00;
+      --orange-dim: #d96800;
+      --orange-glow: rgba(255, 123, 0, 0.22);
+      --orange-soft: rgba(255, 123, 0, 0.12);
+      --white: #e8f4ff;
+      --white-dim: #c8dcf0;
+      --white-muted: #9fb8d4;
+      --bg: #040c1a;
+      --bg2: #071225;
+      --bg3: #0a1c35;
+      --font-main: 'Rajdhani', sans-serif;
+      --font-display: 'VT323', monospace;
+      --font-mono: 'Share Tech Mono', monospace;
+      --container: 1120px;
+      --gutter: clamp(18px, 4vw, 42px);
+      --rule: rgba(30, 144, 255, 0.32);
+      --rule-soft: rgba(30, 144, 255, 0.16);
+      --accent: var(--blue);
+      --accent-red: var(--orange);
+      --paper: var(--bg2);
+      --paper-2: var(--bg3);
+      --ink: var(--white);
+      --ink-2: var(--white-dim);
+      --muted: var(--white-muted);
+      --shadow-paper: none;
+      --focus: 0 0 0 2px var(--orange), 0 0 18px var(--orange-glow);
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--white);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    body::before {
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 4px,
+        rgba(0, 0, 0, 0.13) 4px,
+        rgba(0, 0, 0, 0.13) 5px
+      );
+      opacity: 0.7;
+      mix-blend-mode: normal;
+    }
+
+    body::after {
+      position: fixed;
+      background: radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, 0.78) 100%);
+      opacity: 1;
+      mix-blend-mode: normal;
+    }
+
+    .topbar {
+      position: sticky;
+      border-bottom: 1px solid var(--blue-dim);
+      background: rgba(4, 12, 26, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 72px;
+    }
+
+    .brand {
+      color: var(--blue);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      letter-spacing: 0;
+      text-shadow: 0 0 12px var(--blue-glow);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--orange-dim);
+      background: var(--orange-soft);
+      color: var(--orange);
+      box-shadow: 0 0 14px var(--orange-glow);
+      transform: none;
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      gap: 10px;
+      color: var(--blue);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .nav-links a:not(.btn) {
+      border: 1px solid var(--blue-dim);
+      padding: 8px 15px;
+      background: transparent;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .nav-links a:not(.btn)::after {
+      display: none;
+    }
+
+    .nav-links a:not(.btn):hover,
+    .nav-links a:not(.btn).active {
+      background: var(--blue-faint);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: 0 0 10px var(--blue-glow);
+    }
+
+    .btn {
+      min-height: auto;
+      border: 1px solid var(--orange-dim);
+      background: var(--orange-soft);
+      color: var(--orange);
+      box-shadow: none;
+      font-size: 14px;
+      padding: 11px 18px;
+      text-transform: none;
+      letter-spacing: 0.08em;
+    }
+
+    .btn:hover,
+    .btn-primary:hover {
+      background: var(--orange);
+      color: var(--bg);
+      transform: none;
+      box-shadow: 0 0 14px var(--orange-glow);
+    }
+
+    .mobile-menu {
+      border: 1px solid var(--blue-dim);
+      background: var(--blue-faint);
+      color: var(--blue);
+      box-shadow: none;
+    }
+
+    .mobile-panel {
+      border-top: 1px solid var(--rule-soft);
+    }
+
+    .mobile-panel a {
+      border-top: 1px solid var(--rule-soft);
+      color: var(--white-dim);
+      font-family: var(--font-mono);
+    }
+
+    .mobile-panel a.active {
+      color: var(--orange);
+    }
+
+    .artworks-section {
+      padding: 58px 0 98px;
+    }
+
+    .section-head {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.62fr);
+      gap: clamp(24px, 5vw, 56px);
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .section-head h1 {
+      color: var(--blue);
+      font-family: var(--font-display);
+      font-size: clamp(52px, 9vw, 104px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px var(--blue), 0 0 40px var(--blue-glow);
+    }
+
+    .section-head p {
+      max-width: 760px;
+      margin-top: 18px;
+      color: var(--white);
+      font-family: var(--font-main);
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 500;
+      line-height: 1.38;
+    }
+
+    .section-initial,
+    .section-initial.a {
+      display: inline;
+      width: auto;
+      height: auto;
+      border: 0;
+      background: transparent;
+      color: var(--orange);
+      box-shadow: none;
+      transform: none;
+      font-family: var(--font-display);
+      font-size: 1em;
+      line-height: inherit;
+    }
+
+    .art-terminal-summary {
+      display: grid;
+      gap: 16px;
+    }
+
+    .fetch-box {
+      position: relative;
+      border: 2px solid var(--blue);
+      padding: 20px 22px 16px;
+      background: rgba(0, 0, 0, 0.42);
+      box-shadow: inset 0 0 28px rgba(30, 144, 255, 0.08);
+    }
+
+    .fetch-box::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: -2px;
+      right: -2px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .fetch-title {
+      position: absolute;
+      top: -12px;
+      left: 26px;
+      padding: 0 10px;
+      background: var(--bg);
+      color: currentColor;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .fetch-orange {
+      color: var(--orange);
+      border-color: var(--orange);
+      box-shadow: inset 0 0 28px rgba(255, 123, 0, 0.08);
+    }
+
+    .fetch-row {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 14px;
+      color: var(--white-dim);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .fetch-row span {
+      color: #66fff5;
+    }
+
+    .fetch-row strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .prompt {
+      margin: 28px 0 12px;
+      color: var(--white-dim);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .prompt span {
+      color: var(--orange);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 9px;
+      height: 14px;
+      margin-left: 2px;
+      background: var(--blue);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .controls-panel {
+      border-top: 1px solid var(--orange-dim);
+      border-bottom: 1px solid var(--orange-dim);
+      padding: 18px 0;
+      margin-bottom: 34px;
+    }
+
+    .search-input-wrapper {
+      max-width: 560px;
+    }
+
+    .search-input-wrapper svg {
+      color: var(--orange);
+    }
+
+    .search-input {
+      border: 1px solid var(--blue-dim);
+      background: rgba(7, 18, 37, 0.92);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      box-shadow: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--white-muted);
+    }
+
+    .search-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 12px var(--blue-glow);
+      transform: none;
+    }
+
+    .stats-label {
+      border: 1px solid var(--orange-dim);
+      background: var(--orange-soft);
+      color: var(--orange);
+      box-shadow: none;
+      transform: none;
+      font-size: 13px;
+      padding: 9px 14px;
+    }
+
+    .artworks-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .artwork-card {
+      border: 1px solid rgba(30, 144, 255, 0.38);
+      border-left: 4px solid var(--blue);
+      background: linear-gradient(135deg, rgba(7, 18, 37, 0.98), rgba(4, 12, 26, 0.92));
+      box-shadow: none;
+      padding: 16px;
+      gap: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .artwork-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 0 16px var(--blue-glow), inset 0 0 30px var(--blue-faint);
+      transform: translateY(-3px) !important;
+    }
+
+    .artwork-img-wrapper {
+      border: 1px solid var(--bg3);
+      background: var(--bg);
+    }
+
+    .artwork-title {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .artwork-file {
+      color: var(--orange);
+      font-size: 12px;
+    }
+
+    .lightbox {
+      background: rgba(0, 0, 0, 0.92);
+    }
+
+    .lightbox-content {
+      background: var(--bg2);
+      border: 1px solid var(--blue);
+      box-shadow: 0 0 30px var(--blue-glow);
+    }
+
+    .lightbox-image-wrapper {
+      border: 1px solid var(--bg3);
+      background: var(--bg);
+    }
+
+    .lightbox-footer {
+      border-top: 1px solid var(--rule-soft);
+    }
+
+    .lightbox-title {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .lightbox-close {
+      border: 1px solid var(--orange-dim);
+      background: var(--orange);
+      color: var(--bg);
+      box-shadow: 0 0 14px var(--orange-glow);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 48px;
+      border: 1px dashed var(--orange-dim);
+      color: var(--white-dim);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 15px;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 980px) {
       .section-head {
@@ -626,7 +1049,7 @@
       <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="../index.html#top" aria-label="Portfolio home">
           <span class="brand-mark">ZA</span>
-          <span>ZERNAN VASH ARIVE</span>
+          <span>ZERNAN VASH</span>
         </a>
         <div class="nav-links" aria-label="Page sections">
           <a href="../index.html#about">About</a>
@@ -660,7 +1083,22 @@
             <p>Alongside programming and logic, I explore visual expressions, digital art concepts, and illustrations.
               Here is an archive of visual drafts, study pieces, and creations.</p>
           </div>
+          <div class="art-terminal-summary" aria-label="Artwork archive snapshot">
+            <div class="fetch-box">
+              <div class="fetch-title">HARDWARE</div>
+              <div class="fetch-row"><span>MODE</span><strong>Visual archive</strong></div>
+              <div class="fetch-row"><span>INPUT</span><strong>Digital art, studies, drafts</strong></div>
+              <div class="fetch-row"><span>VIEW</span><strong>Searchable grid + lightbox</strong></div>
+            </div>
+            <div class="fetch-box fetch-orange">
+              <div class="fetch-title">SOFTWARE</div>
+              <div class="fetch-row"><span>THEME</span><strong>Terminal / fastfetch</strong></div>
+              <div class="fetch-row"><span>PALETTE</span><strong>Blue, orange, cyan, black</strong></div>
+            </div>
+          </div>
         </div>
+
+        <div class="prompt"><span>zernanvash@dev</span>:~$ find artworks -type image<span class="cursor"></span></div>
 
         <div class="controls-panel">
           <div class="search-input-wrapper">
@@ -793,7 +1231,7 @@
 
         if (items.length === 0) {
           grid.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 48px; border: 3px dashed var(--rule-soft); font-family: var(--font-mono); font-size: 15px; color: var(--muted);">
+            <div class="empty-state">
               No matching artworks found.
             </div>
           `;
